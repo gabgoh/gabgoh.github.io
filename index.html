@@ -5,6 +5,12 @@
 
 @font-face { font-family: Computer Modern; src: url('cmuntt.ttf'); } 
 
+a {
+    color:black;
+    text-decoration: none;
+    font-weight:bold;
+}
+
 #header {
     color:black;
     text-align:center;
@@ -95,6 +101,13 @@ img {
 
 <h2>About</h2>
 
+<script type="text/javascript"><!--
+function gen_mail_to_link(lhs,rhs,subject)
+{
+document.write("<A HREF=\"mailto");
+document.write(":" + lhs + "@");
+document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>"); } 
+</script>
 
 <div id="section">
 
@@ -106,13 +119,18 @@ img {
 
     <div id = "right">
     <b>Hi!</b><br>
-    Welcome to my website! I'm Gabe, a Phd student at UC Davis working under the supervision of Michael Friedlander. I am interested in Convex Optimization, Machine Learning and Probability.
+    Welcome to my website. I'm Gabe, a Phd student at UC Davis working under the supervision of <a href = "https://www.math.ucdavis.edu/~mpf/"> Michael Friedlander</a>. I am interested in Convex Optimization, Machine Learning and Probability.
     <br><br>
     In my free time, I tinker with Computer Graphics, Data Visualization, Virtual Reality, and think deep thoughts about the internet and our place in it.
     <br><br>
     <b>Office:</b> 4121
     <br>
-    <b>Email:</b> ggoh@math.ucdavis.edu
+    <b>Email:</b>
+    <script> gen_mail_to_link("ggoh", "math.ucdavis.edu","Hi") </script>     
+    <br>
+    <b>Personal Email:</b> 
+    <script> gen_mail_to_link("gabgohjh", "gmail.com","Hi") </script>
+
     </div>
 
 </div>
@@ -156,12 +174,13 @@ img {
 
     <div id = "right">
         
-    <b>Tail Bounds for Stochastic Gradient Descent</b><br>
+    <b><a href = "http://arxiv.org/abs/1304.5586">Tail Bounds for Stochastic Gradient Descent</a></b><br>
      
     My first paper in grad school. I was itching to put the tail bounds I've learnt about in Nick Harvey's class to good use. In this paper you will find 3 unexpected tricks with scalars. See if you can find them!
     <br><br>
     <b>
-    Paper
+    <a href = "http://arxiv.org/abs/1304.5586">        
+    Paper</a>
     <br> 
     </b>
 
@@ -178,11 +197,17 @@ img {
 
     <div id="left2">
     <p>
-    <b>4 Years of Advice Animals</b>
+    <b>
+    <a href = "http://gabgoh.github.io/adviceanimals/html/">
+    4 Years of Advice Animals</a>
+    </b>
     <br>
-    In 2006 Advice Dog flashed across the Internet like lightning, opening a whole new multicolored chapter of human communication - the Advice Animal. But in the Darwinian struggle for our collective attention, not all animals make it. Some die after exploding into existence. Some lead quiet lives. Other sit and wait, waiting for rebirth. Some keep going strong, living long and productive lives. Drawing on Jason Braughmerger's awesome reddit dataset, I have collected, for your viewing pleasure, every post in /r/AdviceAnimal since its inception to 2014 with over 50 upvotes. Enjoy!
+    In 2006 Advice Dog flashed across the Internet like lightning, opening a whole new multicolored chapter of human communication - the advice animal. But in the Darwinian struggle for our collective attention, not all animals make it. Some die fast after exploding into existence. Some lead quiet lives. Other sit and wait, waiting for rebirth. Some keep going strong, living long and productive lives. Drawing on <a href = "http://www.pushshift.io">Jason Braughmerger's</a> awesome reddit dataset, I have collected, for your viewing pleasure, all posts in /r/AdviceAnimal to Dec 2014 with over 50 upvotes. Enjoy!
     <br><br>
-    <b>Making of
+    <a href = "http://gabgoh.github.io/adviceanimals/html/">
+    Site</a>
+    <br>
+    <b>Making of (coming soon)
     </b>
     <br>
     </div>
