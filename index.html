@@ -1,38 +1,205 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Gabgoh.GitHub.io by gabgoh</title>
+<head>
+<style>
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>Gabgoh.GitHub.io</h1>
-        <p>Homepage</p>
+@font-face { font-family: Computer Modern; src: url('cmuntt.ttf'); } 
+
+#header {
+    color:black;
+    text-align:center;
+    padding:1px;
+    font-family: Computer Modern, monospace;
+    font-size: 15px;    
+}
+
+h2 {
+    width: 500px;
+    margin: auto;
+    border-width: 0px 0px 2px 0px;
+    border-color: black;
+    border-style: dotted;
+    color:black;
+    text-align:center;
+    padding:10px;
+    font-family: Computer Modern, monospace;
+    font-size: 20px;
+}
+
+img {
+/*    border-width: 4px 4px 4px 4px;
+    border-color: rgb(0,0,0);
+    border-style: solid*/
+}
+
+#section {
+    display:flex;
+    width: 200px;
+    padding:20px;
+    margin: auto;
+    width: 500px;
+    border:0px solid #000000;
+    font-family: Computer Modern, monospace;
+    font-size: 12.5px;
+}
 
 
-        <p class="view"><a href="https://github.com/gabgoh">View My GitHub Profile</a></p>
-
-      </header>
-      <section>
-        <h3>
-<a id="hi" class="anchor" href="#hi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Hi</h3>
-
-<p>I am Gabe.</p>
-      </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
+ #left
+{
+    flex:1;
+    height: 150px;
+    margin: auto;    
+}
     
-  </body>
+#right
+{
+    flex:2;
+    color: black;
+    margin:auto;
+    margin-left: 30px; 
+    padding:2px;
+
+}
+    
+#left2
+{
+    flex:2;
+    color: black;
+    margin:auto;
+    margin-right: 30px; 
+    padding:2px;   
+    text-align:right;
+
+}
+    
+#right2
+{
+    flex:1;
+    height: 150px;
+    margin: auto;  
+
+}
+
+.clear
+{
+    clear: both;
+}
+
+</style>
+</head>
+<body>
+
+<div id="header">
+<h1> *** Gabriel Goh *** </h1>
+</div>
+
+<h2>About</h2>
+
+
+<div id="section">
+
+    <div id="left">
+    <center>
+    <img src="face3.jpg" width="150px", height = "150px"> 
+    </center>
+    </div>
+
+    <div id = "right">
+    <b>Hi!</b><br>
+    Welcome to my website! I'm Gabe, a Phd student at UC Davis working under the supervision of Michael Friedlander. I am interested in Convex Optimization, Machine Learning and Probability.
+    <br><br>
+    In my free time, I tinker with Computer Graphics, Data Visualization, Virtual Reality, and think deep thoughts about the internet and our place in it.
+    <br><br>
+    <b>Office:</b> 4121
+    <br>
+    <b>Email:</b> ggoh@math.ucdavis.edu
+    </div>
+
+</div>
+
+
+</p>
+
+<p>
+
+<h2>Publications/Code</h2>
+
+<div id="section">
+
+    <div id="left2">
+    <b>A Family of Friendly Proximals (WIP)</b><br>
+    Coming soon!
+    
+
+    <br><br>
+    <b>
+    Paper
+    <br>Talk
+    <br>Code
+    <br> 
+    </b>
+
+    </div>
+
+    <div id = "right2">
+    <img src="qsip.jpg" width="150px", height = "150px"> 
+    </div>
+
+</div>
+
+
+<div id="section">
+
+    <div id="left">
+    <img src="tailbound.jpg" width="150px", height = "150px"> 
+    </div>
+
+    <div id = "right">
+        
+    <b>Tail Bounds for Stochastic Gradient Descent</b><br>
+     
+    My first paper in grad school. I was itching to put the tail bounds I've learnt about in Nick Harvey's class to good use. In this paper you will find 3 unexpected tricks with scalars. See if you can find them!
+    <br><br>
+    <b>
+    Paper
+    <br> 
+    </b>
+
+
+    </div>
+
+</div>
+
+<div id="clear"></div>
+
+<h2><center>Fun</center></h2>
+
+<div id="section">
+
+    <div id="left2">
+    <p>
+    <b>4 Years of Advice Animals</b>
+    <br>
+    In 2006 Advice Dog flashed across the Internet like lightning, opening a whole new multicolored chapter of human communication - the Advice Animal. But in the Darwinian struggle for our collective attention, not all animals make it. Some die after exploding into existence. Some lead quiet lives. Other sit and wait, waiting for rebirth. Some keep going strong, living long and productive lives. Drawing on Jason Braughmerger's awesome reddit dataset, I have collected, for your viewing pleasure, every post in /r/AdviceAnimal since its inception to 2014 with over 50 upvotes. Enjoy!
+    <br><br>
+    <b>Making of
+    </b>
+    <br>
+    </div>
+
+    <div id = "right2">
+
+    <center>
+    <img src="memes.png" width="150px", height = "150px"> 
+    </center>
+    </div>
+
+</div>
+
+
+</p>
+
+</p>
+
+</body>
 </html>
