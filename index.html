@@ -3,7 +3,7 @@
 <head>
 <style>
 
-@font-face { font-family: Computer Modern; src: url('cmuntt.ttf'); } 
+@font-face { font-family: Computer Modern; src: url('cmuntt.ttf'); }
 
 a {
     color:black;
@@ -16,7 +16,7 @@ a {
     text-align:center;
     padding:1px;
     font-family: Computer Modern, monospace;
-    font-size: 15px;    
+    font-size: 15px;
 }
 
 h2 {
@@ -54,35 +54,35 @@ img {
 {
     flex:1;
     height: 150px;
-    margin: auto;    
+    margin: auto;
 }
-    
+
 #right
 {
     flex:2;
     color: black;
     margin:auto;
-    margin-left: 30px; 
+    margin-left: 30px;
     padding:2px;
 
 }
-    
+
 #left2
 {
     flex:2;
     color: black;
     margin:auto;
-    margin-right: 30px; 
-    padding:2px;   
+    margin-right: 30px;
+    padding:2px;
     text-align:right;
 
 }
-    
+
 #right2
 {
     flex:1;
     height: 150px;
-    margin: auto;  
+    margin: auto;
 
 }
 
@@ -106,29 +106,38 @@ function gen_mail_to_link(lhs,rhs,subject)
 {
 document.write("<A HREF=\"mailto");
 document.write(":" + lhs + "@");
-document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>"); } 
+document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>"); }
 </script>
 
 <div id="section">
 
     <div id="left">
     <center>
-    <img src="face3.jpg" width="150px", height = "150px"> 
+    <img src="face3.jpg" width="150px", height = "150px">
     </center>
     </div>
 
     <div id = "right">
     <b>Hi!</b><br>
-    Welcome to my website. I'm Gabe, a Phd student at UC Davis working under the supervision of <a href = "https://www.math.ucdavis.edu/~mpf/"> Michael Friedlander</a>. I am interested in Convex Optimization, Machine Learning and Probability.
+
+    Welcome to my website. I'm Gabe, a Phd student at UC Davis working under
+    the supervision of <a href = "https://www.math.ucdavis.edu/~mpf/"> Michael
+    Friedlander</a>. I am interested in Convex Optimization, Machine Learning
+    and Probability.
+
     <br><br>
-    In my free time, I tinker with Computer Graphics, Data Visualization, Virtual Reality, and think deep thoughts about the internet and our place in it.
+
+    In my free time, I tinker with Computer Graphics, Data Visualization,
+    Virtual Reality, and think deep thoughts about the internet and our place in
+    it.
+
     <br><br>
     <b>Office:</b> 4121
     <br>
     <b>Email:</b>
-    <script> gen_mail_to_link("ggoh", "math.ucdavis.edu","Hi") </script>     
+    <script> gen_mail_to_link("ggoh", "math.ucdavis.edu","Hi") </script>
     <br>
-    <b>Personal Email:</b> 
+    <b>Personal Email:</b>
     <script> gen_mail_to_link("gabgohjh", "gmail.com","Hi") </script>
 
     </div>
@@ -147,20 +156,20 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
     <div id="left2">
     <b>A Family of Friendly Proximals (WIP)</b><br>
     Coming soon!
-    
+
 
     <br><br>
     <b>
     Paper
     <br>Talk
     <br>Code
-    <br> 
+    <br>
     </b>
 
     </div>
 
     <div id = "right2">
-    <img src="qsip.jpg" width="150px", height = "150px"> 
+    <img src="qsip.jpg" width="150px", height = "150px">
     </div>
 
 </div>
@@ -169,20 +178,19 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 <div id="section">
 
     <div id="left">
-    <img src="tailbound.jpg" width="150px", height = "150px"> 
+    <img src="tailbound.jpg" width="150px", height = "150px">
     </div>
 
     <div id = "right">
-        
-    <b><a href = "http://arxiv.org/abs/1304.5586">Tail Bounds for Stochastic Gradient Descent</a></b><br>
-     
-    My first paper in grad school. I was itching to put the tail bounds I've learnt about in Nick Harvey's class to good use. In this paper you will find 3 unexpected tricks with scalars. See if you can find them!
-    <br><br>
-    <b>
-    <a href = "http://arxiv.org/abs/1304.5586">        
-    Paper</a>
-    <br> 
-    </b>
+
+    <b><a href = "http://arxiv.org/abs/1304.5586">Tail Bounds for Stochastic
+    Gradient Descent</a></b><br>
+
+    My first paper in grad school. Here I investigated at the role concentration plays
+    in randomized algorithms for optimization, in particular stochastic gradient
+    descent. <br><br> <b>
+
+      <a href = "http://arxiv.org/abs/1304.5586"> Paper</a> <br>  </b>
 
 
     </div>
@@ -195,27 +203,31 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 
 <div id="section">
 
-    <div id="left2">
-    <p>
-    <b>
-    <a href = "http://gabgoh.github.io/adviceanimals/html/">
-    4 Years of Advice Animals</a>
-    </b>
-    <br>
-    In 2006 Advice Dog flashed across the Internet like lightning, opening a whole new multicolored chapter of human communication - the advice animal. But in the Darwinian struggle for our collective attention, not all animals make it. Some die fast after exploding into existence. Some lead quiet lives. Other sit and wait, waiting for rebirth. Some keep going strong, living long and productive lives. Drawing on <a href = "http://www.pushshift.io">Jason Braughmerger's</a> awesome reddit dataset, I have collected, for your viewing pleasure, all posts in /r/AdviceAnimal to Dec 2014 with over 50 upvotes. Enjoy!
-    <br><br>
-    <a href = "http://gabgoh.github.io/adviceanimals/html/">
-    Site</a>
-    <br>
-    <b>Making of (coming soon)
-    </b>
-    <br>
-    </div>
+    <div id="left2"> <p> <b> <a href =
+    "http://gabgoh.github.io/adviceanimals/html/"> 4 Years of Advice Animals</a>
+    </b> <br>
+
+    I saw a beautiful spindle diagram in the natural history museum (it looked a
+    little like this <a href =
+    "https://www2.estrellamountain.edu/faculty/farabee/biobk/pro_plfr.gif">this</a>
+    or <a href =
+    "https://upload.wikimedia.org/wikipedia/commons/7/76/Spindle_diagram.jpg">this</a>)
+    charting the evolution of species through time. I wondered if the same could
+    be applied to memes on the internet. Perhaps memes obeyed similar forces,
+    living and dying in microclimates in our imagination. A long shot, perhaps.
+    But here it is - a <a href="https://d3js.org/"> D3 </a> visualization of <a
+    href = "http://www.pushshift.io">Jason Braughmerger's</a> meticulously mined
+    reddit dataset showing all posts in /r/AdviceAnimal to Dec 2014 with over 50
+    up-votes. Enjoy!
+
+    <br><br> <a href =
+    "http://gabgoh.github.io/adviceanimals/html/"> Site</a> <br> <b>Making of
+    (coming soon) </b> <br> </div>
 
     <div id = "right2">
 
     <center>
-    <img src="memes.png" width="150px", height = "150px"> 
+    <img src="memes.png" width="150px", height = "150px">
     </center>
     </div>
 
@@ -225,11 +237,11 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 <div id="section">
 
     <div id="left">
-    <img src="dreams.png" width="150px", height = "150px"> 
+    <img src="dreams.png" width="150px", height = "150px">
     </div>
 
     <div id = "right">
-        
+
     <b><a href = "http://gfycat.com/CheerfulAptBuffalo">Some </a>
         <a href = "http://gfycat.com/RedCandidGrayling">Deep </a>
         Dreams</a></b>
@@ -244,6 +256,7 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 </p>
 
 <script>
+
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
