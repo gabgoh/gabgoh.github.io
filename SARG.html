@@ -11776,7 +11776,7 @@ $$F(x)=\Psi^{1}(\,\Psi^{2}(\, \cdots \,\Psi^{k}(x)\,\cdots\,) \,).$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h5 id="The-Sparse-Regression-Layer">The Sparse Regression Layer<a class="anchor-link" href="#The-Sparse-Regression-Layer">&#182;</a></h5><p>Moving away from traditional layers, here is hypothetical one. This layer, $\Psi$ does not admit a formula, but is defined instead implicitly as the solution of a sparse coding problem
 $$\Psi(x)=\underset{y}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda\|y\|_{1}\big\}.$$
-I dub this the sparse regression layer. This layer maps its inputs $x$ to the weights of the best sparse linear combinations of $W$ which best reconstruct $x$.</p>
+I dub this the sparse regression layer. This layer maps its inputs $x$ to the weights of on a few columns of $W$ which reconstruct $x$ well.</p>
 <p><img src="sparse.svg" width = 450px></p>
 <p>Despite its implicit definition, we can still take it's (sub) gradient,
 $$\begin{align}
@@ -11824,7 +11824,7 @@ $$
   =\sigma(\mathbf{0}-\tfrac{1}{\alpha}W^{T}(W\mathbf{0}-x))
   =\sigma(\tfrac{1}{\alpha}W^{T}x)
 $$</p>
-<p>which should look familiar. Why, it's nothing more than our generic layer discussed at the beginning! Now, bear in mind this be nothing more than a tantalizing coincidence. But read on.</p>
+<p>which should look familiar. Why, it's nothing more than our generic layer discussed at the beginning! Now, bear in mind this be nothing more than a tantalizing coincidence.</p>
 
 </div>
 </div>
@@ -11838,7 +11838,7 @@ $$</p>
 $$y^{\star}=\mbox{argmin}\{f(y)+g(y)\}$$</p>
 <p>Where $f$ is smooth + convex and $g$ is just convex. The sparse coding problem uses this structure, with
 $$f(y)=\tfrac{1}{2}\|Wy-x\|^{2},\qquad g(y)=\lambda\|y\|_{1}$$</p>
-<p>But the generality of this framework allows you to replace $g$ with a whole variety of other functions, including constrained optimization, with a bit of syntactic sugar:
+<p>But the generality of this framework allows you to replace $g$ with any convex function. This includes constraints, with a bit of syntactic sugar:
 $$y^{\star}=\underset{y}{\mbox{argmin}}\{f(y)+\delta(y \, | \, S)\}=\underset{y\in S}{\mbox{argmin}}\{f(y)\},\qquad\delta(y)=\begin{cases}
 0 & y\in S\\
 \infty & y\notin S
@@ -11858,7 +11858,7 @@ $$\begin{alignat*}{2}
  & g(y)=\delta(y,\mathbf{R}_{+}) & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}\}\\
  & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}-\lambda\}
 \end{alignat*}$$</p>
-<p>Which again, look tantalizingly like activation functions, including the <code>ReLu</code> and the <code>Leaky ReLu</code>. The final one is refered to in the paper as a Non-negative 1-ARM. Time will bear this all out, but for now the SARMs show impressive benchmarks with a minimal amount of training, and this idea is a worthy one for meditation.</p>
+<p>Which again, look tantalizingly like activation functions, including the <code>ReLu</code> and the <code>Leaky ReLu</code>. Time will bear this all out, but for now the SARMs show impressive benchmarks with a minimal amount of training, and this idea is a worthy one for meditation.</p>
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
 <p>Picture in the title is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a></p>
 
