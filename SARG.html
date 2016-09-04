@@ -11803,13 +11803,13 @@ $$\sigma(x)_{i}=\mbox{sign}(x_{i})(\left| x_{i} \right|-\lambda)_{i},$$</p>
 <p>and $\alpha$ is a small number which depends on the eigenvalues of $L^T L$. If you're familiar at all with $L_1$ regularization, this iteration will be familiar to you as by one of it's many aliases, Iterative Soft Thresholding (or by proxy of his famous cousion, FISTA), <a href="http://www.seas.ucla.edu/~vandenbe/236C/lectures/proxgrad.pdf">Proximal Gradient</a> or by it's oldest name, Forward-Backwards Splitting. In informal but suggestive notation, 
 $$\Psi(x)=\Psi_{x}'(\Psi_{x}'(\Psi_{x}'(\cdots)))$$</p>
 <p>The above formula suggest this series of approximations $\Psi\approx\Psi_{k}$ where
-\begin{align<em>}
-\Psi<em>{0}(x) &amp; =\Psi</em>{x}'(\mathbf{0})\
-\Psi<em>{1}(x) &amp; =\Psi</em>{x}'(\Psi<em>{x}'(\mathbf{0}))\
-\Psi</em>{2}(x) &amp; =\Psi'<em>{x}(\Psi</em>{x}'(\Psi<em>{x}'(\mathbf{0})))\
- &amp; \vdots\
-\lim</em>{k\rightarrow\infty}\Psi_{k}(x) &amp; =\Psi(x).
-\end{align</em>}</p>
+$$\begin{align}
+\Psi_{0}(x) & =\Psi_{x}'(\mathbf{0})\\
+\Psi_{1}(x) & =\Psi_{x}'(\Psi_{x}'(\mathbf{0}))\\
+\Psi_{2}(x) & =\Psi'_{x}(\Psi_{x}'(\Psi_{x}'(\mathbf{0})))\\
+ & \vdots\\
+\lim_{k\rightarrow\infty}\Psi_{k}(x) & =\Psi(x).
+\end{align}$$</p>
 <p>We take the initial point as ${\bf 0}$ for simplicity. Let's take a look at $\Psi_{0}$. 
 $$
 \Psi_{0}(x)    
@@ -11829,10 +11829,6 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And this can be taken further by adding different regularizers 
-$$
-\Psi(x)=\mbox{argmin}_{y}\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda v(y)\}
-$$</p>
 <p>The fascinating insight here is in what deep nets may have been secretly doing regression all along.</p>
 
 </div>
@@ -11970,19 +11966,6 @@ hr {
 
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-</div>
 </div>
 </div>
 
