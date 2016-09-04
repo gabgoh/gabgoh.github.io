@@ -3,7 +3,7 @@
 <head>
 <style>
 
-@font-face { font-family: Computer Modern; src: url('cmuntt.ttf'); }
+@font-face { font-family: Computer Modern; src: url('cmunorm.ttf'); }
 
 a {
     color:black;
@@ -20,11 +20,11 @@ a {
 }
 
 h2 {
-    width: 500px;
+    width: 550px;
     margin: auto;
     border-width: 0px 0px 2px 0px;
     border-color: black;
-    border-style: dotted;
+    border-style: solid;
     color:black;
     text-align:center;
     padding:10px;
@@ -41,16 +41,31 @@ img {
 #section {
     display:flex;
     width: 200px;
-    padding:20px;
+    padding:40px;
     margin: auto;
     width: 500px;
-    border:0px solid #000000;
+    border-width: 0px 0px 0px 0px;
+    border-color: black;
+    border-style: dotted;
+    font-family: Computer Modern, monospace;
+    font-size: 13px;
+}
+
+
+#sectionmid {
+    display:flex;
+    width: 200px;
+    padding:40px;
+    margin: auto;
+    width: 500px;
+    border-width: 0px 0px 0px 0px;
+    border-color: black;
+    border-style: solid;
     font-family: Computer Modern, monospace;
     font-size: 12.5px;
 }
 
-
- #left
+#left
 {
     flex:1;
     height: 150px;
@@ -64,7 +79,6 @@ img {
     margin:auto;
     margin-left: 30px;
     padding:2px;
-
 }
 
 #left2
@@ -75,7 +89,6 @@ img {
     margin-right: 30px;
     padding:2px;
     text-align:right;
-
 }
 
 #right2
@@ -83,7 +96,6 @@ img {
     flex:1;
     height: 150px;
     margin: auto;
-
 }
 
 .clear
@@ -96,7 +108,7 @@ img {
 <body>
 
 <div id="header">
-<h1> *** Gabriel Goh *** </h1>
+<h1> Gabriel Goh </h1>
 </div>
 
 <h2>About</h2>
@@ -118,14 +130,19 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
     </div>
 
     <div id = "right">
-    <b>Hi!</b><br>
+    <b>Hi!</b><p>
 
-    Welcome to my website. I'm Gabe, a Phd student at UC Davis working under
+    Welcome to my website. I'm Gabe, a Ph.d. student at UC Davis working under
     the supervision of <a href = "https://www.math.ucdavis.edu/~mpf/"> Michael
     Friedlander</a>. I am interested in Convex Optimization, Machine Learning
     and Probability.
 
-    <br><br>
+    <p> I contribute to the <a href="http://www.julialang.org">Julia</a>
+    programming language, my favorite language by far for all things technical.
+    It fully supports type checking, unicode variables, and has all the creature
+    comforts of a modern language. Check out my code and notebooks below.
+
+    <p>
 
     In my free time, I tinker with Computer Graphics, Data Visualization,
     Virtual Reality, and think deep thoughts about the internet and our place in
@@ -149,20 +166,75 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 
 <p>
 
-<h2>Publications/Code</h2>
+
+<h2>Code</h2>
+
+<div id="sectionmid">
+
+  <div id = "left2">
+
+  <b><a href = "http://arxiv.org/abs/1304.5586">IntPoint</a></b><br>
+
+  In fact, they
+  work better than the theory suggests, with anecodtal evidence suggesting that
+  the algorithm converges on a nearly constant number of iterations. This code
+  is a pure Julia implementation of the primal-dual predictor corrector found in
+  <a href = "http://www.cvxopt.org">cvxopt</a>, written with an emphasis on
+  robustness, brevity, portability and numerical stability.
+
+  <p><b>Examples:</b><br> LASSO, Trend Filtering, Group-LASSO, Support Vector
+  Machines (primal, dual, kernel), Support Vector Regression, Quantile
+  Regression, Robust Regression, Non-Negative Least Squares, Convex.jl integration, JuMP Integration </div>
+
+  <div id="right2">
+  <img src="tailbound.jpg" width="150px", height = "150px">
+  </div>
+
+</div>
+
 
 <div id="section">
 
-    <div id="left2">
-    <b>A Family of Friendly Proximals (WIP)</b><br>
-    Coming soon!
+
+  <div id="left">
+  <img src="tailbound.jpg" width="150px", height = "150px">
+  </div>
+
+  <div id = "right">
+
+  <b><a href = "http://arxiv.org/abs/1304.5586">QSip</a></b><br>
+
+  While Quasi-Netwon (QN) methods are generally the algorithms of choice for
+  smooth, unconstrained optimization, QN methods don't generalize easily in the
+  sharp-edged, kinky world of non-smooth optimization. This is a modest step
+  forward - an implementation of a L-BFGS solver made for a class of problems
+  which prove to be extremely useful. See the examples below. Not only do we
+  achieve up to a 50x speedup on average (no cherry picking here), it seems to
+  finds better local minima in non-convex problems! Remarkable. <p>
+
+  <b>Examples</b> <br> LASSO, Logistic Regression, Maximum-Volume
+  inscribed Ellipsoid,  Non-Negative Matrix
+  factorization, Dictionary Learning, Tensor Factorization, Deep Learning.
 
 
+  </div>
+
+</div>
+
+
+<h2>Publications</h2>
+
+<div id="sectionmid">
+
+    <div id="left2"> <b>Efficent Algorithms for Calculating the Prox</b><br>
+    Here I discuss discussion the linear algebraic tricks used to solve proximal
+    subproblems efficiently. Be forewarned, the number of times I used the
+    Woodbury Matrix Identity is nearly criminal. This project led to the
+    development of QSip.
     <br><br>
     <b>
     Paper
     <br>Talk
-    <br>Code
     <br>
     </b>
 
@@ -186,9 +258,9 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
     <b><a href = "http://arxiv.org/abs/1304.5586">Tail Bounds for Stochastic
     Gradient Descent</a></b><br>
 
-    My first paper in grad school. Here I investigated at the role concentration plays
-    in randomized algorithms for optimization, in particular stochastic gradient
-    descent. <br><br> <b>
+    My first paper in grad school. Here I investigated at the role concentration
+    plays in randomized algorithms for optimization, in particular stochastic
+    gradient descent. <br><br> <b>
 
       <a href = "http://arxiv.org/abs/1304.5586"> Paper</a> <br>  </b>
 
@@ -199,25 +271,64 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
 
 <div id="clear"></div>
 
-<h2><center>Fun</center></h2>
+<h2><center>Data Visualization</center></h2>
 
-<div id="section">
+<div id = "sectionmid">
+
+  <div id = "left2">
+    Map of the Emojis
+  </div>
+
+  <div id = "right2">
+    <img src="dreams.png" width="150px", height = "150px">
+  </div>
+
+</div>
+
+<div id="sectionmid">
+
+  <div id = "left">
+    <img src="dreams.png" width="150px", height = "150px">
+  </div>
+
+  <div id="right"> <b>Words</b> <br> The linguist " " said it better. Words are
+  like  flocks of birds, they don't rise in isolation, but together, a new
+  vocabulary to acoomidate a changing worldview.
+
+    Like flocks of birds, coming together to reflect a changing worldview.
+    I ran a non-negative matrix factorization
+
+    Learning a model from data isn't the end, it's just a beginning. That's
+    the lesson i learnt working with google on this project, which opened
+    my eyes to the complexities and intricacies of actually getting a
+    model deployed, you know, in the real world, doing things with real data.
+    In this project I talk about how to adjust for
+  </div>
+
+
+
+    </div>
+</div>
+
+
+<div id="sectionmid">
 
     <div id="left2"> <p> <b> <a href =
     "http://gabgoh.github.io/adviceanimals/html/"> 4 Years of Advice Animals</a>
     </b> <br>
 
-    I saw a beautiful spindle diagram in the natural history museum (it looked a
-    little like this <a href =
+    I saw a beautiful spindle diagram in a natural history museum in montreal
+    (it looked a little like <a href =
     "https://www2.estrellamountain.edu/faculty/farabee/biobk/pro_plfr.gif">this</a>
     or <a href =
     "https://upload.wikimedia.org/wikipedia/commons/7/76/Spindle_diagram.jpg">this</a>)
-    charting the evolution of species through time. I wondered if the same could
-    be applied to memes on the internet. Perhaps they obeyed similar forces,
-    living and dying in microclimates in our imagination. A long shot, perhaps.
-    But here it is - a <a href="https://d3js.org/"> D3 </a> visualization of <a
-    href = "http://www.pushshift.io">Jason Braughmerger's</a> meticulously mined
-    reddit dataset showing all posts in /r/AdviceAnimal to Dec 2014 with over 50
+    and I wondered if I could do something similar for memes on the
+    internet. Perhaps memes obeyed similar forces, living and dying in the
+    microclimates of our imagination. A long shot, perhaps. But philosophical
+    pretentions aside, I enjoy at least the visual analogy. Here it is - a <a
+    href="https://d3js.org/"> D3 </a> visualization of <a href =
+    "http://www.pushshift.io">Jason Braughmerger's</a> meticulously mined reddit
+    dataset showing all posts in /r/AdviceAnimal to Dec 2014 with over 50
     up-votes. Enjoy!
 
     <br><br> <a href =
@@ -240,12 +351,15 @@ document.write(rhs + "?subject=" + subject + "\">" + lhs + "@" + rhs + "<\/A>");
     <img src="dreams.png" width="150px", height = "150px">
     </div>
 
-    <div id = "right">
-
-    <b><a href = "http://gfycat.com/CheerfulAptBuffalo">Some </a>
-        <a href = "http://gfycat.com/RedCandidGrayling">Deep </a>
-        Dreams</a></b>
-    </b>
+    <div id = "right"> <b> <a href = "http://gfycat.com/CheerfulAptBuffalo">Some
+    </a> <a href = "http://gfycat.com/RedCandidGrayling">Deep </a>
+    Dreams</a></b> </b> <br> To the true believers, <a href =
+    "https://github.com/google/deepdream"> Deep Dreaming </a> is merely a
+    playful exercise in visualizing a neural net, but to me, it was the vector
+    which destroyed my skepticism on the dark art of deep learning. How else
+    could a dense matrix of weights see eyes in the clouds and doggy tails on the
+    grooves of bicycle helmets? I couldn't wait to try the code for myself; here
+    are some deep dreams I made using code available online.
 
 
     </div>
