@@ -11834,9 +11834,12 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Proximal-Gradient-Descent">Proximal Gradient Descent<a class="anchor-link" href="#Proximal-Gradient-Descent">&#182;</a></h5><p>But hold on, you say. Where did $\Psi_x'$ come from? IF you're familiar at all with $L_1$ regularization, this may be all too familiar to you. Indeed, the map  $\Psi_x'$ comes from a general framework which solves problems with the structure
+<h5 id="Proximal-Gradient-Descent">Proximal Gradient Descent<a class="anchor-link" href="#Proximal-Gradient-Descent">&#182;</a></h5><p>But hold on, you say. Where did $\Psi_x'$ come from? The map  $\Psi_x'$ comes from a general framework which solves problems with the structure
 $$y^{\star}=\mbox{argmin}\{f(y)+g(y)\}$$</p>
-<p>Where $f$ is smooth + convex and $g$ is just convex. The sparse coding problem uses this structure, with
+<p>Where $f$ is smooth + convex and $g$ is just convex. The sparse coding problem 
+$$
+y^\star = \underset{y}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda\|y\|_{1}\big\}.
+$$ is a special cse of this, with
 $$f(y)=\tfrac{1}{2}\|Wy-x\|^{2},\qquad g(y)=\lambda\|y\|_{1}$$</p>
 <p>But the generality of this framework allows you to replace $g$ with any convex function. This includes constraints, with a bit of syntactic sugar:
 $$y^{\star}=\underset{y}{\mbox{argmin}}\{f(y)+\delta(y \, | \, S)\}=\underset{y\in S}{\mbox{argmin}}\{f(y)\},\qquad\delta(y)=\begin{cases}
