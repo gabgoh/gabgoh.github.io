@@ -11856,23 +11856,22 @@ $$\begin{alignat*}{2}
  & g(y)=\lambda\|y\|_{1} &  & \sigma_{g}(y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
  & g(y)=\lambda\|y\|_{2} &  & \sigma_{g}(y)=\max\{0,1-\lambda/\|y\|_{2}\}y\\
  & g(y)=\delta(y,\mathbf{R}_{+}) & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}\}\\
- & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}-\lambda\}\\
- & g(y)=\delta(y,\{\bar{y}\mid\bar{y}_{i}\in[0,\alpha]\}) &  & \sigma_{g}(y)_{i}=\max\{y_{i},\alpha y_{i}\}
+ & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}-\lambda\}
 \end{alignat*}$$</p>
-<p>Which again, look tantalizingly like activation functions, including the <code>ReLu</code> and the <code>Leaky ReLu</code>. Time will bear this all out, but for now the SARMs show impressive benchmarks with a minimal amount of training, and this idea is a worthy one for meditation.</p>
+<p>Which again, look tantalizingly like activation functions, including the <code>ReLu</code> and the <code>Leaky ReLu</code>. The final one is refered to in the paper as a Non-negative 1-ARM. Time will bear this all out, but for now the SARMs show impressive benchmarks with a minimal amount of training, and this idea is a worthy one for meditation.</p>
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
+<p>Picture in the title is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
 <span class="n">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;style.css&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-<span class="c1"># Yes I wrote this in ipython.</span>
 </pre></div>
 
 </div>
@@ -11883,7 +11882,7 @@ $$\begin{alignat*}{2}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[6]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[7]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
