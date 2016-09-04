@@ -104,6 +104,10 @@ hr {
 }
 
 
+.hl-ipython3 {
+  display: none
+}
+
 </style>
 
 <script>
