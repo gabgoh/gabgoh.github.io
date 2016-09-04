@@ -1,0 +1,107 @@
+<style>
+
+/*div#maintoolbar, div#header {display: none !important;}
+*/
+
+#notebook {
+  padding-bottom: 20px
+}
+
+#notebook-container {
+  font-family: Computer Modern",Helvetica,Arial,sans-serif;
+  font-size:14px !important;
+  width:800px;
+  padding: 20px;
+  background-color: #FFF;
+  min-height: 10;
+  border: 0px solid;
+  box-shadow: 0px 0px 0px 0px !important;
+}
+
+
+div#notebook{
+font-size:16px;
+    line-height: 1.42857143;
+
+}
+
+body {
+  background-color: white !important;
+}
+
+.MathJax_Display: {
+  margin: 20px
+}
+
+@font-face {
+  font-family: Computer Modern; src: url("http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf");
+}
+
+
+div.cell{
+  width:700px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+div.output_subarea {
+    overflow-x: auto;
+    padding: 0.4em;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    box-flex: 1;
+    flex: 1;
+    max-width: calc(100%);
+}
+
+.output_wrapper {
+  padding-top : 10px;
+}
+
+div.input_area {
+    border: 0px solid #cfcfcf; 
+    border-radius: 0px;
+    background: rgba(202, 202, 202, 0.28);
+    line-height: 1.21429em;
+    padding: 10px;
+}
+
+h1 { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+
+.prompt{ display:None; }
+
+.output_png img {
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.output_svg > div{
+margin-left:auto !important;
+margin-right:auto !important;
+}
+
+.ui-wrapper {
+  margin-left:auto !important;
+  margin-right:auto !important
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #000;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.err{
+  border : 0px !important;
+}
+
+.MathJax_Display{
+  padding-top: 12px;
+}
+
+
+</style>
