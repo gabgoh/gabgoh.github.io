@@ -11777,10 +11777,10 @@ $$F(x)=\Psi^{1}(\Psi^{2}( \cdots \,\Psi^{k}(x)\,\cdots) )$$</p>
 $$\Psi(x)=\underset{y}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda\|y\|_{1}\big\}.$$<p>I dub this the sparse regression layer, the layer maps its inputs $x$ to the weights of the best sparse linear combinations of $W$ which best reconstruct $x$.</p>
 <p><img src="sparse.svg" width = 450px></p>
 <p>Despite its implicit definition, we can still take it's (sub) gradient,
-\begin{align}
-\nabla\Psi(x) &amp; =W^{T}(Wy^{\star}-x)+\lambda\mbox{sign}(y^{\star})\
-\frac{\partial}{\partial W}\Psi(x) &amp; =\frac{\partial}{\partial W}\frac{1}{2}|Wy^{\star}-x|^{2}
-\end{align}</p>
+$$\begin{align}
+\nabla\Psi(x) & =W^{T}(Wy^{\star}-x)+\lambda\mbox{sign}(y^{\star})\\
+\frac{\partial}{\partial W}\Psi(x) & =\frac{\partial}{\partial W}\frac{1}{2}\|Wy^{\star}-x\|^{2}
+\end{align}$$</p>
 <p>where $y^{\star} =\Psi(x)$ and hence integrate it into any modular deep learning framework. Unfortunately this is kinda expensive. Not ridiculously expensive, this is a small optimization problem (on the order of the number of features in a datapoint), but still an order of magnitude more difficult than a simple matrix multiplication passed through a nonlinearity.</p>
 
 </div>
