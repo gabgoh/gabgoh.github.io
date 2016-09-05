@@ -11776,15 +11776,15 @@ $$F(x)=\Psi^{1}(\,\Psi^{2}(\, \cdots \,\Psi^{k}(x)\,\cdots\,) \,).$$</p>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h5 id="The-Sparse-Regression-Layer">The Sparse Regression Layer<a class="anchor-link" href="#The-Sparse-Regression-Layer">&#182;</a></h5><p>The traditional layer is powerful enough, but the modularity of deep learning allows much more sophiticated variations to be added to the standard toolkit. Here is one hypothetical proposal. This layer, $\Psi$, does not admit a formula, but is defined instead implicitly as the solution of a sparse coding problem
 $$\Psi(x)=\underset{y}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda\|y\|_{1}\big\}.$$
-I dub this the sparse regression layer. This layer maps its inputs $x$ into it's structural primatives (the columns of $W$). The output is precisely the goal of the layers in deep learning - it moves the input to a higher level of abstraction.</p>
+I dub this the sparse regression layer. This layer maps can be seen as an encoder - it transforms $x$ into it's structural primatives (the columns of $W$). The output is precisely the goal of the layers in deep learning - it moves the input to a higher level of abstraction. Mechnically, it looks like this</p>
 <p><img src="sparse.svg" width = 450px></p>
-<p>but spiritually, this is the mechanism proposed by [] which represents the early stages of visual processing.</p>
+<p>but spiritually, this is the mechanism proposed by <a href="Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12">Olshausen et al</a>, where the image comes from, which represents the early stages of visual processing.</p>
 <p><img src="brain.png" width = 350px></p>
 <p>Despite its implicit definition, we can still take it's (sub) gradient,
 $$\begin{align}\nabla\Psi(x) & =W^{T}(W\Psi(x)-x)+\lambda\mbox{sign}(\Psi(x))\\
 \frac{\partial}{\partial W}\Psi(x) & =\frac{\partial}{\partial W}\frac{1}{2}\|W\Psi(x)-x\|^{2}
 \end{align}$$</p>
-<p>and hence integrate it into any modular deep learning framework. Unfortunately computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datapoint). This may be cheap, but it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity.</p>
+<p>and hence integrate it into any modular deep learning framework. This process of encoding a sparse layer, however, comes at a price. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datapoint). This may be cheap, but it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity.</p>
 
 </div>
 </div>
@@ -11813,7 +11813,7 @@ $$\begin{align}
  & \vdots\\
 \lim_{k\rightarrow\infty}\Psi_{k}(x) & =\Psi(x).
 \end{align}.$$</p>
-<p>With an architectural diagram looking like this</p>
+<p>We thus have a sequence of approximations, which we can truncate at anytime, to give us an approximation of this sparse coding process. This approximation has an architectural diagram looking like this</p>
 <p><p>
 <img src = "diagram.svg" width = 500px></p>
 <p>
@@ -11825,7 +11825,7 @@ $$
   =\sigma(\mathbf{0}-\tfrac{1}{\alpha}W^{T}(W\mathbf{0}-x))
   =\sigma(\tfrac{1}{\alpha}W^{T}x)
 $$</p>
-<p>which should look familiar. Why, it's nothing more than our generic layer discussed at the beginning! Now, bear in mind this be nothing more than a tantalizing coincidence.</p>
+<p>which should look familiar. Why, it's nothing more than our traditional layer discussed at the beginning! Now, bear in mind this be nothing more than a tantalizing coincidence.</p>
 
 </div>
 </div>
@@ -11871,7 +11871,7 @@ $$\begin{alignat*}{2}
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
@@ -11886,7 +11886,7 @@ $$\begin{alignat*}{2}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
@@ -11899,7 +11899,7 @@ $$\begin{alignat*}{2}
 }
 
 #notebook-container {
-  font-family: Computer Modern",Helvetica,Arial,sans-serif;
+  font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
   font-size:14px !important;
   width:800px;
   padding: 20px;
@@ -11922,10 +11922,6 @@ body {
 
 .MathJax_Display: {
   margin: 20px
-}
-
-@font-face {
-  font-family: Computer Modern; src: url("http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf");
 }
 
 
@@ -11957,7 +11953,7 @@ div.input_area {
     padding: 10px;
 }
 
-h1 { font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; }
+h1 { font-family:  "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif; }
 
 .prompt{ display:None; }
 
