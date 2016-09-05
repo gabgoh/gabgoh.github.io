@@ -11752,7 +11752,7 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <center><b><h1> Stacked Approximation Regression Machines from First Principles </b></h1> (Gabriel Goh)</center><p><img src = "bases.png"></p>
-<p>There has been some buzz on <a href="https://www.reddit.com/r/MachineLearning/comments/50tbjp/stacked_approximated_regression_machine_a_simple/">reddit</a> about the paper <a href="https://arxiv.org/abs/1608.04062">Stacked Approximated Regression Machine: A Simple Deep Learning Approach</a>. Approaching the paper with a measured dose of skepticism, I was pleasantly surprised to find the paper containing a beautiful kernel of an idea - one I can see becoming a fixture in our deep learning toolkit. This is a new kind of layer known as the $k$-Approximated Regression Machine ($k$-ARM).</p>
+<p>There has been some buzz on <a href="https://www.reddit.com/r/MachineLearning/comments/50tbjp/stacked_approximated_regression_machine_a_simple/">reddit</a> about the paper <a href="https://arxiv.org/abs/1608.04062">Stacked Approximated Regression Machine: A Simple Deep Learning Approach</a>. Approaching the paper with a measured dose of skepticism, I was pleasantly surprised to find the paper containing a beautiful kernel of an idea - one I can see becoming a fixture in our deep learning toolkit, the $k$-Approximated Regression Machine ($k$-ARM).</p>
 
 </div>
 </div>
@@ -11762,9 +11762,9 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Background---Deep-Nets">Background - Deep Nets<a class="anchor-link" href="#Background---Deep-Nets">&#182;</a></h3><p>A deep neural network is a function which takes as input, $x$, data, into an output, $F(x)$ - whatever you want (usually labels). The word “deep” in deep learning refers to the network being a composition of layer functions, like so
+<h3 id="Background---Deep-Nets">Background - Deep Nets<a class="anchor-link" href="#Background---Deep-Nets">&#182;</a></h3><p>A deep neural network is a function which takes as input, $x$, data, into an output, $F(x)$. The word “deep” in deep learning refers to the network being a composition of layer functions:
 $$F(x)=\Psi^{1}(\,\Psi^{2}(\, \cdots \,\Psi^{k}(x)\,\cdots\,) \,).$$</p>
-<p>A traditional choice of a layer function looks like $\Psi^{k}(x)=\sigma(W^{T}_k x)$. Here $W^{T}_k$ is a matrix, representing a linear transform, such as a convolution or a fully connected layer. $\sigma$ is a choice of a non-linear <a href="https://en.wikipedia.org/wiki/Activation_function">activation function</a>. The goal in deep learning is to shape our function $F$, by any means possible, by tweaking the weights till they fit the data.</p>
+<p>A traditional choice of a layer function looks like $\Psi^{k}(x)=\sigma(W^{T}_k x)$. Here $W^{T}_k$ is a matrix, representing a linear transform, (such as a convolution or a fully connected layer) and $\sigma$ is a choice of a non-linear <a href="https://en.wikipedia.org/wiki/Activation_function">activation function</a>. The goal in deep learning is to shape our function $F$, by any means possible, by tweaking the weights till they fit the data.</p>
 
 </div>
 </div>
@@ -11774,21 +11774,22 @@ $$F(x)=\Psi^{1}(\,\Psi^{2}(\, \cdots \,\Psi^{k}(x)\,\cdots\,) \,).$$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Layer-We-Deserve---The-Sparse-Regression-Layer">The Layer We Deserve - The Sparse Regression Layer<a class="anchor-link" href="#The-Layer-We-Deserve---The-Sparse-Regression-Layer">&#182;</a></h3><p>The traditional layer is powerful, but recent research has triggered a cambrian explosion of different layers which enjoy tremendous success. These include magic dust like batch normalization and dropout layers, all now conveniently accessible from your favorite deep learning toolkit. Yet there is a layer missing from all these tools. Despite this layer not being there, it seems like a useful way to think about layers in a deep net. This layer isn't definied explicitly, with a formula, but is instead defined instead implicitly as the solution of a <em>sparse coding problem</em>
+<h3 id="The-Sparse-Regression-Layer">The Sparse Regression Layer<a class="anchor-link" href="#The-Sparse-Regression-Layer">&#182;</a></h3><p>While traditional layers work well, there has been recently a Cambrian explosion of different kinds of layers. Consider the following conceptual layer. This layer isn't definied explicitly, but is instead defined instead implicitly as the solution of a <em>sparse coding problem</em>:
 $$\Psi(x)=\underset{y}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy-x\|^{2}+\lambda\|y\|_{1}\big\}.$$</p>
 <p>I dub this the sparse regression layer.</p>
-<p>This layer behaves very differently from a regular deep learning layer, and it might be worthwhile to consider what it does. Firstly, to get things out of the way, $W$ is a set of weights, to be trained, and $\lambda$ is a parameter controlling how sparse the output is. Assuming a trained model, with sensible $W$, this layer is an encoder. It takes $x$, it's input and transforms it into its representation in structural primitives (the columns of $W$).</p>
-<p>It is useful to think of a musical metaphor - the input $x$ could be a chord, a linear superposition our notes, $y$. Our map reverse this process, taking our chord, and peels it apart into the individual notes. In the language of engineering, this layer solves a (linear) inverse problem. The forward model is the problem of data generation</p>
+<p>This layer behaves very differently from a regular deep learning layer and it might be worthwhile to consider what it does. Firstly, to get things out of the way, $W$ is a set of weights, to be trained, and $\lambda$ is a parameter controlling how sparse the output is. Assuming a trained model, with sensible $W$, this layer is a sparse encoder. It takes $x$, it's input and transforms it into its representation in structural primitives (the columns of $W$).</p>
+<p>It is useful to think of a musical metaphor. The sound of a chord (our input $x$) is generated by a sparse superposition of sounds corrosponding to a small number of notes (our sparse parameter $y$). Our layer takes this generative process and throws it in reverse, and attempts to, from the sound of a chord, recover the individual notes.</p>
+<p>If you have a background in engineering, these terms might be familiar to you in a different language. The generative process cam be seen as the forward model,</p>
 <p><img src="sparse.svg" width = 450px></p>
-<p>And the inverse problem, is one of inference.</p>
+<p>and the problem of recovering the notes from its output, the inverse problem</p>
 <p><img src="inverse.svg" width = 550px></p>
-<p>This model is, by it's DNA, generative. It is also the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing, and hence is a way of thinking about how information can be transformed in layers of abstraction in the brain.</p>
+<p>This layer is therefore, paradoxically, the opposite of a regular deep learning layer. But it is this lopsided layer which makes the most sense, as it truly takes data from input space into explanation space - a higher level of abstraction. It's no surprise then that this is the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing.</p>
 <p>Despite its implicit definition, we can still take its (sub) gradient,
 $$\begin{align}\nabla\Psi(x) & =W^{T}(W\Psi(x)-x)+\lambda\mbox{sign}(\Psi(x))\\
 \frac{\partial}{\partial W}\Psi(x) & =\frac{\partial}{\partial W}\frac{1}{2}\|W\Psi(x)-x\|^{2}
 \end{align}$$</p>
 <p>and hence there is no technical roadblock to integrate this into a deep learning framework.</p>
-<p>All this said, why isn't this layer in more use? The trouble with this layer is that it is expensive. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datum). Measured in milliseconds, this may be cheap, but it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity. Adding a single layer like this would potentially increase the cost of every training step to increase a hundredfold.</p>
+<p>This leads to the troubling question - why isn't this kind of layer de-facto? The trouble with this layer is that it is expensive. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datum). Measured in milliseconds, this may be cheap, but it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity. Adding a single layer like this would potentially increase the cost of every training step a hundredfold.</p>
 
 </div>
 </div>
@@ -11798,11 +11799,11 @@ $$\begin{align}\nabla\Psi(x) & =W^{T}(W\Psi(x)-x)+\lambda\mbox{sign}(\Psi(x))\\
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-Layer-We-Have---$k$-Approximate-Sparse-Regression-Layer">The Layer We Have - $k$ Approximate Sparse Regression Layer<a class="anchor-link" href="#The-Layer-We-Have---$k$-Approximate-Sparse-Regression-Layer">&#182;</a></h3><p>Let us instead try to approximate this layer. First, I define a cryptic operator
+<h3 id="The-$k$-Approximate-Sparse-Regression-Layer">The $k$ Approximate Sparse Regression Layer<a class="anchor-link" href="#The-$k$-Approximate-Sparse-Regression-Layer">&#182;</a></h3><p>Let us instead try to approximate this layer. First, I define a cryptic operator
 $$
-\Psi_{x}'(y) := \sigma(y-\alpha W^{T}(Wy-x)), \qquad \sigma(x)_{i}=\mbox{sign}(x_{i})(\left| x_{i} \right|-\lambda)_{i}
+\Psi_{x}'(y) := \sigma(y-\alpha W^{T}(Wy-x)), \qquad \sigma(x)_{i}=\mbox{sign}(x_{i})\max\{0,\left| x_{i} \right|-\lambda\}_{i}
 $$</p>
-<p>where $\alpha$ is a small number which depends on the eigenvectors of $W^{T}W$. Let's think about what this operator does. If $f(y)=\tfrac{1}{2}\|W\cdot-x\|^{2}$, the term inside the $\sigma$ is just $y - \alpha\nabla f(y)$, a gradient step.  $\sigma$, our thresholding operator snaps all components of this new iterate between $[-\lambda, \lambda]$ below to zero. The first step decreases the quadratic function, and the second step promotes sparsity. So this makes sense. In fact, we can say more about this operator. Indeed,</p>
+<p>where $\alpha$ is a small number which depends on the largest eigenvector of $W^{T}W$. Let's think about what this operator does. Let $f(y)=\tfrac{1}{2}\|W\cdot-x\|^{2}$, our quadratic term in the objective. The term inside the $\sigma$ is just $y - \alpha\nabla f(y)$, a gradient step. $\sigma$, then snaps all components of this new iterate between $[-\lambda, \lambda]$ to zero. So our operator consists of two steps of which first step decreases the quadratic function, and the second promotes sparsity. This makes sense. In fact, we can say more about this operator. Indeed,</p>
 <ol>
 <li>$\Psi_x$ is the unique fixed point of the map $y\mapsto \Psi_{x}'(y),$ i.e. $\Psi(x)=\Psi_{x}'(\Psi(x))$</li>
 <li>From any inital point $y$, repeated application of the map will always converge to $\Psi(x).$</li>
@@ -11839,31 +11840,39 @@ $$</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Proximal-Gradient-Descent">Proximal Gradient Descent<a class="anchor-link" href="#Proximal-Gradient-Descent">&#182;</a></h3><p>Let's take a step back and think about the deivation however. The previous section was quite the tease - our operator $\Psi_{x}'(y)$ does not come from nowhere. There is, in fact, a powerful framework in convex optimization, proximal methods, which gives us the tools to craft such operators. These methods deal with problems of the form
+<h3 id="Proximal-Gradient-Descent">Proximal Gradient Descent<a class="anchor-link" href="#Proximal-Gradient-Descent">&#182;</a></h3><p>Let's take a step back and think about the deivation. Our operator $\Psi_{x}'(y)$ does not come from nowhere. There is, in fact, a powerful framework in convex optimization, proximal methods, which gives us the tools to craft such operators. These methods deal with problems of the form
 $$y^\star = \mbox{argmin}\{f(y)+g(y)\}$$</p>
-<p>Where $f$ is smooth + convex and $g$ is just convex. For reasons which will be clear later, $f$ is usually chosen to be the vessel of our data, and $g$ to be simple. Take sparse coding, discussed earlier, a special case of this where
+<p>Where $f$ is smooth + convex and $g$ is just convex. For reasons which will be clear later, $f$ is usually chosen to be the vessel of our data, and $g$ to be structurally simple, like the one norm. Take sparse coding, discussed earlier, a special case of this where
 $$f(y)=\tfrac{1}{2}\|Wy-x\|^{2},\qquad g(y)=\lambda\|y\|_{1}$$</p>
 <p>Proximal methods gives us a recipe for replacing $g$ with any other convex function we'd like. We can do it with any norm, the two norm, total variation norms, and even can include constraints, with a bit of syntactic sugar:
 $$y^{\star}=\underset{y\in S}{\mbox{argmin}}\{f(y)\}=\underset{y}{\mbox{argmin}}\{f(y)+\delta(y \, | \, S)\},\qquad\delta(y)=\begin{cases}
 0 & y\in S\\
 \infty & y\notin S
-\end{cases}.$$
-Given $f$ and $g$, the proximal gradient method defines the map
-$$\Psi_{f}^{'}(x)=\sigma_{g}(y_{k}+\alpha\nabla f(y)),\qquad\sigma_{g}(y)=\mbox{argmin}\{\tfrac{1}{2}\|\bar{y}-y\|^{2}+g(y)\}$$</p>
+\end{cases}.$$</p>
+<h5 id="The-Proximal-Gradient-Iteration">The Proximal Gradient Iteration<a class="anchor-link" href="#The-Proximal-Gradient-Iteration">&#182;</a></h5><p>Given $f$ and $g$, the proximal gradient method defines the map
+$$\Psi_{f}^{'}[g](x)=\sigma[g](y_{k}+\alpha\nabla f(y)),\qquad\sigma[g](y)=\mbox{argmin}\{\tfrac{1}{2}\|\bar{y}-y\|^{2}+g(y)\}$$</p>
 <p>so that, you guessed it</p>
 <ol>
-<li>$y^\star$ is the unique fixed point of the map $y\mapsto \Psi_{f}'(y)$, i.e. $y^\star = \Psi_{f}'(y^\star)$</li>
+<li>$y^\star$ is the unique fixed point of the map $y\mapsto \Psi_{f}'[g](y)$, i.e. $y^\star = \Psi_{f}'[g](y^\star)$</li>
 <li>From any $y$, for small enough $\alpha>0$ repeated application of the map will always converge to $y^\star$</li>
 </ol>
-<p>The details of the theory have been covered in detail in the Boyd's <a href="https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf">slides</a> but here is just a sampling of different proximal functions for differents $g$'s
+<p>See Boyd's <a href="https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf">slides</a> for more details. A few notes are in order. First, though you can in principle stick in any $g$ you want, you cannot escape from having to compute $\sigma_g$, the proximal term. This method hinges on when $\sigma_g$ having something resembling a closed form solution. Examples of this are 
 $$\begin{alignat*}{2}
- & g(y)=0 &  & \sigma_{g}(y)=y\\
- & g(y)=\lambda\|y\|_{1} &  & \sigma_{g}(y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
- & g(y)=\lambda\|y\|_{2} &  & \sigma_{g}(y)=\max\{0,1-\lambda/\|y\|_{2}\}y\\
- & g(y)=\delta(y,\mathbf{R}_{+}) & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}\}\\
- & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma_{g}(y)_{i}=\max\{0,y_{i}-\lambda\}
+ & g(y)=0 &  & \sigma[g](y)=y\\
+ & g(y)=\lambda\|y\|_{1} &  & \sigma[g](y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
+ & g(y)=\lambda\|y\|_{2} &  & \sigma[g](y)=\max\{0,1-\lambda/\|y\|_{2}\}y\\
+ & g(y)=\delta(y,\mathbf{R}_{+}) & \qquad & \sigma[g](y)_{i}=\max\{0,y_{i}\}\\
+ & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma[g](y)_{i}=\max\{0,y_{i}-\lambda\}
 \end{alignat*}$$</p>
-<p>Which again, look tantalizingly like activation functions, including the <code>ReLu</code> and the <code>Leaky ReLu</code>.</p>
+<h5 id="A-new-cornucopia-of-ARMs">A new cornucopia of ARMs<a class="anchor-link" href="#A-new-cornucopia-of-ARMs">&#182;</a></h5><p>Givem the knowledge above, we can construct in analogous fashion a whole variety of Regression machines, now
+$$\Psi[g](x)=\underset{y_{i}}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy_{i}-x\|^{2}+g(y_{i})\big\}$$
+With corrosponding maps
+$$\Psi[g]_{x}'(y):=\sigma[g](y-\alpha W^{T}(Wy-x))$$
+Take for example, 
+$$\Psi[\delta(\cdot|\mathbf{R}_{+})]=\underset{y\geq0}{\mbox{argmin }}\tfrac{1}{2}\|Wy-x\|^{2},\quad\Psi[\delta(\cdot|\mathbf{R}_{+})]_{x}'(y):=\max\{0,y-\alpha W^{T}(Wy-x)\}$$
+With a 0-ARM of
+$$\Psi[\delta(\cdot|\mathbf{R}_{+})]_{0}(y)=\max\{0,W^{T}y\}$$,
+exactly a traditional layer with <code>ReLu</code> Activation.</p>
 
 </div>
 </div>
@@ -11873,9 +11882,30 @@ $$\begin{alignat*}{2}
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="A-Footnote-on-Training">A Footnote on Training<a class="anchor-link" href="#A-Footnote-on-Training">&#182;</a></h3><p>Much ado has been made about how this network is trained in a totally different way from regular ones. The method of training - repeated k-SVDs, resemble our retro and forgotten hero the <a href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">Restricted Boltzman Machine (RBM)</a>, which kick-started the rebirth of the neural net. The trouble with RBMs is that nobody understood quite <em>why</em> it worked, just that it did. It felt like a gift form an alien god, powerful and incomprehensible. The deep learning community seemed happy to ditch it when it learned how to train networks with gradient descent alone.</p>
-<p>But the above interpretation of deep neural nets give us a decent starting point in making sense of all of this. Perhaps its time to revisit unsupervised pre-training. Interpreting deep nets as stacked ARMs give us a justification for training it greedily, one layer at a time, using dictionary learning. This is the method used in the paper, with excellent results.</p>
-<p>Time will bear this speculation out, but for now the SARMs show impressive benchmarks with a minimal amount of training. I hope, at least, that you are convinced this idea is one worth thinking about.</p>
+<h3 id="A-Footnote-on-Training">A Footnote on Training<a class="anchor-link" href="#A-Footnote-on-Training">&#182;</a></h3><p>Much ado has been made about how this network is trained in a totally different way from regular ones. The method of training - greedy k-SVDs, resemble our forgotten hero the <a href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">Restricted Boltzman Machine (RBM)</a>, which kick-started the rebirth of the neural net. The trouble with RBMs is that nobody understood quite <em>why</em> it worked, just that it did. It felt like a gift form an alien god, powerful but incomprehensible. The deep learning community seemed happy to ditch it when it learned how to train networks with gradient descent alone.</p>
+<p>But the above interpretation of deep neural nets give us a decent starting point in making sense of all of this. This paper gives us reason to revisit the problem of unsupervised pre-training.</p>
+<h5 id="Dictionary-Learning-and-Friends">Dictionary Learning and Friends<a class="anchor-link" href="#Dictionary-Learning-and-Friends">&#182;</a></h5><p>Given unlabeled data $\{x_1,\dots,x_n\}$, the <em>Dictionary Learning Problem</em> is
+$$\underset{W,y_{1},\dots,y_{n}}{\mbox{argmin}}\left\{ \sum_{i=1}^{n}\tfrac{1}{2}\|Wy_{i}-x_{i}\|^{2}+\lambda\|y\|_{1}\right\} $$</p>
+<p>Its resemblence to $k$-ARM is not a coindience. The problem of dictionary learning is just that of training a single layer Regression Machine. If we assume every datum has its own sparse code, i.e. we define 
+$$\Psi_{i}(x)=\underset{y_{i}}{\mbox{argmin }}\big\{\tfrac{1}{2}\|Wy_{i}-x\|^{2}+\lambda\|y_{i}\|_{1}\big\}$$</p>
+<p>Then
+$$\underset{W,y_{1},\dots,y_{n}}{\mbox{argmin}}\left\{ \sum_{i=1}^{n}\left(\tfrac{1}{2}\|Wy_{i}-x_{i}\|^{2}+\lambda\|y_{i}\|_{1}\right)\right\} =\underset{W}{\mbox{argmin}}\left\{ \sum_{i=1}^{n}\Psi_{i}(x_{i})\right\}. $$</p>
+<p>The dictionary learning problem learns both weights and sparse representations simultaniously, mashing up the smaller problem of computing $\Phi$ with the larger problem of training the network, i.e. finding $W$'s.</p>
+<p>One glaring difference between this and deep learning, is that Dictionary Learning is unsupervised. Here we do not force our network to perform well on any task. We just let our neural network learn on its own, to come to its own conclusions about the world, unencumbered by the tyrneey of labels.</p>
+<p>This carries through to the case if we stack the ARMs, and so it seems natural to do this process greedily. And if we play around with the variations on ARMs, we get many familiar problems.</p>
+<p>PCA $g(x) = x$
+Non-Negative Matrix Factorization $g(x) = \delta(x|\mathbf{R}_+)$.</p>
+<p>yield familiar problems like <a href="https://en.wikipedia.org/wiki/Non-negative_matrix_factorization">Non-Negative Matrix Factorization</a>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Conclusion">Conclusion<a class="anchor-link" href="#Conclusion">&#182;</a></h3><p>The ARMs are a new way of thinking about deep nets, but the most valuable proof of this is in the pudding. All theory is for naught if this did not work, but SARMs show impressive benchmarks with a minimal amount of training. But ARMs are a bridge between two seemingly related, but seperate worlds, and</p>
 
 </div>
 </div>
@@ -11886,7 +11916,6 @@ $$\begin{alignat*}{2}
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
-<p>Yes, I am seeking employment.</p>
 <p>Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a></p>
 
 </div>
@@ -11894,10 +11923,10 @@ $$\begin{alignat*}{2}
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="k">import</span> <span class="n">HTML</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
 <span class="n">HTML</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;style.css&quot;</span><span class="p">,</span><span class="s2">&quot;r&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 </pre></div>
 
@@ -11909,7 +11938,7 @@ $$\begin{alignat*}{2}
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[23]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
@@ -12039,6 +12068,19 @@ hr {
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span> 
+</pre></div>
+
+</div>
 </div>
 </div>
 
