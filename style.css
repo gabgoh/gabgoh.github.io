@@ -8,7 +8,7 @@
 }
 
 #notebook-container {
-  font-family: "Helvetica Neue", HelveticaNeue, "TeX Gyre Heros", TeXGyreHeros, FreeSans, "Nimbus Sans L", "Liberation Sans", Arimo, Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif;;
   font-size:14px !important;
   width:800px;
   padding: 20px;
