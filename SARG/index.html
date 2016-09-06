@@ -11890,13 +11890,13 @@ $$\underset{W,y_{1},\dots,y_{n}}{\mbox{argmin}}\left\{ \sum_{i=1}^{n}\left(\tfra
 <p>This is known as the <a href="https://en.wikipedia.org/wiki/Sparse_dictionary_learning"><em>Dictionary Learning Problem</em></a>. Similarly, the Non-Negative ARM can be initialized via <a href="https://en.wikipedia.org/wiki/Non-negative_matrix_factorization">Non-Negative Matrix Factorization</a>
 $$\underset{W\geq0,y_i\geq0}{\mbox{argmin}}\left\{ \sum_{i=1}^{n}\left(\tfrac{1}{2}\|Wy_{i}-x_{i}\|^{2}\right)\right\} $$</p>
 <p>assuming the data is positive entrywise.</p>
-<p>These methods are all modifications of the mother of unsupervised learning, Principle Component Analysis. Like PCA, you are too trying to find an explanation of the data as linear combinations of vectors. Unlike PCA, we have some extra restrictions, like sparsity or non-negativity. The paper suggests finding a local solution to Dictionary Learning problem using $k$-PCA.</p>
-<p>Initialization works as follows</p>
+<p>These methods are all modifications of the mother of unsupervised learning, Principle Component Analysis. Like PCA, you are trying to find an explanation of the data as a small linear combinations of vectors. Unlike PCA, we have extra restrictions, like sparsity or non-negativity. The paper suggests finding a local solution to Dictionary Learning problem using $k$-PCA.</p>
+<p>Initialization for the a stacked ARM works as follows</p>
 <ul>
 <li>Take the raw data, $x_i$, and solve the Dictionary Learning problem to yield $W$ and $y_i$'s.</li>
 <li>Use $y_i$'s as the raw data for the next layer, and repeat.</li>
 </ul>
-<p>This technique eerily recalls our forgotten hero the <a href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">Restricted Boltzman Machine (RBM)</a>. Like the RBM, it too is a form of unsupervised pre-training. And like the RBM, it too learns weights greedily. The only problem with the RBM was in the uncomfortable transplantation of the weights from a RBM to a deep, directed network. The interpretation of a deep neural net as doing approximate of sparse coding fixes this. With the $k$-ARM, we unify both initialization and inference, making our weight surgery less jarring. And the Dictionary Learning problem is a nicer problem to deal with.</p>
+<p>This technique eerily recalls our forgotten hero the <a href="https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine">Restricted Boltzman Machine (RBM)</a>. Like the RBM, it too is a form of unsupervised pre-training. And like the RBM, it too learns weights greedily. Unlike the RBM, we don't need to deal with the uncomfortable transplantation of the weights from a RBM to a deep, directed network. The $k$-ARM unifies both initialization and inference, making our weight surgery less jarring.</p>
 <p>This rationalization may soothe those of us who crave order in our souls, but the most valuable proof is in the pudding. The stacked ARMs show exciting results on training data, and is a great first step in what I see as an exciting direction of research.</p>
 
 </div>
