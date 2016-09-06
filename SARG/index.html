@@ -11784,7 +11784,7 @@ I dub this the Regression Machine.</p>
 <p>and the problem of recovering the notes from its output, the inverse problem</p>
 <p><img src="inverse.svg" width = 550px></p>
 <p>This layer is therefore, paradoxically, the opposite of a regular deep learning layer. But it is this lopsided layer which makes the most sense, as it truly takes data from input space into explanation space - a higher level of abstraction.</p>
-<p><a href="http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf">Gregor and LeCun</a> observe that sparse coding exhibits the property of mutual inhibition. Though $W$ may contain numerous similar columns, only one is chosen to represent the input. It's no surprise then that this is the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing.</p>
+<p><a href="http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf">Gregor and LeCun</a> observe that sparse coding exhibits the property of mutual inhibition. Though $W$ may contain numerous similar columns, generally only one among these will be chosen to represent the input. It's no surprise then that this is the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing.</p>
 <p>Despite its implicit definition, we can still take its (sub) gradient,
 $$\begin{align}\nabla\Psi(x) & =W^{T}(Wy^\star-x)+\lambda\mbox{sign}(y^\star)\\
 \frac{\partial}{\partial W_{ij}}\Psi(x) & =\frac{\partial}{\partial W_{ij}}\frac{1}{2}\|Wy^\star-x\|^{2}
@@ -11910,7 +11910,7 @@ $$\underset{W\geq0,y_i\geq0}{\mbox{argmin}} \sum_{i=1}^{n}\tfrac{1}{2}\|Wy_{i}-x
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
-<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights, and Marcos Ginestra, for proofreading the whole thing.</p>
+<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights (and comments), and Marcos Ginestra, for proofreading the whole thing.</p>
 
 </div>
 </div>
