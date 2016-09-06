@@ -11858,8 +11858,8 @@ $$\underset{y\in S}{\mbox{argmin }}f(y)=\underset{y}{\mbox{argmin}}\{f(y)+\delta
 0 & y\in S\\
 \infty & y\notin S
 \end{cases}.$$</p>
-<p>So the constrained problem can be "simulated" by using $g(y) = \delta(y \, | \, S)$.</p>
-<p>Here are some $g$'s, and their $\sigma[g]$'s:
+<p>So the constrained problem can be "simulated" by using $g(y) = \delta(y \, | \, S)$. Finally, the map described in the previous section is a special case of the proximal gradient iteration. I'll leave it as an exercise to show</p>
+$$\sigma[\lambda\|\cdot\|](y)_{i}=[\mbox{argmin}_{\bar{y}}\{\tfrac{1}{2}\|\bar{y}-y\|^{2}+\lambda\|\bar{y}\|_{1}\}]_{i}=\mbox{sign}(y_{i})\max\{0,\left|y_{i}\right|-\lambda\}$$<p>Here are some $g$'s, and their $\sigma[g]$'s:
 $$\begin{alignat*}{2}
  & g(y)=0 &  & \sigma[g](y)=y\\
  & g(y)=\lambda\|y\|_{1} &  & \sigma[g](y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
