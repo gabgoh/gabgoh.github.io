@@ -11852,13 +11852,13 @@ $$\Psi_{f}^{'}[g](x)=\sigma[g](y_{k}+\alpha\nabla f(y)),\qquad\sigma[g](y)=\mbox
 <li>$y^\star$ is the unique fixed point of the map $y\mapsto \Psi_{f}'[g](y)$, i.e. $y^\star = \Psi_{f}'[g](y^\star)$</li>
 <li>From any $y$, for small enough $\alpha>0$ repeated application of the map will always converge to $y^\star$</li>
 </ol>
-<p>See Boyd's <a href="https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf">slides</a> for more details. A few notes are in order. First, though you can in principle stick in any $g$ you want, you cannot escape from having to compute $\sigma_g$. This method hinges on when $\sigma_g$ having something resembling a closed form solution. Second, this framework encompasses constrained optimization with a bit of syntactic sugar:
+<p>See Boyd's <a href="https://people.eecs.berkeley.edu/~elghaoui/Teaching/EE227A/lecture18.pdf">slides</a> for more details. A few notes are in order. First, though you can in principle stick in any $g$ you want, you cannot escape from having to compute $\sigma[g]$. This method hinges on when $\sigma[g]$ having something resembling a closed form solution. Second, this framework encompasses constrained optimization with a bit of syntactic sugar:
 $$\underset{y\in S}{\mbox{argmin }}f(y)=\underset{y}{\mbox{argmin}}\{f(y)+\delta(y \, | \, S)\},\qquad\delta(y)=\begin{cases}
 0 & y\in S\\
 \infty & y\notin S
 \end{cases}.$$</p>
 <p>So the constrained problem can be "simulated" by using $g(y) = \delta(y \, | \, S)$.</p>
-<p>For simple $g$'s, we can create a collection of its $\sigma_g$'s. Here is a sampling
+<p>For simple $g$'s, we can create a collection of its $\sigma[g]$'s. Here is a sampling
 $$\begin{alignat*}{2}
  & g(y)=0 &  & \sigma[g](y)=y\\
  & g(y)=\lambda\|y\|_{1} &  & \sigma[g](y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
