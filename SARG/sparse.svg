@@ -467,16 +467,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.979899"
-     inkscape:cx="174.23241"
-     inkscape:cy="-65.178592"
+     inkscape:zoom="2"
+     inkscape:cx="159.52387"
+     inkscape:cy="104.54057"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1406"
+     inkscape:window-width="1280"
      inkscape:window-height="700"
-     inkscape:window-x="687"
-     inkscape:window-y="120"
+     inkscape:window-x="179"
+     inkscape:window-y="43"
      inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
@@ -490,7 +490,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -539,14 +539,6 @@
        y="66"
        id="use14487"
        transform="matrix(1.407225,0,0,1.4072249,161.04525,590.82904)" />
-    <use
-       height="100%"
-       width="100%"
-       x="72.682999"
-       xlink:href="#g1-25"
-       y="66"
-       id="use14489"
-       transform="matrix(1.407225,0,0,1.4072249,380.47382,525.932)" />
     <g
        id="g25261">
       <rect
@@ -822,7 +814,7 @@
        style="fill:#1f78b4;fill-opacity:1;stroke:none;stroke-width:0.26926112;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <g
        id="g25273"
-       transform="translate(-206.07112,0)">
+       transform="matrix(1.0002615,0,0,0.99147314,-206.17151,5.5076587)">
       <g
          id="g25279"
          transform="translate(-8,0)">
@@ -865,7 +857,7 @@
     </g>
     <g
        id="g25301"
-       transform="translate(-145.96704,0)">
+       transform="matrix(1.0002761,0,0,0.99147179,-146.09578,4.9727739)">
       <g
          id="g25303">
         <rect
@@ -899,5 +891,110 @@
        y="66"
        id="use26184"
        transform="matrix(1.4072251,0,0,1.407225,53.550565,632.4843)" />
+    <g
+       id="g4178">
+      <rect
+         style="fill:#a6cee3;fill-opacity:1;stroke:none;stroke-width:0.32913113;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4169"
+         width="5.5356197"
+         height="25.949566"
+         x="180.59581"
+         y="587.04883" />
+      <rect
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.49723634;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect4171"
+         width="5.3646913"
+         height="61.795048"
+         x="180.62619"
+         y="583.96472" />
+    </g>
+    <rect
+       style="fill:#a6cee3;fill-opacity:1;stroke:none;stroke-width:0.32913113;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4184"
+       width="4.7356615"
+       height="22.199566"
+       x="169.74579"
+       y="583.94171" />
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.49723634;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4186"
+       width="5.3646913"
+       height="61.795048"
+       x="169.37619"
+       y="583.96472" />
+    <g
+       transform="translate(-193.89545,0)"
+       id="g4190">
+      <g
+         id="g4192">
+        <rect
+           y="612.20062"
+           x="426.73859"
+           height="17.78161"
+           width="5.5905333"
+           id="rect4194"
+           style="fill:#b2df8a;fill-opacity:1;stroke:none;stroke-width:0.27228633;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+        <rect
+           style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+           id="rect4196"
+           width="5.3628197"
+           height="62.505684"
+           x="426.85669"
+           y="583.25226" />
+      </g>
+    </g>
+    <rect
+       style="fill:#b2df8a;fill-opacity:1;stroke:none;stroke-width:0.27228633;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4202"
+       width="5.5905333"
+       height="17.78161"
+       x="222.12885"
+       y="605.0578" />
+    <rect
+       y="583.25226"
+       x="222.24695"
+       height="62.505684"
+       width="5.3628197"
+       id="rect4204"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#1f78b4;fill-opacity:1;stroke:none;stroke-width:0.26926112;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5063"
+       width="5.5951033"
+       height="20.802494"
+       x="311.99338"
+       y="624.36444" />
+    <rect
+       y="583.25092"
+       x="312.06747"
+       height="61.972622"
+       width="5.3643003"
+       id="rect5065"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.49793211;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       style="fill:#1f78b4;fill-opacity:1;stroke:none;stroke-width:0.26926112;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5085"
+       width="5.5951033"
+       height="13.872309"
+       x="323.02908"
+       y="631.29462" />
+    <rect
+       y="583.25092"
+       x="323.10321"
+       height="61.972622"
+       width="5.3643003"
+       id="rect5087"
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.49793211;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <g
+       id="g5094"
+       transform="matrix(1.4072251,0,0,1.407225,401.15357,523.68264)">
+      <use
+         height="100%"
+         width="100%"
+         x="56.624802"
+         xlink:href="#g0-61"
+         y="66"
+         id="use5096" />
+    </g>
   </g>
 </svg>
