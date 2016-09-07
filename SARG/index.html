@@ -11789,7 +11789,7 @@ In the spirit of giving new names to old things, I dub this the Regression Machi
 $$\begin{align}\nabla\Psi(x) & = x - Wy^\star\\
 \frac{\partial}{\partial W_{ij}}\Psi(x) & =\frac{\partial}{\partial W_{ij}}\frac{1}{2}\|Wy^\star-x\|^{2}
 \end{align}$$</p>
-<p>by plugging $y^\star = \Phi(x)$, the solution to the sparse coding problem. Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
+<p>by plugging $y^\star = \Psi(x)$, the solution to the sparse coding problem. Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
 <p>This leads to the troubling question - why isn't this kind of layer de-facto? The trouble with this layer is that it is expensive. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datum). Measured in milliseconds, this may be cheap -  the cost of solving this problem is on the order of solving a linear system. But it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity. Adding a single layer like this would potentially increase the cost of every training step a hundredfold.</p>
 
 </div>
@@ -11835,8 +11835,8 @@ $$\begin{align}
 $$
 \Psi_{0}(x)    
   =\Psi_{x}'(\mathbf{0})
-  =\sigma(\mathbf{0}-\tfrac{1}{\alpha}W^{T}(W\mathbf{0}-x))
-  =\sigma(\tfrac{1}{\alpha}W^{T}x)
+  =\sigma(\mathbf{0}-\alpha W^{T}(W\mathbf{0}-x))
+  =\sigma(\alpha W^{T}x)
 $$</p>
 <p>which should look familiar. Why, it's nothing more than our traditional layer discussed at the beginning! A tantalizing coincidence.</p>
 
@@ -11869,9 +11869,9 @@ $$\underset{y\in S}{\mbox{argmin }}f(y)=\underset{y}{\mbox{argmin}}\{f(y)+\delta
 $$\sigma[\lambda\|\cdot\|_1](y)_{i}=[\mbox{argmin}_{\bar{y}}\{\tfrac{1}{2}\|\bar{y}-y\|^{2}+\lambda\|\bar{y}\|_{1}\}]_{i}=\mbox{sign}(y_{i})\max\{0,\left|y_{i}\right|-\lambda\}$$<p>Here are some $g$'s, and their $\sigma[g]$'s:
 $$\begin{alignat*}{2}
  & g(y)=0 &  & \sigma[g](y)=y\\
- & g(y)=\lambda\|y\|_{1} &  & \sigma[g](y)_{i}=\mbox{sign}(x_{i})(\left|x_{i}\right|-\lambda)_{i}\\
+ & g(y)=\lambda\|y\|_{1} &  & \sigma[g](y)_{i}=\mbox{sign}(y_{i})(\left|y_{i}\right|-\lambda)_{i}\\
  & g(y)=\lambda\|y\|_{2} &  & \sigma[g](y)=\max\{0,1-\lambda/\|y\|_{2}\}y\\
- & g(y)=\delta(y,\{x\mid\|x\|_{2}\leq1\}) &  & \sigma[g](y)=y/\|y\|\\
+ & g(y)=\delta(y,\{x\mid\|x\|_{2}\leq1\}) &  & \sigma[g](y)=y/\|y\|_2\\
  & g(y)=\delta(y,\mathbf{R}_{+}) & \qquad & \sigma[g](y)_{i}=\max\{0,y_{i}\}\\
  & g(y)=\delta(y,\mathbf{R}_{+})+\lambda\|y\|_{1} & \qquad & \sigma[g](y)_{i}=\max\{0,y_{i}-\lambda\}
 \end{alignat*}$$</p>
@@ -11917,7 +11917,7 @@ $$\underset{W\geq0,y_i\geq0}{\mbox{argmin}} \sum_{i=1}^{n}\tfrac{1}{2}\|Wy_{i}-x
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
-<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights (and comments), and Marcos Ginestra, for proofreading the whole thing. Also thanks to <a href="https://www.reddit.com/user/Kiuhnm">Kiuhnm</a> for pointing an error in the gradient formula.</p>
+<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights (and comments), and Marcos Ginestra, for proofreading the whole thing. Also thanks to <a href="https://www.reddit.com/user/Kiuhnm">Kiuhnm</a> for pointing an error in the gradient formula, and other corrections.</p>
 
 </div>
 </div>
