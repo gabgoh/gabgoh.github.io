@@ -11786,7 +11786,7 @@ In the spirit of giving new names to old things, I dub this the Regression Machi
 <p>This layer is therefore, paradoxically, the opposite of a regular deep learning layer. But it is this lopsided layer which makes the most sense, as it truly takes data from input space into explanation space - a higher level of abstraction.</p>
 <p><a href="http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf">Gregor and LeCun</a> observe that sparse coding exhibits the property of mutual inhibition. Though $W$ may contain numerous similar columns, generally only one among these will be chosen to represent the input. It's no surprise then that this is the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing.</p>
 <p>Despite its implicit definition, we can still take its (sub) gradient,
-$$\begin{align}\nabla\Psi(x) & =W^{T}(Wy^\star-x)+\lambda\mbox{sign}(y^\star)\\
+$$\begin{align}\nabla\Psi(x) & = x - Wy^\star\\
 \frac{\partial}{\partial W_{ij}}\Psi(x) & =\frac{\partial}{\partial W_{ij}}\frac{1}{2}\|Wy^\star-x\|^{2}
 \end{align}$$</p>
 <p>by plugging $y^\star = \Phi(x)$, the solution to the sparse coding problem. Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
@@ -11804,7 +11804,14 @@ $$\begin{align}\nabla\Psi(x) & =W^{T}(Wy^\star-x)+\lambda\mbox{sign}(y^\star)\\
 $$
 \Psi_{x}'(y) := \sigma(y-\alpha W^{T}(Wy-x)), \qquad \sigma(y)_{i}=\mbox{sign}(y_i)\max\{0,\left| y_{i} \right|-\lambda\}
 $$</p>
-<p>where $\alpha$ is a number strictly greater than zero, but smaller than the largest eigenvector of $W^{T}W$. Let's think about what this operator does. Let $f(y)=\tfrac{1}{2}\|Wy-x\|^{2}$, our quadratic term in the objective. The term inside the $\sigma$ is then just $y - \alpha\nabla f(y)$, a gradient step. The nonlinearity, $\sigma$, snaps all components of this new iterate between $[-\lambda, \lambda]$ to zero. So our operator consists of two steps. The first step improves the objective, and the second promotes sparsity. Let's take these two facts as given:</p>
+<p>I claim repeated applications of this operator give us a procedure for solving the sparse coding problem, i.e. finding 
+$$\underset{y}{\mbox{argmin }}\big\{\overset{f(x)}{\overbrace{\tfrac{1}{2}\|Wy-x\|^{2}}}+\lambda\|y\|_{1}\big\}.$$</p>
+<p>Lets pause to consider what this operator does. It proceeds in two steps</p>
+<ul>
+<li>(<strong>Gradient Step</strong>) First we decrease $f$ with a gradient step $y - \alpha\nabla f(y)$. </li>
+<li>(<strong>Sparsity Step</strong>) Next, we apply $\sigma$, snapping all components of the vector from the step above between $[-\lambda, \lambda]$ to zero. </li>
+</ul>
+<p>The first step decreases the objective, and the second promotes sparsity. Formally:</p>
 <ol>
 <li>$\Psi_x$ is the unique fixed point of the map $y\mapsto \Psi_{x}'(y),$ i.e. $\Psi(x)=\Psi_{x}'(\Psi(x))$</li>
 <li>From any inital point $y$, repeated application of the map will always converge to $\Psi(x).$</li>
@@ -11910,7 +11917,7 @@ $$\underset{W\geq0,y_i\geq0}{\mbox{argmin}} \sum_{i=1}^{n}\tfrac{1}{2}\|Wy_{i}-x
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Oh, and here's a link to my <a href="http://gabgoh.github.io">website</a>.</p>
-<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights (and comments), and Marcos Ginestra, for proofreading the whole thing.</p>
+<p>The Picture in the title, as well as the sparse encoding picture, is taken from <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al, Sparse Coding With An Overcomplete Basis Set: A Strategy Employed by V12?</a>. Thanks for all the excellent commenters in <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a>, especially <a href="https://www.reddit.com/user/jcannell">jcannell</a> for excellent insights (and comments), and Marcos Ginestra, for proofreading the whole thing. Also thanks to <a href="https://www.reddit.com/user/Kiuhnm">Kiuhnm</a> for pointing an error in the gradient formula.</p>
 
 </div>
 </div>
