@@ -11786,10 +11786,16 @@ In the spirit of giving new names to old things, I dub this the Regression Machi
 <p>This layer is therefore, paradoxically, the opposite of a regular deep learning layer. But it is this lopsided layer which makes the most sense, as it truly takes data from input space into explanation space - a higher level of abstraction.</p>
 <p><a href="http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf">Gregor and LeCun</a> observe that sparse coding exhibits the property of mutual inhibition. Though $W$ may contain numerous similar columns, generally only one among these will be chosen to represent the input. It's no surprise then that this is the mechanism proposed by <a href="http://redwood.psych.cornell.edu/papers/olshausen_field_1997.pdf">Olshausen et al</a> to represent the early stages of visual processing.</p>
 <p>Despite its implicit definition, we can still take its (sub) gradient,
-$$\begin{align}\nabla\Psi(x) & = x - Wy^\star\\
-\frac{\partial}{\partial W_{ij}}\Psi(x) & =\frac{\partial}{\partial W_{ij}}\frac{1}{2}\|Wy^\star-x\|^{2}
-\end{align}$$</p>
-<p>by plugging $y^\star = \Psi(x)$, the solution to the sparse coding problem. Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
+$$
+\begin{align*}
+\nabla\Phi(x)_{ij} & =\begin{cases}
+[(Z(W^{T}W)Z^{T})^{-1}ZW^{T}]_{ij} & y_{i}^{\star}\neq0\\
+0 & y_{i}=0
+\end{cases}\\
+\frac{\partial}{\partial W_{ij}}\Phi(x) & =\frac{\partial}{\partial W_{ij}}(Z(W^{T}W)Z^{T})^{-1}Z[W^{T}x-\lambda\mbox{sign}(y^{\star})]\\
+Z & =\mbox{operator which removes rows $j$s for which $\Psi(x)$}
+\end{align*}$$</p>
+<p>Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
 <p>This leads to the troubling question - why isn't this kind of layer de-facto? The trouble with this layer is that it is expensive. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datum). Measured in milliseconds, this may be cheap -  the cost of solving this problem is on the order of solving a linear system. But it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity. Adding a single layer like this would potentially increase the cost of every training step a hundredfold.</p>
 
 </div>
