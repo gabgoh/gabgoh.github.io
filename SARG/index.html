@@ -11793,7 +11793,7 @@ $$
 0 & y_{i}=0
 \end{cases}\\
 \frac{\partial}{\partial W_{ij}}\Phi(x) & =\frac{\partial}{\partial W_{ij}}(Z(W^{T}W)Z^{T})^{-1}Z[W^{T}x-\lambda\mbox{sign}(y^{\star})]\\
-Z & =\mbox{operator which removes rows $j$s for which $\Psi(x)$}
+Z & =\mbox{operator which removes rows $j$s for which $\Psi(x)_j = 0$}
 \end{align*}$$</p>
 <p>Hence there is no technical roadblock in integrating this into a deep learning framework.</p>
 <p>This leads to the troubling question - why isn't this kind of layer de-facto? The trouble with this layer is that it is expensive. Computing this layer requires the solution of a small optimization problem (on the order of the number of features in a datum). Measured in milliseconds, this may be cheap -  the cost of solving this problem is on the order of solving a linear system. But it is still an order of magnitude more expensive than a simple matrix multiplication passed through a nonlinearity. Adding a single layer like this would potentially increase the cost of every training step a hundredfold.</p>
