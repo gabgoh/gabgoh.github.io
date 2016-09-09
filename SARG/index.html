@@ -11751,6 +11751,20 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="An-Update:-Sep-8th,-7:50PM-PST.">An Update: Sep 8th, 7:50PM PST.<a class="anchor-link" href="#An-Update:-Sep-8th,-7:50PM-PST.">&#182;</a></h3><p><em>Update</em>: In a strange but interesting turn, the SARG paper has been withdrawn. This drama unfolds in a period of 36 hours in the following twitter conversation by <a href="https://twitter.com/fchollet/status/773345939444551680">François Chollet</a> who claims he was confident he tried the exact setup, to no avail. In the light of increased public scrutiny, the paper has since been withdrawn from archive.</p>
+<p>The withdrawal notice states</p>
+<blockquote><p>To obtain the reported SARM performance, for each layer a number of candidate 0.5% subsets were drawn and tried, and the best performer was selected; the candidate search may become nearly exhaustive. The process further repeated for each layer. In all, while it is all possible to construct a SARM-VGG model in hours, by choosing all subsets randomly, the performance will not be guaranteed. The current implementation for SARM-VGG will bring in dramatically higher complexity and can take multiple days.</p>
+</blockquote>
+<p>This is, of course, very disappointing. The math in this blog post is still accurate. But the dramatic claims made in the paper do not hold up to public scrutiny, which brings the efficacy of this architecture into question. Future research may ultimately vindicate this architectural curiosity, but for now, the proof is not in the pudding.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <center><b><h1> Stacked Approximation Regression Machines from First Principles </b></h1> </center><p><img src = "bases.png"></p>
 <p>There has been some buzz on reddit <a href="https://www.reddit.com/r/MachineLearning/comments/50tbjp/stacked_approximated_regression_machine_a_simple/">here</a> and <a href="https://www.reddit.com/r/MachineLearning/comments/50zolk/research_discussion_stacked_approximated/">here</a> about the paper <a href="https://arxiv.org/abs/1608.04062">Stacked Approximated Regression Machine: A Simple Deep Learning Approach</a>. Approaching the paper with a measured dose of skepticism, I was pleasantly surprised to find the paper containing a beautiful kernel of an idea - one I can see becoming a fixture in our deep learning toolkit, the $k$-Approximated Regression Machine ($k$-ARM).</p>
 
