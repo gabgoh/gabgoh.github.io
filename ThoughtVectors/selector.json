@@ -1,0 +1,75 @@
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');
+var imageObj = new Image();
+imageObj.src = 'out23.jpg';
+
+i = 15; j= 15
+
+draw = function(inputcanvas, ind) {
+
+  console.log("drawing")
+  var context = inputcanvas.getContext('2d');
+
+  var i = Math.floor(ind/16)
+  var j = ind%16
+
+  var sourceX = i*64;
+  var sourceY = j*64;
+  var sourceWidth = 64;
+  var sourceHeight = 64;
+  var destWidth = sourceWidth;
+  var destHeight = sourceHeight;
+  var destX = inputcanvas.width / 2 - destWidth / 2;
+  var destY = inputcanvas.height / 2 - destHeight / 2;
+  context.drawImage(imageObj, sourceX, sourceY, sourceWidth, sourceHeight, destX, destY, destWidth, destHeight);
+
+};
+
+onClick = function() {
+  var v = 0;
+  for (i = 0; i < 8; i ++) {
+    if (document.getElementById("checkbox"+i).checked){
+      v = v + Math.pow(2,i)
+    }
+  }
+  draw(canvas, v)
+}
+
+var pic1 = document.getElementById("pic1")
+
+for (var i = 0; i < 8; i++) {
+
+  var container = document.createElement("div")
+  container.id = "atomc" + i
+  container.style = "position: absolute; width:100; height:100; left: " + (69*(i))+ "; top:" + 85 + ";"
+  pic1.appendChild(container);
+
+  var checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.id = "checkbox" + i;
+  checkbox.onchange = onClick
+  checkbox.style = "position: relative; top: 15; left: 42;"
+  checkbox.checked = true;
+  container.appendChild(checkbox);
+
+  var atom = document.createElement("canvas");
+  atom.id = "atom" + i;
+  atom.width = 64;
+  atom.height = 64;
+  atom.style = "border:1px solid black"
+  container.appendChild(atom);
+
+}
+
+imageObj.onload = function () { 
+  
+
+  for (var i = 0; i < 8; i++){
+    var atom = document.getElementById("atom"+i)
+    draw(atom, Math.pow(2,i))
+  }
+
+  draw(canvas, Math.pow(2,8)-1)  
+
+}
