@@ -66,9 +66,9 @@ function updater(svg, source, height, width) {
 
 function genTree(id, initdata) {
 
-  divwidth = 750
+  divwidth = 720
   divheight = 180
-  var margin = {top: 20, right: 80, bottom: 10, left: 30},
+  var margin = {top: 20, right: 80, bottom: 10, left: 10},
   	width = divwidth - margin.right - margin.left,
   	height = divheight - margin.top - margin.bottom;
   
@@ -425,7 +425,8 @@ genGallery("gallery_statue", "dex1548.jpg",[0,1,2,4,5,6,7])
 
 //genGallery("gallery_cutting", "dex1186.jpg",[0,2,4,5,6,7,9])
 // genGallery("gallery_runway", "dex834.jpg")
-// genGallery("gallery_skate", "dex390.jpg")
+genGallery("gallery_skate", "dex390.jpg")
+genGallery("gallery_keyboard", "dex1626.jpg")
 
 genMorphWord("wordmorpherstatue",["riding/snowboard","plane","cat","horse"], "Statue Vector",statue)
 genMorphWord("wordmorphermany", ["riding/snowboard","plane","cat","horse"],"Many Vector", many)

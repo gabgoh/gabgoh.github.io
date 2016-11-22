@@ -186,13 +186,13 @@ function createMorpherPanel(divname, imsheetList, reverse) {
   // Create Slider at Bottom
 
   arrow = document.createElement("text");
-  arrow.textContent = "-1"
-  arrow.style.cssText = "position:absolute; left:19px; top:" + (topborder-6) + "px; width: 10px; height: 0px; border-left: 0px solid; border-right: 1px solid; font-size:10px"
+  arrow.textContent = "-10"
+  arrow.style.cssText = "position:absolute; left:12px; top:" + (topborder-6) + "px; width: 20px; height: 0px; border-left: 0px solid; border-right: 1px solid; font-size:10px"
   currdiv.appendChild(arrow)
 
   arrow = document.createElement("text");
-  arrow.textContent = "1"  
-  arrow.style.cssText = "position:absolute; left:98px; top:" + (topborder-6) + "px; width: 10px; height: 0px; border-left: 0px solid; border-right: 1px solid; font-size:10px"
+  arrow.textContent = "10"  
+  arrow.style.cssText = "position:absolute; left:98px; top:" + (topborder-6) + "px; width: 15px; height: 0px; border-left: 0px solid; border-right: 1px solid; font-size:10px"
   currdiv.appendChild(arrow)
 
   arrow = document.createElement("text");
@@ -378,7 +378,7 @@ function createSlidingGallery(divname, imsheet, weights) {
       if (i != 0) {
         var plustext = document.createElement("text")
         plustext.textContent = "+"
-        plustext.style.cssText = "position: absolute; top: " + (64 + (j*76) + topborder)  +"px; left:" + (7+(i*76)) +"px; font-size:14px"    
+        plustext.style.cssText = "position: absolute; top: " + (64 + (j*90) + topborder)  +"px; left:" + (7+(i*76)) +"px; font-size:14px"    
         currdiv.appendChild(plustext);   
       }
 

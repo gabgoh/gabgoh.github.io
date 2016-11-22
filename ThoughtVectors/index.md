@@ -1,6 +1,6 @@
 # Decoding The Thought Vector 
 
-The building blocks of deep neural networks are large, dense matrices, with intermediate representations which have thus far defied interpretation. Despite its complexity, there is a growing body of evidence that most of it is overparamatized, with its vast majority occupied by "dead space". In this blog post I conjecture that beneath the network's dense representations lies a sparse, light substructure which can be teased out using a simple numerical technique, (the $k$-SVD). 
+The building blocks of deep neural networks are large, dense matrices, with intermediate representations which have thus far defied interpretation. Despite its complexity, there is a growing body of evidence that most of it is overparamatized, and that most states in these networks are "dead space". In this blog post I conjecture that beneath the network's dense representations lies a sparse, light substructure which can be teased out using a simple numerical technique, (the $k$-SVD). 
 
 Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces decompositions like this
 
@@ -26,7 +26,7 @@ This vector has been called, by various people, an "embedding", a "representatio
 
 #### The Geometry of Thought Vectors
 
-Thought vectors have been observed empirically to possess some curious properties. The most fascinating among these is known colloquially as "Linear Structure" - the observation that certain directions in thought-space can be given semantic meaning.
+Thought vectors have been observed empirically to possess some curious properties. The most fascinating among these is known colloquially as "Linear Structure" - the observation that certain directions in thought-space can be given semantic meaning. 
 
 [White](https://arxiv.org/abs/1609.04468) observes the following property, for example. Take an autoencoder trained on faces. First we identify (by hand) a few (say $S$) images containing a certain qualitative feature - a smile, for example. Encode and average them to get a vector, $d_{\small smile}$. 
 
@@ -39,6 +39,8 @@ This output, which [White](https://arxiv.org/abs/1609.04468) calls the smile vec
 The background of this image is grey - a clue about its indifference to background color. And though the face is vaguely feminine, it is also generic, apart from an exaggerated, toothy grin. We can add to any thought vector makes the decoder's output smile. 
 
 ![equation_fake_smile](equation_fake_smile.svg)
+
+These vectors are used to great effect by [Upchurch et al](https://arxiv.org/abs/1611.05507).
 
 #### Ideas in Sparse Superposition
 
@@ -75,17 +77,23 @@ Sparse structure has already been found in some shallow embedding system such as
 $$
 \underset{D,y_i}{\mbox{minimize}}\quad \frac{1}{2}\sum _{i=1}^N\|Dy_i - {\bf Encoder}(x_i)\|^2\qquad  \mbox{s.t.} \qquad \|y_i\|_0\leq k,\quad  \|d_i\|=1.
 $$
-The second step in this process can be achieved heuristically with the $k$-SVD. For these experiments, I used [pyksvd](https://github.com/hoytak/pyksvd).
+The second step in this process can be achieved heuristically with the $k$-SVD. For these experiments, I used [pyksvd](https://github.com/hoytak/pyksvd). Once this dictionary is learnt, we can decompose any output of ${\bf Encoder}$ via sparse coding.
+$$
+\underset{y}{\mbox{minimize}}\quad \frac{1}{2}\|Dy - {\bf Encoder}(x)\|^2\qquad  \mbox{s.t.} \qquad \|y_i\|_0\leq k.
+$$
+I use pyksvd for this too, which solves this using [Orthogonal Matching Pursuit](https://en.wikipedia.org/wiki/Matching_pursuit).
 
 ### Faces
 
-My first experiment will be on a variational autoencoder designed by [Lamb et al.](https://github.com/vdumoulin/discgen), trained on the [Celeb-A](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset of faces. The thought vector is a $500$ element vector, and the encoder does a noble job of capturing most of the dimensions of variation in the images. 
+My first experiment will be on a variational autoencoder designed by [Lamb et al.](https://github.com/vdumoulin/discgen), trained on the [Celeb-A](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html) dataset of faces. The thought vector is a $500$ element vector, and the neural net does a noble job of capturing most of the dimensions of variation in the images. 
 
-Using a dictionary of $m=2000$ total atoms, with each element a sum of $k=15$ sparse atoms, I can produce a pretty respectable reconstruction of most of the faces. The atoms look like this, when visualized. The reconstructions can be visualized incrementally, by finding the best reconstruction for increasing values of $k$. 
+Using a dictionary of $m=2000$ total atoms, with each element a sum of $k=15$ sparse atoms, I can produce a pretty respectable reconstruction of most of the faces. The atoms are signed, and the positive atoms look like [this](allatomsp.jpg) and the negative atoms look like [this](allatomsn.jpg). The reconstructions can be visualized incrementally, by finding the best reconstruction for increasing values of $k$. 
+
+(Move your mouse over the icons to see how the truncated reconstruction looks)
 
 <div id = "ascent_1"></div>
 
-Notice how the reconstructor works much like an artist does. First painting generic faces in broad strokes, and then filling in small, local details which make the picture unique and recognizable. The picture, quite mesmordzingly, takes form in front of your eyes. Of course, we are not restricted to faces in the training set. We can use any picture, really. So in tribute to the great minds of deep learning,
+Notice how the reconstructor works much like an artist does. First it paints a fairly generic face in broad strokes. Then it fills in small local details which make the face recognizable. Here are more examples
 
 <div id = "ascent_2"></div>
 
@@ -143,10 +151,7 @@ and fans of heavy metal music.
 
 We move on from interpolating images to interpolating sentences. Here we investigate the image captioning system [NeuralTalk2](https://github.com/karpathy/neuraltalk2). This network is a hybrid of a convolutional net (the VGGNet) and a recurrent net, fine tuned to the captioning task on the COCO dataset. This network as thought vector of size $768$. The network takes a picture, turns it into a thought vector, and turns that vector into a sentence using a recurrent neural net. The captions look like this:
 
-|                   (1)                    |                   (2)                    |                   (3)                    |                   (4)                    |
-| :--------------------------------------: | :--------------------------------------: | :--------------------------------------: | :--------------------------------------: |
-| <img src = "/Users/gabe/Documents/caption/photos/cat.jpg"  style="width: 150px"> | <img src = "/Users/gabe/Documents/caption/photos/blackandwhite.jpg" style="width:150px"> | <img src = "/Users/gabe/Documents/caption/photos/skateboarders.jpg" style="width:150px"> | <img src = "/Users/gabe/Documents/caption/photos/knifedude.jpg"  style="width:150px"> |
-|  a woman is holding a cat in a kitchen   | a couple of people walking down a street holding umbrellas | a group of four different types of computer equipment | a man in a suit and tie standing in a room |
+<table class="tables"><thead><tr><th style="text-align:center;">(1)</th><th style="text-align:center; width:25%">(2)</th><th style="text-align:center;">(3)</th><th style="text-align:center;width:25%">(4)</th></tr></thead><tbody><tr><td style="text-align:center;width:25%"><img src="cat.jpg" style="width: 150px; border:1px solid black;"></td><td style="text-align:center;width:25%"><img src="blackandwhite.jpg" style="width:150px"></td><td style="text-align:center;"><img src="skateboarders.jpg" style="width:150px"></td><td style="text-align:center;"><img src="knifedude.jpg" style="width:150px"></td></tr><tr style="background:white"><td style="text-align:center;">a woman is holding a cat in a kitchen</td><td style="text-align:center;">a couple of people walking down a street holding umbrellas</td><td style="text-align:center;">a group of four different types of computer equipment</td><td style="text-align:center;">a man in a suit and tie standing in a room</td></tr></tbody></table>
 
 which range in quality from the technically correct to pretty good. A conspicuous mistake the system often makes is the omission of certain critical, but somewhat out of place elements of a picture. 
 
@@ -154,83 +159,85 @@ The captioning system does marvelously on (1) and (2), picking up on subtle cues
 
 Let us visualize these thought vectors. Our language model does not generate a single sentence, but a probability distribution over possible sentences. So we visualize its output in the form of a [dialog tree](https://i.imgur.com/eJxdKNe.jpg). Each path from the root to a leaf represents a sentence, with its probability the product of the thicknesses of the respective edges. I generated these figures by sampling from this distribution a few times, and combining the data in a trie.
 
-Caption (1) produces the following output. 
+<a href="#" class="hasTooltip">Caption (1)<span><img src = "cat.jpg" style="width: 150px"></span></a>  produces the following output. 
 
 <div id = "wordbreakdown_cat"></div>
 
 Though the atomic sentences themselves have no names, I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
 
-**Holding**
+Holding
 
 <div id = "gallery_holding"></div>
 
-**Dog**
+Dog
 
 <div id = "gallery_dog"></div>
 
-**Cake** 
+Cake
 
 <div id = "gallery_cake"></div>
 
-**Woman** 
+Woman
 
 <div id = "gallery_woman"></div>
 
-<img src = "/Users/gabe/Documents/caption/photos/knifedude.jpg" style="width: 150px">
+##### Caption 2
 
-Caption (2) consists of two meaningful atoms (I have omitted the two smallest atoms which were meaningless). The first corresponds to "a black and white picture", and the other to "man with an umbrella". 
+Caption <a href="#" class="hasTooltip">(2)<span><img src = "blackandwhite.jpg" style="width: 150px"></span></a>  consists of two meaningful atoms (I have omitted the two smallest atoms which were meaningless). The first corresponds to "a black and white picture", and the other to "man with an umbrella". 
 
 <div id = "wordbreakdown_bw"></div>
 
 And true to form, we can look at all the other pictures which contain these atoms
 
-**Black and White Photo**
+Black and White Photo
 
 <div id = "black_white_woman"></div>
 
-**Umbrella** 
+Umbrella
 
 <div id = "umbrella_woman"></div>
 
-<img src = "/Users/gabe/Documents/caption/photos/skateboarders.jpg" style="width:150px">
+##### Image 3 
 
-Moving on to the problem images, caption (3) produces the following output.
+Moving on to the problem images, <a href="#" class="hasTooltip">caption (3)<span><img src = "skateboarders.jpg" style="width: 150px"></span></a>  produces the following output.
 
 <div id = "wordbreakdown_legomen"></div>
 
 The keyboard is detected, of course. But surprisingly, so are the presence of the lego figures as "skateboarders". Failing to combine these two elements, the language model simply chose to omit what wasn't convenient to articulate. 
 
-**Keyboard**
+Keyboard
 
 <div id = "gallery_keyboard"></div>
 
-**Skater**
+Skater
 
 <div id = "gallery_skate"></div>
 
-<img src = "/Users/gabe/Documents/caption/photos/knifedude.jpg"  style="width:150px">
+##### Image 4
 
-Caption (4) demonstrates the same problem. Both "Scissors" and "Tie" are detected, but not articulated.
+<a href="#" class="hasTooltip">Caption (4)<span><img src = "knifedude.jpg" style="width: 150px"></span></a> demonstrates the same problem. Both "Scissors" and "Tie" are detected, but not articulated.
 
 <div id = "wordbreakdown_knife"></div>
 
-**Scissors**
+Scissors
 
 <div id = "gallery_scissors"></div>
 
-**Tie**
+Tie
 
 <div id = "gallery_tie"></div>
 
-This "failure to synthesize" is surprisingly common. Taking linear combinations of two unrelated sentences, for example, would often result in the outputs interpolating in a discontinuous manner. Usually one or the other would dominate the output depending on their relative weights. It is never clear either how two atoms can combine. Take this atom for statue, for example
+This "failure to synthesize" is surprisingly common. Taking linear combinations of two unrelated sentences, for example, would often result in the outputs interpolating in a discontinuous manner. Usually one or the other would dominate the output depending on their relative weights. This "bug" can be interpreted as a feature, however. The language models resistance to combing two semantically alien ideas seems to be an emergence of a kind of  "common sense" - but this sensibility comes at the expense of a more free-form creativity. 
+
+Here is more evidence of common sense. Take this atom for statue, for example
 
 <div id = "gallery_statue"></div>
 
 <div id = "wordmorpherstatue"></div>
 
-The language model turns "man riding a snowboard" into "a statue of a man riding a horse". But it refuses to construct statues of a cat, instead opting for "a cat is sitting next to a statue". This problem is both a "bug" and a feature. The language models resistance to combing two semantically alien ideas seems to be an emergence of a kind of  "common sense" - it knows what statues are statues of. Bears, people riding on horses, people sitting on benches. Statues of airplanes and cats are less common. This sensibility, however, comes at the expense of a more free-form creativity. 
+You might guess the language model would spit out "a statue of a man riding a snowboard". But the language model actually returns "a statue of a man riding a horse". The latter makes more sense than the former. The model has an internal idea of what statues are. 
 
-Like with faces, there are a small set of atoms which blend well with most atoms. Take this one for "a group of".
+The dictionary elements are not restricted to nouns. It permits certain modifiers too. This element stands for "a group of".
 
 <div id = "gallery_many"></div>
 
@@ -242,7 +249,9 @@ and here a similar atom seems to be able to count up to 4.
 
 <div id = "wordmorphercount"></div>
 
-Rather curiously, it turns "airplanes" into "knives". And finally, here's one for "wearing a hat".
+Rather curiously, it turns "airplanes" into "knives". I do not understand why this happens.
+
+A final note. Unlike the previous model, the dictionary elements produced by $k$-SVD are largely unsigned. Though some negative vectors do bleed into the $y_i$'s they are generally small in magnitude and don't seem to have meaningful interpretations. This seems to be a consequence of the thought vectors generated after a  activation, making the entire vector positive, with a significant number of zeros present. Since the language generator does not behave well on negative vectors, this forces all the components of the sparse vector to interact only constructively. 
 
 ### Conclusion
 
@@ -260,6 +269,6 @@ This is my [website](http://gabgoh.github.io) and twitter <a href="https://twitt
 
 <div id="disqus_thread"></div>
 
-<script src="trees.js"></script><script src="d3.v3.min.js"></script><script src="selector.js"></script><script src="texttree.js"></script><script src="disqus.js"></script>
+<script src="selector.js"></script><script src="trees.js"></script><script src="d3.v3.min.js"></script><script src="texttree.js"></script><script src="disqus.js"></script>
 
 <script async src="http://platform.twitter.com/widgets.js" charset="utf-8"></script>
