@@ -81,6 +81,7 @@ input[type=range]::-ms-thumb {
   height: 6px;
 }
 
+
 .hasTooltip {
     position:relative;
 }
@@ -89,7 +90,7 @@ input[type=range]::-ms-thumb {
 }
 
 .hasTooltip:hover span {
-    display:block;
+    display:block !important;
     background-color:black;
     border-radius:5px;
     color:white;
@@ -97,7 +98,29 @@ input[type=range]::-ms-thumb {
     position:absolute;
     padding:5px;
     top:-9em;
-    left:-4.9em;   
+    left:-4.5em;   
+    height:150px;
+    width:150px; /* I don't want the width to be too large... */
+}
+
+
+.hasTooltipSmall {
+    position:relative;
+}
+.hasTooltipSmall span {
+    display:none;
+}
+
+.hasTooltipSmall:hover span {
+    display:block !important;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    box-shadow:1px 1px 3px gray;
+    position:absolute;
+    padding:5px;
+    top:-9em;
+    left:-2.0em; 
     height:150px;
     width:150px; /* I don't want the width to be too large... */
 }

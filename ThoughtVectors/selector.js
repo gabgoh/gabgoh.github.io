@@ -424,14 +424,14 @@ ng1  = [3.6289, -2.8809, 3.9297, 3.5234, -3.6875, -4.0195, -2.6738, -2.9316, -3.
 yann = [3.6875, -2.3145, 3.1152, -2.6348, -2.6094, 2.25, 3.1191, -2.6719, -4.5273, -2.3379, 2.6582, 3.3516, 2.1738, 3.1582, -2.4688, 3.3105]
 
 createSlidingGallery("ascent_1", "Final_morphyann.jpg", yann)
-createSlidingGallery("ascent_2", "Final_morphng.jpg", ng1)
+createSlidingGallery("ascent_2", "Final_morphyann.jpg", yann)
+createSlidingGallery("ascent_3", "Final_morphng.jpg", ng1)
 
 createGallery("gallery_gothic","gothic.jpg", 9, 1)
 createGallery("gallery_light","frontlight.jpg", 9, 1)
 createGallery("gallery_sunglass","sunglass.jpg", 9, 1)
 //createGallery("gallery_atom","allatoms_10_n.jpg", 8, 3, function(i) {return (i*72 + 65)})
 
-createSelector("breakdown1","out1129.jpg", [ 8.17540274,-3.79154397, -7.25203161, -6.70193808, 3.93183709, 4.72854296, 5.69133867, 4.72729968])
 createSelector("breakdown2","out1129.jpg", [ 8.17540274,-3.79154397, -7.25203161, -6.70193808, 3.93183709, 4.72854296, 5.69133867, 4.72729968])
 createSelector("breakdown3","out3261.jpg", [-5.37155852,  5.64222388,  3.07397276, -3.22001743,  3.04643365, -4.05068635 ,-3.3590393 , 3.79310622])
 createSelector("breakdown4","out3028.jpg", [-4.8735154, 6.25165191, 5.64953727, 7.04688969, 5.37010529, -4.28709214, 3.74329972, 4.61900516])

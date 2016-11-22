@@ -1,12 +1,14 @@
 # Decoding The Thought Vector 
 
-The building blocks of deep neural networks are large, dense matrices, with intermediate representations which have thus far defied interpretation. Despite its complexity, there is a growing body of evidence that these networks are vastly overparameterized, and that most states in these networks are "dead space". In this blog post I conjecture that beneath the network's dense representations lies a sparse, light substructure which can be teased out using a simple numerical technique, (the $k$-SVD). 
+Neural networks have the rather uncanny knack for turning meaning into numbers. Large, dense vectors of numbers, specifically, usually between 500 or 5000 single precision floating points - the activations of the network. These vectors carry useful information from one layer of the network to the next, and are believed to represent the data at different layers of abstraction. The numbers themselves, however, have thus far defied interpretation. 
 
-Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces decompositions like this
+In this blog post I put forward a way of understanding these vectors. I argue these numbers shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. And this data structure can be reverse engineered using a simple numerical technique, (the $k$-SVD) to give meaningful interpretations.
 
-<div id = "breakdown1"></div>
+Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces a decomposition of <a href="javascript:void(0)" class="hasTooltipSmall">this face<span style="display:none"><img src = "yann.jpg" style="width: 150px"></span></a> into its bare components
 
-and applying it to the image captioning system NeuralTalk2 yields a breakdown of a sentence into the sum of a few simple sentence fragments.
+<div id = "ascent_1"></div>
+
+and applying it to the image captioning system NeuralTalk2 yields a breakdown of a sentence into the sum of a few simple sentence fragments. <a href="javascript:void(0)" class="hasTooltip">This<span style="display:none"><img src = "cat.jpg" style="width: 150px"></span></a> image gets captioned as
 
 <div id = "wordbreakdown1"></div>
 
@@ -63,7 +65,7 @@ The fact that detecting these atoms is even possible may seem counterintuitive. 
 $$
 d^{\hspace{0.5pt}T}_j{\bf Encoder}(x)\approx d^{\hspace{0.5pt}T}_j\!Dy\approx [y]_j
 $$
-This allows for the storage of $n$ atoms in a vector of size $n$. This is rather obvious, but bear with me. We can in fact store far more atoms than $n$ if $y$ is mostly nonzero. By the magic of [sparse recovery](http://www.math.ucla.edu/~wotaoyin/summer2013/slides/Lec03_SparseRecoveryGuarantees.pdf), we can store as many as $\mathcal{O}(ne^{n/k})$  atoms in a humble vector of length $n$ nondestructively. $D$ needs to satisfy a few technical properties, of course, but what is critical is that $k$ (the number of nonzero in $y$) is small. The sparser $y$ is, the more atoms we can handle. Think of this as a trade of between storing information in $y$ and storing information in the nonzero locations of $y$.
+This allows for the storage of $n$ atoms in a vector of size $n$. This is rather obvious, but bear with me. We can in fact store far more atoms than $n$ if $y$ is sparse. By the magic of [sparse recovery](http://www.math.ucla.edu/~wotaoyin/summer2013/slides/Lec03_SparseRecoveryGuarantees.pdf), we can store as many as $\mathcal{O}(ne^{n/k})$  atoms in a humble vector of length $n$ nondestructively. $D$ needs to satisfy a few technical properties, of course, but what is critical is that $k$ (the number of nonzero in $y$) is small. The sparser $y$ is, the more atoms we can handle. Think of this as a trade of between storing information in $y$ and storing information in the nonzero locations of $y$.
 
 This is more than an information theoretic trick, however - its also a natural way of representing information. Think of this as [tagging](http://www.imdb.com/search/keyword/) system, where the nonzero in $y$ represents a tag. Every data point can be tagged with at most $k$ tags from a list of $m$ tags (e.g sunglasses, facial hair, blonde, etc), which can be large. Each tag has its own rating, but it is the tags themselves, not the individual ratings, which contain the salient information. This is basis of sparse coding.
 
@@ -93,11 +95,9 @@ Using a dictionary of $m=2000$ total atoms, with each element a sum of $k=15$ sp
 
 (Move your mouse over the icons to see how the truncated reconstruction looks)
 
-<div id = "ascent_1"></div>
+<div id = "ascent_2"></div>
 
 Notice how the reconstructor works much like an artist does. First it paints a fairly generic face in broad strokes. Then it fills in small local details which make the face recognizable. Here are more examples
-
-<div id = "ascent_2"></div>
 
 <div id = "ascent_3"></div>
 
@@ -259,7 +259,7 @@ A final note. Unlike the previous model, the dictionary elements produced by $k$
 
 ### Conclusion
 
-All this leads to the question of why this structure should even exist in the first place. How does this structure emerges from training? And how does the decoder work? I do not have a concrete answer here, and thus will freely speculate.
+The final question that should be asked is why this structure should even exist in the first place. How does this structure emerges from training? And how does the decoder work? 
 
 Identifying sparse elements in a thought vector may not be as difficult a task as it initially seems. Given the right conditions on $D$ it can be done quite efficiently by solving the convex sparse coding problem:
 $$
