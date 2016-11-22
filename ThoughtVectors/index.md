@@ -1,8 +1,8 @@
 # Decoding The Thought Vector 
 
-Neural networks have the rather uncanny knack for turning meaning into numbers. Large, dense vectors of numbers, specifically, usually between 500 or 5000 single precision floating points - the activations of the network. These vectors carry useful information from one layer of the network to the next, and are believed to represent the data at different layers of abstraction. The numbers themselves, however, have thus far defied interpretation. 
+Neural networks have the rather uncanny knack for turning meaning into numbers. I'm talking about the activations of the network, the large, dense vectors of numbers, which sit between layers, usually between $500$ and $5000$ in length. These vectors carry useful information from one layer of the network to the next, and are believed to represent the data at different layers of abstraction. The numbers themselves, however, have thus far defied interpretation. 
 
-In this blog post I put forward a way of understanding these vectors. I argue these numbers shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. And this data structure can be reverse engineered using a simple numerical technique, (the $k$-SVD) to give meaningful interpretations.
+In this blog post I put forward a way of interpreting these vectors. I argue that these numbers shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. This gives rise to a simple technique (the $k$-SVD) for reverse engineering this data structure, and gives us the tools to decode the vectors meaning.
 
 Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces a decomposition of <a href="javascript:void(0)" class="hasTooltipSmall">this face<span style="display:none"><img src = "yann.jpg" style="width: 150px"></span></a> into its bare components
 
@@ -97,7 +97,7 @@ Using a dictionary of $m=2000$ total atoms, with each element a sum of $k=15$ sp
 
 <div id = "ascent_2"></div>
 
-Notice how the reconstructor works much like an artist does. First it paints a fairly generic face in broad strokes. Then it fills in small local details which make the face recognizable. Here are more examples
+Notice how the reconstructor works much like an artist does. First it paints a fairly generic face in broad strokes. Then it fills in small local details which make the face recognizable. Here is another example
 
 <div id = "ascent_3"></div>
 
@@ -111,7 +111,7 @@ On some of the more generic faces, the reconstruction is pretty decent even at  
 
 True to our hypothesis, each vector in the dictionary has meaning. Like the smile vector, adding these vectors to existing images produces interesting effects. The usual suspects are all present, corresponding to 
 
-Camera angle
+Angle
 
 <div id = "morph_angle"></div>
 
@@ -165,7 +165,7 @@ Let us visualize these thought vectors. Our language model does not generate a s
 
 <div id = "wordbreakdown_cat"></div>
 
-The atomic sentences themselves have no names, I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front of cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
+I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front of cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
 
 Holding
 

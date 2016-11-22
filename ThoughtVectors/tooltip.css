@@ -1,0 +1,49 @@
+
+.hasTooltip {
+    position:relative;
+}
+.hasTooltip span {
+    display:none;
+}
+
+.hasTooltip:hover span {
+    display:block;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    box-shadow:1px 1px 3px gray;
+    position:absolute;
+    padding:5px;
+    top:-9em;
+    left:-4.9em;   
+    height:150px;
+    width:150px; /* I don't want the width to be too large... */
+}
+
+
+.hasTooltipSmall {
+    position:relative;
+}
+.hasTooltipSmall span {
+    display:none;
+}
+
+.hasTooltipSmall:hover span {
+    display:block;
+    background-color:black;
+    border-radius:5px;
+    color:white;
+    box-shadow:1px 1px 3px gray;
+    position:absolute;
+    padding:5px;
+    top:-4.2em;
+    left:-3.9em;   
+    height:70px;
+    width:70px; /* I don't want the width to be too large... */
+}
+
+.tableimage{
+  width:140px;
+  border:1px solid black;
+  border-radius:3px;
+}
