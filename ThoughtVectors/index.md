@@ -1,8 +1,8 @@
 # Decoding The Thought Vector 
 
-Neural networks have the rather uncanny knack for turning meaning into numbers. These numbers, the activations of the network, are represented by large, dense arrays, which sit between the layers of the network. They carry useful information from one layer of the network to the next, are believed to represent the data at different layers of abstraction. The numbers themselves, however, have thus far defied interpretation. 
+Neural networks have the rather uncanny knack for turning meaning into numbers. Data flows from the input to the output, getting pushed through a series of transformations which process the data into increasingly abstruse vectors of representations. These numbers, the activations of the network, carry useful information from one layer of the network to the next, are believed to represent the data at different layers of abstraction. But the vectors themselves, however, have thus far defied interpretation. 
 
-In this blog post I put forward a way of interpreting these vectors. I argue that these vectors shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. This gives rise to a simple technique (the $k$-SVD) for reverse engineering this data structure, and gives us the tools to decode the vectors meaning.
+In this blog post I put forward a possible interpretation of these vectors. I argue that these vectors shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. This gives rise to a simple technique (the $k$-SVD) for reverse engineering this data structure, and gives us the tools to decode the vectors meaning.
 
 Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces a decomposition of <a href="javascript:void(0)" class="hasTooltipSmall">this face<span style="display:none"><img src = "yann.jpg" style="width: 150px"></span></a> into its bare components
 
