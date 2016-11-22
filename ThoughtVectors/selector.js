@@ -133,15 +133,17 @@ function createSelector(divname, imsheet, weights) {
   }
 
   var b1 = document.createElement("div")
-  b1.style.cssText = "border-radius:2px; background:white; border:1px solid black; cursor: pointer; position: absolute; width:7px; height:7px; left:" + (690 + borderleft) +"px; top:35px"
+  b1.style.cssText = "left:" + (690 + borderleft) +"px; top:35px"
   b1.onmouseover = function () { draw(canvas, 8) }
   b1.onmouseout = function () { onclick() }  
+  b1.className = "tinybutton"
   currdiv.appendChild(b1);
 
   var b1 = document.createElement("div")
-  b1.style.cssText = "border-radius:2px; background:white; border:1px solid black; cursor: pointer; position: absolute; width:7px; height:7px; left:" + (690 + borderleft) + "px; top:45px"
+  b1.style.cssText = "left:" + (690 + borderleft) + "px; top:45px"
   b1.onmouseover = function () { draw(canvas, 9) }
   b1.onmouseout = function () { onclick() }  
+  b1.className = "tinybutton"
   currdiv.appendChild(b1);
 
   imageObj.onload = function () { 
@@ -392,15 +394,17 @@ function createSlidingGallery(divname, imsheet, weights) {
     currdiv.appendChild(equaltext);   
       
     var b1 = document.createElement("div")
-    b1.style.cssText = "border-radius:2px; background:white; border:1px solid black; cursor: pointer; position: absolute; width:7px; height:7px; left:710px; top:" + (82 + topborder) + "px"
-    b1.onmouseover = function () { draw(mainthumb, 32) }
-    b1.onmouseout = function () { drawtop(mainthumb, currentk) }  
+    b1.style.cssText = "left:710px; top:" + (82 + topborder) + "px"
+    b1.onmouseover = function () { draw(mainthumb, 33) }
+    b1.onmouseout = function () { drawtop(mainthumb, currentk) }
+    b1.className = "tinybutton"  
     currdiv.appendChild(b1);
 
     var b1 = document.createElement("div")
-    b1.style.cssText = "border-radius:2px; background:white; border:1px solid black; cursor: pointer; position: absolute; width:7px; height:7px; left:710px; top:" + (92 + topborder) + "px"
-    b1.onmouseover = function () { draw(mainthumb, 33) }
+    b1.style.cssText = "left:710px; top:" + (92 + topborder) + "px"
+    b1.onmouseover = function () { draw(mainthumb, 32) }
     b1.onmouseout = function () { drawtop(mainthumb, currentk) }  
+    b1.className = "tinybutton"  
     currdiv.appendChild(b1);
 
   }
