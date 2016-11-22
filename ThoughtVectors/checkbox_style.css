@@ -113,3 +113,14 @@
   transform: translate(-15px);
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.08); 
 }
+
+.sliding_gallery:after{
+  overflow: visible;
+  content: "";
+  background-image: url(pointer.svg);
+  width: 27px;
+  height: 27px;
+  position: absolute;
+  left:-10px;
+  top:168px;
+}

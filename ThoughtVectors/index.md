@@ -165,7 +165,7 @@ Let us visualize these thought vectors. Our language model does not generate a s
 
 <div id = "wordbreakdown_cat"></div>
 
-The atomic sentences themselves have no names, I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
+The atomic sentences themselves have no names, I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front of cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
 
 Holding
 

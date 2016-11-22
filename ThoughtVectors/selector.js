@@ -37,6 +37,7 @@ function createSelector(divname, imsheet, weights) {
   var borderleft = 10;
   var bordertop = 28
   var currdiv = document.getElementById(divname);
+  currdiv.className = "image_selector"
   currdiv.style.cssText = "display:block; margin-left:auto; margin-right:auto; height:137px; position:relative;";
 
   var border = document.createElement("div");
@@ -326,6 +327,7 @@ function createSlidingGallery(divname, imsheet, weights) {
   var topborder = -15
   var currdiv = document.getElementById(divname);
   currdiv.style.cssText = "display:block; margin-left:auto; margin-right:auto; height:" + (50 + rows*75) + "px; position:relative;";
+  currdiv.className = "sliding_gallery"
 
   var border = document.createElement("div");
   border.style.cssText = "height:"+ (50 + rows*75) +"px"
@@ -425,7 +427,7 @@ createGallery("gallery_light","frontlight.jpg", 9, 1)
 createGallery("gallery_sunglass","sunglass.jpg", 9, 1)
 //createGallery("gallery_atom","allatoms_10_n.jpg", 8, 3, function(i) {return (i*72 + 65)})
 
-createSelector("breakdown1","out3010.jpg", [ 5.86776963,-4.20564108,-4.41550926,-3.48969877,-3.90425166,-4.84875143,4.96333873,-3.32960612])
+createSelector("breakdown1","out1129.jpg", [ 8.17540274,-3.79154397, -7.25203161, -6.70193808, 3.93183709, 4.72854296, 5.69133867, 4.72729968])
 createSelector("breakdown2","out1129.jpg", [ 8.17540274,-3.79154397, -7.25203161, -6.70193808, 3.93183709, 4.72854296, 5.69133867, 4.72729968])
 createSelector("breakdown3","out3261.jpg", [-5.37155852,  5.64222388,  3.07397276, -3.22001743,  3.04643365, -4.05068635 ,-3.3590393 , 3.79310622])
 createSelector("breakdown4","out3028.jpg", [-4.8735154, 6.25165191, 5.64953727, 7.04688969, 5.37010529, -4.28709214, 3.74329972, 4.61900516])
