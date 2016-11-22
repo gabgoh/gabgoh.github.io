@@ -8,10 +8,10 @@ input[type=range]:focus {
 }
 
 
-/*.singlegradrange[type=range]::-webkit-slider-runnable-track {
+.singlegradrange[type=range]::-webkit-slider-runnable-track {
  background: linear-gradient(to left, black, white); 
 }
-*/
+
 input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
   height: 6px;
@@ -100,4 +100,10 @@ input[type=range]::-ms-thumb {
     left:-4.9em;   
     height:150px;
     width:150px; /* I don't want the width to be too large... */
+}
+
+.tableimage{
+  width:140px;
+  border:1px solid black;
+  border-radius:3px;
 }

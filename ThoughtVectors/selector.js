@@ -371,7 +371,7 @@ function createSlidingGallery(divname, imsheet, weights) {
       canvases.push(canvas);
 
       var wtext = document.createElement("text")
-      wtext.textContent = weights[i]
+      wtext.textContent = Math.round(1000*Math.abs(weights[i]))/1000
       wtext.style.cssText = "position: absolute; top: " + (25 + (j*90) + topborder)  +"px; left:" + (17+(i*76)) +"px; font-size:10px"    
       currdiv.appendChild(wtext);  
 

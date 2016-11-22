@@ -248,7 +248,7 @@ function genMorphWord(divname, atoms, vectorname,initdata) {
   outerdiv.appendChild(text);
 
   var text = document.createElement("text");
-  text.textContent = "1"
+  text.textContent = "10"
   text.style.cssText = "position:absolute; text-anchor:left; left:705px; top:30px; font-size:10px; text-style:bold"    
   outerdiv.appendChild(text);
 
@@ -430,4 +430,4 @@ genGallery("gallery_keyboard", "dex1626.jpg")
 
 genMorphWord("wordmorpherstatue",["riding/snowboard","plane","cat","horse"], "Statue Vector",statue)
 genMorphWord("wordmorphermany", ["riding/snowboard","plane","cat","horse"],"Many Vector", many)
-genMorphWord("wordmorphercount", ["riding/snowboard","plane","cat","horse"],"Coutnter Vector", count)
+genMorphWord("wordmorphercount", ["riding/snowboard","plane","cat","horse"],"Count Vector", count)
