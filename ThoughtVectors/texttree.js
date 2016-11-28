@@ -407,7 +407,7 @@ function genGallery(divname, imsheet, itemlist) {
 genBreakdownWord("wordbreakdown1", Woman_Cat, [["Dog",55], ["Holding a cat",105], ["Girl/Woman and Cake",155], ["Woman at Counter",145]])
 genBreakdownWord("wordbreakdown_cat", Woman_Cat, [["Dog",55], ["Holding a cat",105], ["Girl/Woman and Cake",155], ["Woman at Counter",145]])
 genBreakdownWord("wordbreakdown_bw", Black_White, [[" ",0], ["Black and White Photo of",180], [" ",0], ["People with Umbrellas",160]])
-genBreakdownWord("wordbreakdown_legomen", LEGOMen, [["Keyboard",100], ["Cutting Board",0], ["Runway",0], ["Skateboard",100]])
+genBreakdownWord("wordbreakdown_legomen", LEGOMen, [["Keyboard",100], ["Cutting Board",0], ["Runway",0], ["Skateboarder",100]])
 genBreakdownWord("wordbreakdown_knife", Man_Knife, [["Scissors",75], ["Keyboard",0], ["Snowboard",0], ["Tie",55]])
 
 genGallery("gallery_holding", "dex1262.jpg")

@@ -205,7 +205,7 @@ function createMorpherPanel(divname, imsheetList, reverse) {
 
   var range = document.createElement("input");
   range.setAttribute("type", "range");
-  k = 10; range.min = 1; range.max = 17; range.length = 10; 
+  k = 10; range.min = 1; range.max = 17; range.length = 10; range.value = 9;
   range.style.cssText = "position:absolute; left:30px; top:" + topborder + "px; width: 65px; height: 0px"
   range.className = "tip"
 

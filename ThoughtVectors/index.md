@@ -1,8 +1,8 @@
 # Decoding The Thought Vector 
 
-Neural networks have the rather uncanny knack for turning meaning into numbers. Data flows from the input to the output, getting pushed through a series of transformations which process the data into increasingly abstruse vectors of representations. These numbers, the activations of the network, carry useful information from one layer of the network to the next, are believed to represent the data at different layers of abstraction. But the vectors themselves, however, have thus far defied interpretation. 
+Neural networks have the rather uncanny knack for turning meaning into numbers. Data flows from the input to the output, getting pushed through a series of transformations which process the data into increasingly abstruse vectors of representations. These numbers, the activations of the network, carry useful information from one layer of the network to the next, and are believed to represent the data at different layers of abstraction. But the vectors themselves have thus far defied interpretation. 
 
-In this blog post I put forward a possible interpretation of these vectors. I argue that these vectors shouldn't be taken literally, but rather as an encoding for a simpler, sparse data structure. This gives rise to a simple technique (the $k$-SVD) for reverse engineering this data structure, and gives us the tools to decode the vectors meaning.
+In this blog post I put forward a possible interpretation of these vectors. I argue we shouldn't take these vectors literally, but rather as an encoding for a simpler, sparse data structure. This gives rise to a simple technique (the $k$-SVD) for reverse engineering this data structure, and gives us the tools to decode the vectors' meaning.
 
 Applying this trick to a Variational Autoencoder, trained on a dataset of faces, produces a decomposition of <a href="javascript:void(0)" class="hasTooltipSmall">this face<span style="display:none"><img src = "yann.jpg" style="width: 150px"></span></a> into its bare components
 
@@ -16,7 +16,7 @@ Unlike approaches like InfoGAN ([Chen et al.](https://arxiv.org/find/cs/1/au:+Ch
 
 ### The Encoder/Decoder Network Design
 
-Lets restrict our attention to a common pattern in neural network design. A little old school, perhaps, but still elegant, this pattern combines two powerhouses of deep learning, an encoder and a decoder, via composition to produce our net,
+Let's restrict our attention to a common pattern in neural network design. A little old school, perhaps, but still elegant, this pattern combines two powerhouses of deep learning, an encoder and a decoder, via composition to produce our net,
 $$
 x\mapsto  {\bf Decoder}({\bf Encoder}(x)).
 $$
@@ -46,7 +46,7 @@ These vectors are used to great effect for image processing in [Upchurch et al](
 
 #### Ideas in Sparse Superposition
 
-There is a very straightforward line of thought which follows from the observation of linear structure. Taking the dogma that directions are meanings to its logical conclusion, it's a small leap to conjecture the whole thought vector is nothing more than sum of these directions. Lets refer to these directions as atoms. If $x_i$ were a picture of a man in short hair wearing sunglasses, for example, a decomposition might look like
+There is a very straightforward line of thought which follows from the observation of linear structure. Taking the dogma that directions are meanings to its logical conclusion, it's a small leap to conjecture the whole thought vector is nothing more than sum of these directions. Let's refer to these directions as atoms. If $x_i$ were a picture of a man in short hair wearing sunglasses, for example, a decomposition might look like
 $$
 \begin{align*}
 {\bf Encoder}(x) \approx (2\cdot d_{\rm smile})
@@ -61,13 +61,13 @@ $$
 $$
 where $k$ is small. In this interpretation of a thought vector, the $d_i$'s themselves have no meaning - they just need to, collectively, satisfy a few simple mathematical properties. In essence, they just need to be "different enough". Different enough that its presence in the sum can be reliably determined.
 
-The fact that detecting these atoms is even possible may seem counterintuitive. Adding numbers together is typically a destructive operation. Say if we add $2+1+3=6$, there's no way to recover $2,1,3$ from $6$ ($4,1,1$ works just as well). The story is different, however, in higher dimensions. If the $d_j$'s were orthogonal, we can check for $d_j$'s presence by probing the encoding on the left by taking the dot product with $d_j$. 
+The fact that detecting these atoms is even possible may seem counterintuitive. Adding numbers together is typically an irreversible operation. Say if we add $2+1+3=6$, there's no way to recover $2,1,3$ from $6$ ($4,1,1$ works just as well). The story is different, however, in higher dimensions. If the $d_j$'s were orthogonal, we can check for $d_j$'s presence by probing the encoding on the left by taking the dot product with $d_j$. 
 $$
 d^{\hspace{0.5pt}T}_j{\bf Encoder}(x)\approx d^{\hspace{0.5pt}T}_j\!Dy\approx [y]_j
 $$
-This allows for the storage of $n$ atoms in a vector of size $n$. This is rather obvious, but bear with me. We can in fact store far more atoms than $n$ if $y$ is sparse. By the magic of [sparse recovery](http://www.math.ucla.edu/~wotaoyin/summer2013/slides/Lec03_SparseRecoveryGuarantees.pdf), we can store as many as $\mathcal{O}(ne^{n/k})$  atoms in a humble vector of length $n$ nondestructively. $D$ needs to satisfy a few technical properties, of course, but what is critical is that $k$ (the number of nonzero in $y$) is small. The sparser $y$ is, the more atoms we can handle. Think of this as a trade of between storing information in $y$ and storing information in the nonzero locations of $y$.
+This allows for the storage of $n$ atoms in a vector of size $n$. This is rather obvious, but bear with me. We can in fact store far more atoms than $n$ if $y$ is sparse. By the magic of [sparse recovery](http://www.math.ucla.edu/~wotaoyin/summer2013/slides/Lec03_SparseRecoveryGuarantees.pdf), we can store as many as $\mathcal{O}(ne^{n/k})$  atoms in a humble vector of length $n$ nondestructively. $D$ needs to satisfy a few technical properties, of course, but what is critical is that $k$ (the number of nonzero entries in $y$) is small. The sparser $y$ is, the more atoms we can handle. Think of this as a tradeoff between storing information in $y$ and storing information in the nonzero locations of $y$.
 
-This is more than an information theoretic trick, however - its also a natural way of representing information. Think of this as [tagging](http://www.imdb.com/search/keyword/) system, where the nonzero in $y$ represents a tag. Every data point can be tagged with at most $k$ tags from a list of $m$ tags (e.g sunglasses, facial hair, blonde, etc), which can be large. Each tag has its own rating, but it is the tags themselves, not the individual ratings, which contain the salient information. This is basis of sparse coding.
+This is more than an information theoretic trick, however - it's also a natural way of representing information. Think of this as a [tagging](http://www.imdb.com/search/keyword/) system, where the nonzero in $y$ represents a tag. Every data point can be tagged with at most $k$ tags from a list of $m$ tags (e.g sunglasses, facial hair, blonde, etc), which can be large. Each tag has its own rating, but it is the tags themselves, not the individual ratings, which contain the salient information. This is basis of sparse coding.
 
 Sparse structure has already been found in some shallow embedding system such as [word2vec](https://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf) by  [Arora et. al](https://arxiv.org/abs/1601.03764). And if such sparse structure exists in deep networks, we can derive a simple 2 step process to interpret thought vectors.
 
@@ -165,21 +165,21 @@ Let us visualize these thought vectors. Our language model does not generate a s
 
 <div id = "wordbreakdown_cat"></div>
 
-I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is a excellent synthesis of the concepts of "dog", "woman at counter", "woman in front of cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
-
-Holding
-
-<div id = "gallery_holding"></div>
+I've taken the liberty of giving them my own labels to facilitate navigation. The output of the algorithm is an excellent synthesis of the concepts of "dog", "woman at counter", "woman in front of cake", and surprisingly, the verb/noun combo "holding a cat".  We can visualize each atom by looking at examples of images for which thought vector contains these elements.
 
 Dog
 
 <div id = "gallery_dog"></div>
 
-Cake
+Holding a cat
+
+<div id = "gallery_holding"></div>
+
+Girl/Woman and Cake
 
 <div id = "gallery_cake"></div>
 
-Woman
+Woman at Counter
 
 <div id = "gallery_woman"></div>
 
@@ -191,11 +191,11 @@ Woman
 
 And true to form, we can look at all the other pictures which contain these atoms
 
-Black and White Photo
+Black and White Photo of
 
 <div id = "black_white_woman"></div>
 
-Umbrella
+People with Umbrellas
 
 <div id = "umbrella_woman"></div>
 
@@ -211,7 +211,7 @@ Keyboard
 
 <div id = "gallery_keyboard"></div>
 
-Skater
+Skateboarder
 
 <div id = "gallery_skate"></div>
 
@@ -259,13 +259,13 @@ A final note. Unlike the previous model, the dictionary elements produced by $k$
 
 ### Conclusion
 
-The final question that should be asked is why this structure should even exist in the first place. How does this structure emerges from training? And how does the decoder work? 
+The final question that should be asked is why this structure should even exist in the first place. How does this structure emerge from training? And how does the decoder work? 
 
 Identifying sparse elements in a thought vector may not be as difficult a task as it initially seems. Given the right conditions on $D$ it can be done quite efficiently by solving the convex sparse coding problem:
 $$
 \underset{y}{\mbox{minimize}}\quad \frac{1}{2}\|Dy - {\bf Encoder}(x)\|^2\qquad  \mbox{s.t.} \qquad \|y_i\|_1\leq k.
 $$
-This is pretty encouraging. It has been hypothesized by [Gregor et al.](http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf) that the decoder might be implementing an unfolded sparse coding algorithm, at least for a single iteration. Perhaps this theory can be confirmed by correlating various constellations of activations to the atoms of our dictionary. And perhaps there's a possibility we can read $D$ right off the decoder. 
+This is pretty encouraging. It has been hypothesized by [Gregor et al.](http://yann.lecun.com/exdb/publis/pdf/gregor-icml-10.pdf) that the decoder might be implementing an unfolded sparse coding algorithm, at least for a single iteration. Perhaps this theory can be confirmed by correlating various constellations of activations to the atoms of our dictionary. And perhaps there's a possibility we can read $D​$ right off the decoder. 
 
 The former riddle is more difficult to answer. And it breaks down into a bevy of minor mysteries when probed. Is this structure specific to certain neural architectures (perhaps those which use $\mbox{ReLu}$ activations)? Or does it come from the data? Was this structure discovered automatically, or were the assumptions of sparsity hidden in the network structure? Does sparse structure exist in all levels of representation, or only encoder/decoder networks? Is sparse coding even the true model for the data, or is this just an approximation to how the data is really represented? But lacking any formal theory of deep learning, these questions are still open to investigation. I hope to have convinced you, at least, that this is an avenue worth investigating.
 
