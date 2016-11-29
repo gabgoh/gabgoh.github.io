@@ -269,7 +269,9 @@ This is pretty encouraging. It has been hypothesized by [Gregor et al.](http://y
 
 The former riddle is more difficult to answer. And it breaks down into a bevy of minor mysteries when probed. Is this structure specific to certain neural architectures (perhaps those which use $\mbox{ReLu}$ activations)? Or does it come from the data? Was this structure discovered automatically, or were the assumptions of sparsity hidden in the network structure? Does sparse structure exist in all levels of representation, or only encoder/decoder networks? Is sparse coding even the true model for the data, or is this just an approximation to how the data is really represented? But lacking any formal theory of deep learning, these questions are still open to investigation. I hope to have convinced you, at least, that this is an avenue worth investigating.
 
-The pointer icon in the widgets is from [distill.pub][http://distill.pub]. This is my [website](http://gabgoh.github.io), [blog](http://gabgoh.github.io/blog/) and twitter <a href="https://twitter.com/gabeeegoooh" class="twitter-follow-button" data-show-count="false">Follow @gabeeegoooh</a>
+Thanks [distill.pub][http://distill.pub] for the inspiration in design and a certain yellow icon. 
+
+This is my [website](http://gabgoh.github.io), [blog](http://gabgoh.github.io/blog/) and twitter <a href="https://twitter.com/gabeeegoooh" class="twitter-follow-button" data-show-count="false">Follow @gabeeegoooh</a>
 
 <div id="disqus_thread"></div>
 

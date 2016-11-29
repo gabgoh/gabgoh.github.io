@@ -1,5 +1,13 @@
 diagramwidth = 750
 
+var bloglink = document.createElement("div");
+bloglink.style.cssText = "position:absolute; font-size:15px; top: 10px; right: 10px; padding: 2px 5px 2px 5px; margin: 10px;border: 1px solid black;"
+var blink = document.createElement("a");
+blink.textContent = "Blog"
+blink.href = "http://gabgoh.github.io/blog/"
+bloglink.appendChild(blink)
+document.body.appendChild(bloglink)
+
 var linkElement = document.createElement("link");
 linkElement.rel = "stylesheet";
 linkElement.href = "checkbox_style.css"; //Replace here
