@@ -157,7 +157,7 @@ We move on from interpolating images to interpolating sentences. Here we investi
 
 which range in quality from the technically correct to pretty good. A conspicuous mistake the system often makes is the omission of certain critical, but somewhat out of place elements of a picture. 
 
-The captioning system does marvelously on (1) and (2), picking up on subtle cues that the woman is holding a dog, and is in a kitchen. But where is the knife in (3), and the lego figurines in (4)? Our method of analysis provides a means to debug such problems. Surprisingly, using only a sparsity of $k=4$ and a dictionary size of $m=2000$ was enough.
+The captioning system does marvelously on (1) and (2), picking up on subtle cues that the woman is holding a dog, and is in a kitchen. But where is the knife in (4), and the lego figurines in (3)? Our method of analysis provides a means to debug such problems. Surprisingly, using only a sparsity of $k=4$ and a dictionary size of $m=2000$ was enough.
 
 Let us visualize these thought vectors. Our language model does not generate a single sentence, but a probability distribution over possible sentences. So we visualize its output in the form of a [dialog tree](https://i.imgur.com/eJxdKNe.jpg). Each path from the root to a leaf represents a sentence, with its probability the product of the thicknesses of the respective edges. I generated these figures by sampling from this distribution a few times, and combining the data in a trie.
 
