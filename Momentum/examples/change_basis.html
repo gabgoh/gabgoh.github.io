@@ -1,0 +1,30 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../assets/widgets.css">
+  <script src = "../assets/lib/d3.v4.min.js"></script>
+  <script src = "../assets/lib/numeric-1.2.6.min.js"></script>
+  <script src = "../assets/utils.js"></script>  
+  <script src = "../assets/banana.js"></script>  
+</head> 
+<body>
+  <div id = "quad"></div>
+  <script> 
+  
+  var control = renderIterates(quadf, [[-4,4],[4,-4]], [0,0], "quad", function() {})
+  d3.select("#quad")
+    .append("svg")
+    .style("z-index", 2)
+    .style("position", "absolute")
+    .style("width", 700)
+    .style("height", 700)
+    .append("line")
+    .attr("x1", -10)
+    .attr("y1", -10)
+    .attr("x2", 500)
+    .attr("y2", 500)
+    .style("stroke", "black")
+    .style("stroke-width", "1px")
+
+  control[0](0.01, 0., control[1]())
+  </script>
+</body>

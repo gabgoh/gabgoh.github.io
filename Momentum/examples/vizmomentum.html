@@ -1,0 +1,42 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="../assets/widgets.css">
+  <script src = "../assets/lib/d3.v4.min.js"></script>
+  <script src = "../assets/lib/numeric-1.2.6.min.js"></script>
+  <script src = "../assets/utils.js"></script>  
+  <script src = "../assets/momentum.js"></script>  
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_SVG">
+</head> 
+<body>
+	<div id = "momentum2D"></div>
+  <script>renderMomentum("momentum2D")</script>
+
+<script>
+setTimeout(() => {
+  
+  console.log("hi")
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+  
+  MathJax.Hub.Register.StartupHook("End", function() {
+    setTimeout(() => {
+          svg.selectAll('.tick').each(function(){
+          var self = d3.select(this),
+              g = self.select('text>span>svg');
+          g.remove();
+          self.append(function(){
+            return g.node();
+          });
+        });
+      }, 1);
+    });
+  
+  MathJax.Hub.Queue(["Typeset", MathJax.Hub, svg.node()]);
+  
+}, 1);
+</script>
+</body>

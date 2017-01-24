@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_SVG"></script>
+  <script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+<body>
+  
+  <input type="text" id="tex-input" style="width:300px" value="\[ \left( \sum_{k=1}^n a_k b_k \right)^2 \]" />
+  <button id="convert">Convert</button>
+  <svg id="root"></svg>
+  
+  <script>
+
+    var MathjaxIt = function(_selector){ 
+      var texDiv = null,
+        context = null;
+      function exports(d, i){ 
+        context = this;
+        var texString = d3.select(_selector).property('value');
+        texDiv = d3.select('body').append('div')
+          .style({visibility: 'hidden'})
+          .html(texString);
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+      }
+      MathJax.Hub.Register.MessageHook("New Math", function (message) {
+        context.selectAll('*').remove();
+        context.node().appendChild(texDiv.select('svg').node());
+        texDiv.remove();
+      });
+      return exports;
+    };
+    
+    var mathjaxIt = MathjaxIt('#tex-input')
+  
+    d3.select('#convert').on('click', function(d, i){ 
+      d3.select('svg#root').attr({width: 300, height: 100})
+        .call(mathjaxIt)
+    });
+      
+  </script>
+  </body>
+</html>
