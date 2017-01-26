@@ -313,8 +313,8 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   Let's find the optimal $\alpha$ which minimizes the convergence rate. This works out to be
   $$
   \begin{align*}
-  \mbox{optimal $\alpha$ = }\underset{\alpha}{\mbox{argmin}}\{\max_{i}\{1-\alpha_{i}\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{2}},\\
-  \mbox{convergence rate  = }\underset{\alpha}{\mbox{min}}\{\max_{i}\{1-\alpha_{i}\lambda_{i}\}\} & =\frac{\lambda_{n}/\lambda_{1}-1}{\lambda_{n}/\lambda_{1}+1}.,
+  \mbox{optimal $\alpha$ = }\underset{\alpha}{\mbox{argmin}}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{n}},\\
+  \mbox{convergence rate  = }\underset{\alpha}{\mbox{min}}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{\lambda_{n}/\lambda_{1}-1}{\lambda_{n}/\lambda_{1}+1}.,
   \end{align*}
   $$
   For ill conditioned problems, the optimal $\alpha$ gets uncomfortabily close to limit of divergence. This, however, justifies the heuristic of choosing the largest steplength you can get away with. 
@@ -799,7 +799,7 @@ w^{k} & =[w_{1}^{k},w_{2}^{k},\dots,w_{k}^{k},0,\dots,0]
 
   <h2>Onwards and Downwards</h2>
   <p>
-  The study of acceleration is seeing a small revival within the optimization community. If the ideas in this article excite you, you may wish to read <dt-cite key="su2014differential"></dt-cite>, which fully explores the idea of momentum as the discretization of a certain differential equation. But other, less physical interpretations exist. There an algebraic interpretation of momentum in terms of approximating polynomials <dt-cite key="rutishauser1959theory"></dt-cite> <dt-cite key="hardtzen"></dt-cite>. Geometric interpretations are emerging <dt-cite key="bubeck2015geometric"></dt-cite> <dt-cite key="drusvyatskiy2016optimal"></dt-cite>, connecting momentum to older methods, like the Ellipsoid method. And finally, there are interpretations relating momentum to duality <dt-cite key="allen2014linear"></dt-cite>, perhaps providing a clue as how to accelerate second order methods and Quasi Newton (for a first step, see <dt-cite key="nesterov2008accelerating"></dt-cite>). But Like the proverbial blind men feeling elephant, momentum seems like something bigger than the sum of its parts. One day, hopefully soon, the many perspectives will unify into a satisfying whole.
+  The study of acceleration is seeing a small revival within the optimization community. If the ideas in this article excite you, you may wish to read <dt-cite key="su2014differential"></dt-cite>, which fully explores the idea of momentum as the discretization of a certain differential equation. But other, less physical interpretations exist. There an algebraic interpretation of momentum in terms of approximating polynomials <dt-cite key="rutishauser1959theory,hardtzen"></dt-cite>. Geometric interpretations are emerging <dt-cite key="bubeck2015geometric,drusvyatskiy2016optimal"></dt-cite>, connecting momentum to older methods, like the Ellipsoid method. And finally, there are interpretations relating momentum to duality <dt-cite key="allen2014linear"></dt-cite>, perhaps providing a clue as how to accelerate second order methods and Quasi Newton (for a first step, see <dt-cite key="nesterov2008accelerating"></dt-cite>). But Like the proverbial blind men feeling elephant, momentum seems like something bigger than the sum of its parts. One day, hopefully soon, the many perspectives will unify into a satisfying whole.
   </p>
 </dt-article>
 
