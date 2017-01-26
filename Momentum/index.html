@@ -52,7 +52,7 @@
 </div>
 
 <dt-article class="centered">
-  <h1>A Guide to Momentum</h1>
+  <h1>A Guide to Momentum [DRAFT]</h1>
   <h2></h2>
   <dt-byline>
   </dt-byline>
@@ -528,7 +528,7 @@ R^{k}=\begin{cases}
 \end{cases}
   $$
 
-   Stare at this formula a bit, and convince yourself of the following facts. If the eigenvalues are real, $x$ and $y$ will approach 0 monotonically. If they are complex, they will oscillate with a frequency as determined by the step-length $\alpha$. And the rate at which they converge is $\max\{|\bar{\lambda}_1|,|\bar{\lambda}_2|\}$. Like gradient descent, the norms of these eigenvalues must be bounded by $1$ for the algorithm to converge. These regimes can be visualized in the following phase diagram.
+   Stare at this formula a bit, and convince yourself of the following facts. If the eigenvalues are real, $x$ and $y$ will approach 0 monotonically. If they are complex, they will oscillate with a frequency as determined by the step-length $\alpha$. And the rate at which they converge is $\max\{|\bar{\lambda}_1|,|\bar{\lambda}_2|\}$. Like gradient descent, the norms of these eigenvalues must be bounded by $1$ for the algorithm to converge. Bach <dt-cite key="flammarion2015averaging"></dt-cite> suggests visualizing these regimes can be visualized in a phase diagram.
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum("momentum2D")</script> 
@@ -540,11 +540,11 @@ R^{k}=\begin{cases}
   <h3>The Critical Damping Coefficient</h3>
 
   <p>
-  The problem of finding the optimal $\beta$ for fixed $\alpha$ and $i$ admits a nice physical interpretation. Since $x^k$ is updated as
+  Qian <dt-cite key="qian1999momentum"></dt-cite> observed that The problem of finding the optimal $\beta$ for fixed $\alpha$ and $i$ admits a nice physical interpretation, and one which sheds some light on what the parameter $\beta$ is really doing. Since $x^k$ is updated as
 
   $$x_i^{k+1} = x_i^k - \alpha y_i^{k+1}$$
 
-  we can think of $x$ as position, and $y$ as velocity (since at each iteration, we move in a small step along $y$). We can thus plot these against each other in a phase portrait. 
+  we can think of $x$ as position of a particle, and $y$ as its velocity (since at each iteration, we move in a small step along $y$). Let's plot these two values for all iterations against each other in a phase portrait. 
   </p>
   <div id = "phasediagram" style="display: block;position:relative;width:920px;height: 364px;margin-left: auto;margin-right: auto;"></div>
   </div>
@@ -552,10 +552,10 @@ R^{k}=\begin{cases}
   phaseDiagram(d3.select("#phasediagram"))
   </script>
   <p>
-  If you've taken an undergraduate class in physics, these images should look familiar to you. They look like the phase portraits of a damped harmonic oscillator! The damped harmonic oscillator is best imagined as a weight suspended on a spring. We pull it down by one unit, and we study the rate at which it returns to equilibrium. In this analogy, the position of the mass is $x$, and its velocity $y$. Equilibrium is the state when both position and velocity are $0$ i.e. $x_i$ and the gradient are both 0.
+  If you've taken an undergraduate class in physics, these images should look familiar to you. They look like the phase portraits of a damped harmonic oscillator! And if you don't recall your high school physics, the damped harmonic oscillator is best imagined as a weight suspended on a spring. We pull the weight down by one unit, and we study the rate at which it returns to equilibrium. In this analogy, the position of the mass is $x$, and its velocity $y$. Equilibrium is the state when both position and velocity are 0 i.e. $x_i$ and the gradient are both 0.
   </p>
   <p>
-  You probably now have in your mind the image of a spring bouncing up and down, with oscillations of decreasing amplitude. But the rate in which these movements decay depends strongly the amount it is damped. Is the spring immersed in water? Or is it in a frictionless vacuum? In our analogy, the damping coefficient is controlled by our momentum parameter, $\beta$. Gradient descent ($\beta = 0$) corresponds to over-damping. There's no oscillation, but the spring is immersed in a viscous fluid which is restricting its movement just a little too much. When $\beta = 1$, we're under-damping. Here's there's no resistance at all, and spring oscillates up and down forever, missing the optimal value over and over. The best value of $\beta$ must lie somewhere in the middle. This sweet spot, the "critical damping rate", happens exactly when the eigenvalues of $R$ are repeated, i.e
+  You probably now have in your mind the image of a spring bouncing up and down, with oscillations of decreasing amplitude. But the rate in which these movements decay depends strongly the amount it is damped. Is the spring immersed in water? Or is it in a frictionless vacuum? In our analogy, the damping coefficient is controlled by our momentum parameter, $\beta$. Gradient descent ($\beta = 0$) corresponds to over-damping. There's no oscillation, but the spring is immersed in a viscous fluid which is restricting its movement just a little too much. When $\beta = 1$, we're under-damping. Here's there's no resistance at all, and spring oscillates up and down forever, missing the optimal value over and over. The best value of $\beta$ must lie somewhere in the middle. This sweet spot, the "critical damping rate", happens exactly when the eigenvalues of $R$ are repeated, which happens when (work this out!)
   
   $$
   \beta = 1 - \alpha \lambda_i - \sqrt{\alpha \lambda_i}
@@ -791,7 +791,7 @@ w^{k} & =[w_{1}^{k},w_{2}^{k},\dots,w_{k}^{k},0,\dots,0]
 \end{align*}
   $$
 
-  With the final term going to $0$ as $n$ gets large. And there we have it - the lower bound, which no linear first order algorithm, not ADAM or AdaGrad or Conjugate Gradients, can do better than. 
+  With the final term going to 0 as $n$ gets large. And there we have it - the lower bound, which no linear first order algorithm, not ADAM or AdaGrad or Conjugate Gradients, can do better than. 
   </p>
   <p>
   Like many such lower bounds, results like this must not be taken literally, but spiritually. Some of our favourite methods, including BFGS, and more, do not fall into the class of linear first order methods. But it is a surprising and satisfying coincidence that this lower bound is exactly that achieved by gradient descent with momentum. 
@@ -847,7 +847,7 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
   \end{align*}
     $$
 
-    are repeated, $\bar{\lambda}_{1} = \bar{\lambda}_{2}$. So setting the discriminant to $0$, we get, for any choice of stepsize $\alpha$, 
+    are repeated, $\bar{\lambda}_{1} = \bar{\lambda}_{2}$. So setting the discriminant to 0, we get, for any choice of stepsize $\alpha$, 
 
     $$
     (1+\beta+\alpha\lambda_i)^{2}-4\beta=0 \iff \beta = 1-\alpha\lambda_i-\sqrt{\alpha\lambda_i}
@@ -1024,6 +1024,17 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
   pages={159--181},
   year={2008},
   publisher={Springer}
+}
+
+@article{qian1999momentum,
+  title={On the momentum term in gradient descent learning algorithms},
+  author={Qian, Ning},
+  journal={Neural networks},
+  volume={12},
+  number={1},
+  pages={145--151},
+  year={1999},
+  publisher={Elsevier}
 }
 </script>
 
