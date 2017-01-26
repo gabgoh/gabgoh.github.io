@@ -1,7 +1,7 @@
 
 <!doctype html>
 <meta charset="utf-8">
-<script src="template.js"></script>
+<script src="http://distill.pub/template.js"></script>
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
 <script src = "assets/lib/d3.v4.min.js"></script>
 <script src = "assets/lib/numeric-1.2.6.min.js"></script>
@@ -18,17 +18,17 @@
 <script src = "assets/lib/tooltip.js"></script>  
 <script src = "assets/iterates.js"></script> 
 <script src = "assets/data/Urosen.json"></script>    
+<script src = "assets/phasediagram.js"></script>  
 
 <link rel="stylesheet" type="text/css" href="assets/widgets.css">
 
 <script type="text/front-matter">
-  title: Article Title
-  description: Description of the post
-  published: Jan 10, 2017
+  title: A Guide to Momentum
+  description: A Guide to Momentum.
   authors:
-  - Gabriel Goh: http://gabgoh.github.io
+    - Gabriel Goh: http://gabgoh.github.io
   affiliations:
-  - UC Davis: http://g.co/brain
+    - UC Davis: http://math.ucdavis.edu
 </script>
 
 <div style="visibility:hidden">
@@ -58,7 +58,7 @@
   </dt-byline>
 
   <p>
-  If you've spent enough some time optimizing smooth functions, chances are you've met this optimizers old nemesis. The condition has many names, but it always borrows the language of pathology - Ill-conditioning, pathological curvature, dead gradients. The problem manifests when minimizing a function $f$ using gradient descent,
+  If you've spent enough some time optimizing smooth functions, chances are you've met this optimizers' old nemesis. The condition has many names, but it always borrows the language of pathology - Ill-conditioning, pathological curvature, dead gradients. The problem manifests when minimizing a function $f$ using gradient descent,
 
   \[w^{k+1} = w^k-\alpha\nabla f(w^k),\]
 
@@ -157,7 +157,7 @@
   </p>
 
   <p>  
-  But there's more. A lower bound, courtesy of Nesterov <dt-cite key="nesterov2013introductory"></dt-cite>, states that momentum is in a certain technical sense optimal. Now this doesn't mean it is the best algorithm under any circumstances for all functions. But it does mean it satisfies some curiously beautiful mathematical properties which scratches a very human itch for perfection and closure. But more on that later. Lets say this for now - momentum is an algorithm for the book.
+  But there's more. A lower bound, courtesy of Nesterov <dt-cite key="nesterov2013introductory"></dt-cite>, states that momentum is in a certain technical sense optimal. Now this doesn't mean it is the best algorithm under any circumstances for all functions. But it does mean it satisfies some curiously beautiful mathematical properties which scratches a very human itch for perfection and closure. But more on that later. Let's say this for now - momentum is an algorithm for the book.
   </p>
 
   <h2>First Steps: Gradient Descent</h2>
@@ -166,7 +166,7 @@
 
   $$f(w) = \tfrac{1}{2}w^TAw - b^Tw, \qquad w \in \mathbf{R}^n. $$
 
-  Simple as this model may be, it is rich enough to approximation of many functions (think of $A$ as the hessian) and captures all the key features of pathological curvature. And more importantly, we can write a formula for gradient descent iterations here in closed form, with no approximating bounds or inequalities.
+  Simple as this model may be, it is rich enough to approximate of many functions (think of $A$ as the Hessian) and captures all the key features of pathological curvature. And more importantly, we can write a formula for gradient descent iterations here in closed form, with no approximating bounds or inequalities.
   </p>
 
   <p>
@@ -310,7 +310,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   $$
   </p>
   <p>
-  Lets find the optimal $\alpha$ which minimizes the convergence rate. This works out to be
+  Let's find the optimal $\alpha$ which minimizes the convergence rate. This works out to be
   $$
   \begin{align*}
   \mbox{optimal $\alpha$ = }\underset{\alpha}{\mbox{argmin}}\{\max_{i}\{1-\alpha_{i}\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{2}},\\
@@ -337,13 +337,13 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
 
   <h3>Implicit Regularization</h3>
   <p>
-  Linear Regression, conveniently a quadratic objective, provides a cartoon we need for understanding pathological curvature in deep learning. Lets do a quick refresher. In Linear Regression we fit $n$ features (the components of $z_i$) to observations $d_i$. Assume there are $m$ data points, stacked to form matrix $Z$. Then Linear Regression is
+  Linear Regression, conveniently a quadratic objective, provides a cartoon we need for understanding pathological curvature in deep learning. Let's do a quick refresher. In Linear Regression we fit $n$ features (the components of $z_i$) to observations $d_i$. Assume there are $m$ data points, stacked to form matrix $Z$. Then Linear Regression is
 
   $$
   \mbox{minimize}\qquad \frac{1}{2}\sum_i^m (z_i^Tw - d_i)^2 = \tfrac{1}{2}\|Zw-d\|^2
   $$
 
-  which is equivalant to
+  which is equivalent to
   $$
   \mbox{minimize}\qquad \tfrac{1}{2}w^{T}\underset{A}{\underbrace{Z^{T}Z}}w-\underset{b}{\underbrace{(Zd)}}^T w
   $$
@@ -354,7 +354,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   Gradient descent makes good progress in directions corresponding to the strongest principle components, and bad progress in its weakest. </i>
   </p>
   <p>
-  This makes intuitive sense. The principle components of $X$ measure the quality of data in the corresponding directions. And thus, the strongest principle components also give the strongest error correcting signals in the gradient! Lets refine this insight with a few examples.
+  This makes intuitive sense. The principle components of $X$ measure the quality of data in the corresponding directions. And thus, the strongest principle components also give the strongest error correcting signals in the gradient! Let's refine this insight with a few examples.
   </p>
   <h4>Improper Scaling</h4>
 
@@ -398,11 +398,11 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <script>renderPolyFit("poly")</script>
 
   <p>
-  Now, this model has more than enough expressive power to overfit any dataset. But yet, for all reasonable runtimes, it does not. Gradient descent produces a reasonable result in a few minutes, and starts overfitting data only at the $k=10^8$ mark (a year and a half of runtime). And the whole thing reaches final convergence in about about 10 billion years, assuming your computer's still running then. All this for polynomial regression in 25 variables! The matrix is painfully ill conditioned - the reason why the whole affair takes so long. 
+  Now, this model has more than enough expressive power to overfit any dataset. And yet, for all reasonable runtimes, it does not. Gradient descent produces a reasonable result in a few minutes, and starts overfitting data only at the $k=10^8$ mark (a year and a half of runtime). And the whole thing reaches final convergence in about about 10 billion years, assuming your computer's still running then. All this for polynomial regression in 25 variables! The matrix is painfully ill conditioned - the reason why the whole affair takes so long. 
   </p>
 
   <p>
-  But the reason early iterates are structurally "simpler" is a more subtle affair. An inspection of the eigenvalues of $A^TA$ reveals why this is true. Here the strongest directions of variation correspond to signals between between the 5 clusters, and weakest signals the variation within the 5 clusters. The weakest signals here are the noise, and thus it thus makes perfect intuitive sense that a model which only fits the strongest signals would generalize better. Pathological curvature here, is a surprising friend, putting into check our models worst instincts. This is taken advantage of in Early Stopping .
+  But the reason early iterates are structurally "simpler" is more subtle. An inspection of the eigenvalues of $A^TA$ reveals why this is true. Here the strongest directions of variation correspond to signals between between the 5 clusters, and weakest signals the variation within the 5 clusters. The weakest signals here are the noise, and thus it thus makes perfect intuitive sense that a model which only fits the strongest signals would generalize better. Pathological curvature here, is a surprising friend, putting into check our model's worst instincts. This is taken advantage of in Early Stopping .
   </p>
 
   <h3>Laplacian Systems</h3>
@@ -415,7 +415,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   $$
   f(w) =  \frac{1}{2} \sum_{i,j\in E} (w_i - w_j)^2 = \frac{1}{2}x^T L_G x.
   $$
-  The matrix $L_G$ is the Laplacian matrix, and can be writable explicitly as
+  The matrix $L_G$ is the Laplacian matrix, and can be written explicitly as
   $$
   [L_{G}]_{ij}=\begin{cases}
   \mbox{degree of vertex $i$} & i=j\\
@@ -433,7 +433,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   \mbox{minimize} \qquad  \frac{1}{2} \sum_{i\in D} (w_i - 1)^2 + \frac{1}{2} \sum_{i,j\in E} (w_i - w_j)^2.
   $$
 
-  This is the colorization problem. The two sums in the function serve distinct purposes. The first is the colorizer - making the distinguished pixels closer to $1$ (our color). And the second is a smoother, spreading out these colors in the pixels of the image. It is clear the optimal solution is the vector of all ones, and a simple inspection of the gradient iteration reveals we take a long time to get there. The gradient step, for each component some form of weighted average of the current value and its neighbors:
+  This is the colorization problem. The two sums in the function serve distinct purposes. The first is the colorizer - making the distinguished pixels closer to $1$ (our target color). And the second is a smoother, spreading out these colors in the pixels of the image. It is clear the optimal solution is the vector of all ones, and a simple inspection of the gradient iteration reveals we take a long time to get there. The gradient step, for each component, is some form of weighted average of the current value and its neighbors:
   
   $$
   x_{i}^{k+1}=\begin{cases}
@@ -452,7 +452,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   </p>  
   <p>
   <i>
-  In graph laplacians, gradient descent makes good progress in directions corresponding to high frequency errors, and bad progress low frequency errors.
+  In graph Laplacians, gradient descent makes good progress in directions corresponding to high frequency errors, and bad progress low frequency errors.
   </i>
   </p>
   <p>
@@ -464,7 +464,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <h2>The Dynamics of Momentum</h2>
 
   <p>
-  Lets turn our attention back to momentum. The Momentum Update allows a similiar analysis on quadratics. Recall the momentum update on $f$ is
+  Let's turn our attention back to momentum. The Momentum Update allows a similiar analysis on quadratics. Recall the momentum update on $f$ is
 
   $$
   \begin{align*}
@@ -528,13 +528,49 @@ R^{k}=\begin{cases}
 \end{cases}
   $$
 
-   Stare at this formula a bit, and convince yourself of the following facts. If the eigenvalues are real, $x$ and $y$ will approach 0 monotonically. If they are complex, they will oscillate with a frequency as determined by the step-length $\alpha$. And the rate at which they converge is $\max\{|\sigma_1|,|\sigma_2|\}$. Like gradient descent, the norms of these eigenvalues must be bounded by $1$ for the algorithm to converge. These regimes can be visualized in the following phase diagram.
+   Stare at this formula a bit, and convince yourself of the following facts. If the eigenvalues are real, $x$ and $y$ will approach 0 monotonically. If they are complex, they will oscillate with a frequency as determined by the step-length $\alpha$. And the rate at which they converge is $\max\{|\bar{\lambda}_1|,|\bar{\lambda}_2|\}$. Like gradient descent, the norms of these eigenvalues must be bounded by $1$ for the algorithm to converge. These regimes can be visualized in the following phase diagram.
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum("momentum2D")</script> 
 
   <p>
-  Notice an immediate boon we get. Momentum allows us to use a crank up the steplength up to a factor of 2 before diverging. But the true magic happens when we find the sweet spot of alpha and beta,
+
+  Notice an immediate boon we get. Momentum allows us to use a crank up the step-length up by a factor of 2 before diverging. But the true magic happens when we find the sweet spot of alpha and beta. 
+  </p>
+  <h3>The Critical Damping Coefficient</h3>
+
+  <p>
+  The problem of finding the optimal $\beta$ for fixed $\alpha$ and $i$ admits a nice physical interpretation. Since $x^k$ is updated as
+
+  $$x_i^{k+1} = x_i^k - \alpha y_i^{k+1}$$
+
+  we can think of $x$ as position, and $y$ as velocity (since at each iteration, we move in a small step along $y$). We can thus plot these against each other in a phase portrait. 
+  </p>
+  <div id = "phasediagram" style="display: block;position:relative;width:920px;height: 364px;margin-left: auto;margin-right: auto;"></div>
+  </div>
+  <script>
+  phaseDiagram(d3.select("#phasediagram"))
+  </script>
+  <p>
+  If you've taken an undergraduate class in physics, these images should look familiar to you. They look like the phase portraits of a damped harmonic oscillator! The damped harmonic oscillator is best imagined as a mass suspended on a spring. We pull it down by one unit, and we study the rate at which it returns to equilibrium. In this analogy, the position of the mass is $x$, and its velocity $y$. Equilibrium is the state when both position and velocity are $0$ i.e. $x_i$ is and the gradient are both 0.
+  </p>
+  <p>
+  We are used to the image of the spring bounces up and down, with decreasing amplitude. But the rate in which these movements decay depends strongly the amount it is damped. Is the spring immersed in water? Or is it in a frictionless vacuum? In our analogy, the damping coefficient is controlled by our momentum parameter, $\beta$. Gradient descent ($\beta = 0$) corresponds to over-damping. There's no oscillation, but the spring is immersed in a viscous fluid which is restricting its movement just a little too much. When $\beta = 1$, we're under-damping. Here's there's no resistance at all, and spring oscillates up and down forever, missing the optimal value over and over. The best value of $\beta$ must lie somewhere in the middle. This sweet spot, the "critical damping rate", happens exactly when the eigenvalues of $R$ are repeated, i.e
+  
+  $$
+  \beta = 1 - \alpha \lambda_i - \sqrt{\alpha \lambda_i}
+  $$
+
+  plug this back into the convergence rate, and the eigenvalue component now converges at 
+
+  $$
+  1 - \sqrt{\alpha\lambda_i},
+  $$
+
+  instead of $1-\alpha\lambda_i$. Our first square root improvement. Alas, this only applies to the error in the $i^{th}$ eigenspace. To get a global improvement, we must optimize over both $\alpha$ and $\beta$. This is a more complicated affair, and involves an optimization problem over
+  </p>
+  <p>
+
   $$
   \min_{\alpha,\beta}\max\left\{ \bigg\| \! \left(\begin{array}{cc}
   \beta & \lambda_{i}\\
@@ -544,7 +580,7 @@ R^{k}=\begin{cases}
   -\alpha\beta & 1-\lambda_{n}
   \end{array}\right)\! \bigg\|\right\}.
   $$
-  ($\|\cdot \|$ here denotes the magnitude of the maximum eigenvalue). The optimum can be found with nothing more than high school algebra - and it occurs when the roots of the characteristic polynomial are repeated for the matrices corresponding to the extremal eigenvalues. But i'll leave it to you as an exercise, lets take it as a given that the critical point is
+  ($\|\cdot \|$ here denotes the magnitude of the maximum eigenvalue). The optimum can be found with nothing more than high school algebra - and it occurs when the roots of the characteristic polynomial are repeated for the matrices corresponding to the extremal eigenvalues. But I will leave it to you as an exercise, let's take it as a given that the critical point is
   $$
   \alpha = \left(\frac{2}{\sqrt{\lambda_{1}}+\sqrt{\lambda_{n}}}\right)^{2}  \quad \beta = \left(\frac{\sqrt{\lambda_{n}}-\sqrt{\lambda_{1}}}{\sqrt{\lambda_{n}}+\sqrt{\lambda_{1}}}\right)^{2}
   $$
@@ -556,7 +592,7 @@ R^{k}=\begin{cases}
   $$
   \frac{\kappa-1}{\kappa+1}.
   $$
-  With barely a monicum of extra effort, we have essentially square rooted the condition number! These gains, in principle, require explicit knowledge of $\lambda_1$ and $\lambda_n$. But the formulas reveal a simple guideline. For ill conditioned problems, set $\beta$ as close to $1$ as you can, and make the $\alpha$ as high as possible. Being at the knife's edge of divergence, like in gradient descent, is a good place to be.
+  With barely a modicum of extra effort, we have essentially square rooted the condition number! These gains, in principle, require explicit knowledge of $\lambda_1$ and $\lambda_n$. But the formulas reveal a simple guideline. For ill conditioned problems, set $\beta$ as close to $1$ as you can, and make the $\alpha$ as high as possible. Being at the knife's edge of divergence, like in gradient descent, is a good place to be.
   </p>
 
   <div style = "width:920px; height:20px">
@@ -600,14 +636,14 @@ R^{k}=\begin{cases}
   
   </script>
   <p>
-  While loss function of gradient descent had a graceful, monotonic curve, optimization with momentum displays clear ossilations. These ripples are not restricted to quadratics, and occur in all kinds of functions in practice. They are not cause for alarm, but are an indication that extra tuning of the hyperparameters are required.
+  While loss function of gradient descent had a graceful, monotonic curve, optimization with momentum displays clear oscillations. These ripples are not restricted to quadratics, and occur in all kinds of functions in practice. They are not cause for alarm, but are an indication that extra tuning of the hyperparameters are required.
   </p>
 
   <h2>
   The Worst Function in the World
   </h2>
   <p>
-  If a single auxillary sequence provides a quadratic speedup, what would two sequences give? Could one perhaps choose the alphas and betas intelligently and adaptively to do even better? It is tempting to ride this wave of optimism - to the cube root and beyond! Now, improvements to the momentum algorithm do exist - but they all run up to a certain, critical, almost inescapable lower bound.
+  If a single auxiliary sequence provides a quadratic speedup, what would two sequences give? Could one perhaps choose the alphas and betas intelligently and adaptively to do even better? It is tempting to ride this wave of optimism - to the cube root and beyond! Now, improvements to the momentum algorithm do exist - but they all run up to a certain, critical, almost inescapable lower bound.
   </p>
   <h3>Adventures in Algorthmic Space</h3>
   <p>
@@ -632,19 +668,19 @@ R^{k}=\begin{cases}
   w^{k}=w^{0}+\alpha\sum\frac{(1-\beta^{k})}{1-\beta}\nabla f(w^{k})
   $$
 
-  In fact, all manner of first order algorithms, including the Conjugate Gradient algorithm, AdaMax, Averaged Gradient and more can be written in (though not quite so neatly) in this unrolled form. Therefore the class of algorithms for which
+  In fact, all manner of first order algorithms, including the Conjugate Gradient algorithm, AdaMax, Averaged Gradient and more can be written in (though not quite so neatly) this unrolled form. Therefore the class of algorithms for which
 
   $$
   w^{k} = w^{0}+\sum_{i}^{k}\gamma_{i}^{k}\nabla f(w^{i}) \qquad \mbox{ for some $\gamma_{i}^{k}$}
   $$
 
-  is a superset of momentum, gradient descent and a whole bunch of other iterations you might dream up. This is assumption [] of Nesterov. But lets push this even further, and expand this class to take into account algorithms which involve diagonal curvature approximations,
+  is a superset of momentum, gradient descent and a whole bunch of other iterations you might dream up. This what is assumed in Assumption 2.1.4 <dt-cite key="nesterov2013introductory"></dt-cite> of Nesterov. But let's push this even further, and expand this class to take into account algorithms which involve diagonal curvature approximations,
 
   $$
   w^{k}\in w^{0}+\sum_{i}^{k}\Sigma_{i}^{k}\nabla f(w^{i}) \qquad \mbox{ for some diagonal matrix $\Sigma_{i}^{k}$}.
   $$
 
-  This class of methods has now covers most of the popular algorithms for training neural networks, including Adam and Adagrad. We shall refer to this class of methods as "Linear First Order Methods". Now comes the achellies heel of all methods of this kind.
+  This class of methods has now covers most of the popular algorithms for training neural networks, including Adam and Adagrad. We shall refer to this class of methods as "Linear First Order Methods". Now comes the Achille's heel of all methods of this kind.
 
   </p>
   <h4>The Resisting Oracle</h4>
@@ -674,13 +710,14 @@ R^{k}=\begin{cases}
   </div>
   </div>
 
-  <div style="position:relative; width:920px; height:250px">
+  <div style="position:relative; width:920px; height:220px">
   <div id = "iterates" style="position:relative;"></div>
   <div id = "sliderz" style="position:relative; top:175px"></div>  
   </div>
   <script>
 
   var update = genGraphC(920, 170, 200)
+                .ylabel("$w^k$ (purple) $\\quad w^\\star$ (pink)")
                 .axis([-0.05,1.05])(d3.select("#iterates"))
 
   var b = zeros(200); b[0] = 2499.75
@@ -689,17 +726,23 @@ R^{k}=\begin{cases}
   var wstar = iter(10000000)[1]
   update(iter(i)[1], wstar)
 
+  var L1s = Math.sqrt(RLambda[0])
+  var Lns = Math.sqrt(RLambda[RLambda.length-1])
+  var optAlphaRosen = 2/ (L1s + Lns); optAlphaRosen = optAlphaRosen*optAlphaRosen
+  var optBetaRosen = (Lns - L1s)/(Lns + L1s); optBetaRosen = optBetaRosen*optBetaRosen
   var slider = sliderGen([920, 60])
             .startxval(i)
             .ticks([0,200])
             .margin({right: 3, left: 15})
-            .change(function(i) {
+            .change(function(i,handle) {
               update(iter(Math.floor(i))[1], wstar)
+              handle.select("text").text("k = " + Math.floor(i) ) 
             })
             .cRadius(5)(d3.select("#sliderz")).xval
   
   var alpha = sliderGen([400, 25])
-            .ticks([0,0.0004])
+            .ticks([0,optAlphaRosen,0.0004])
+            .tooltip(function(i) { return [false, "Optimal Stepsize", false][i]})
             .margins(20,20)
             .change(function(i) {
               iter = geniterMomentum(RU, RLambda, b, i, beta())
@@ -708,8 +751,9 @@ R^{k}=\begin{cases}
             .cRadius(5)(d3.select("#sliderAlphaR")).xval
   
   var beta = sliderGen([200, 25])
-            .ticks([0,1])
+            .ticks([0,optBetaRosen,1])
             .margins(20,20)
+            .tooltip(function(i) { return [false, "Optimal Momentum", false][i]})           
             .change(function(i) {
               iter = geniterMomentum(RU, RLambda, b, alpha(), i)
               update(iter(Math.floor(slider()))[1], wstar)
@@ -718,13 +762,13 @@ R^{k}=\begin{cases}
 
   </script> 
   <p>
-  Momentum does shockingly well on this problem. For the optimal choice of $\alpha$ and $\beta$, it converges in exactly $n$ steps. But notice that no matter what the choice of $\alpha$ and $\beta$, the iterates all have a dead zone of zeros for $i\geq k$. This is true, in fact, for every possible linear first order algorithm. Because each component of the gradient depends only on the values directly before and after it, i.e.
+  Momentum does shockingly well on this problem. For the optimal choice of $\alpha$ and $\beta$, it converges in exactly $n$ steps. But notice that no matter what the choice of $\alpha$ and $\beta$, the iterates all have a dead zone of zeros for $i\geq k$. This is true, in fact, for every possible linear first order algorithm. Because each component of the gradient depends only on the values directly before and after it. This happens when
   
   $$
 \nabla f(x)_{i}=\frac{\kappa-1}{4}(2w_{i}-w_{i-1}-w_{i+1})+w_{i}, \qquad i \neq 1
   $$
   
-  and the fact we start at 0, that component remain stocily there till an element either before and after it turns nonzero. And therefore, by induction, for any linear first order algorithm,
+  and the fact we start at 0, that component remain stoically there till an element either before and after it turns nonzero. And therefore, by induction, for any linear first order algorithm,
 
   $$
 
@@ -755,7 +799,7 @@ w^{k} & =[w_{1}^{k},w_{2}^{k},\dots,w_{k}^{k},0,\dots,0]
 
   <h2>Onwards and Downwards</h2>
   <p>
-  The study of acceleration is seeing a small revival within the optimization community. In the spirit of this article, we can view acceleration as a discretization of a certain ordinary differential equation <dt-cite key="su2014differential"></dt-cite>. There an algeberic interprettion in terms of approximating polynomials <dt-cite key="rutishauser1959theory"></dt-cite> <dt-cite key="hardtzen"></dt-cite>. Geometric interpretations are emerging <dt-cite key="bubeck2015geometric"></dt-cite> <dt-cite key="drusvyatskiy2016optimal"></dt-cite>, pinning down a momentum like interpretation for which a quadratic speedup has a simple interpretation in terms of intersecting balls. And finally, there are interpretations relating momentum to duality <dt-cite key="allen2014linear"></dt-cite>, perhaps providing a clue as how to accelerate second order methods and Quasi Newton (for a first step, see <dt-cite key="nesterov2008accelerating"></dt-cite>). But Like the proverbial blind men feeling elephant, momentum seems like something bigger than the sum of its parts. One day, hopefully soon, the many perspectives will unify into a satisfying whole.
+  The study of acceleration is seeing a small revival within the optimization community. If the ideas in this article excite you, you may wish to read <dt-cite key="su2014differential"></dt-cite>, which fully explores the idea of momentum as the discretization of a certain differential equation. But other, less physical interpretations exist. There an algebraic interpretation of momentum in terms of approximating polynomials <dt-cite key="rutishauser1959theory"></dt-cite> <dt-cite key="hardtzen"></dt-cite>. Geometric interpretations are emerging <dt-cite key="bubeck2015geometric"></dt-cite> <dt-cite key="drusvyatskiy2016optimal"></dt-cite>, connecting momentum to older methods, like the Ellipsoid method. And finally, there are interpretations relating momentum to duality <dt-cite key="allen2014linear"></dt-cite>, perhaps providing a clue as how to accelerate second order methods and Quasi Newton (for a first step, see <dt-cite key="nesterov2008accelerating"></dt-cite>). But Like the proverbial blind men feeling elephant, momentum seems like something bigger than the sum of its parts. One day, hopefully soon, the many perspectives will unify into a satisfying whole.
   </p>
 </dt-article>
 
@@ -768,7 +812,7 @@ w^{k} & =[w_{1}^{k},w_{2}^{k},\dots,w_{k}^{k},0,\dots,0]
 Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coadaptation". I'll leave you to read the details of this paper on your own - but here's the PG-13 version. A deep neural net generates features within its layers. To exploit the full modeling power of the network, they should be in some sense independent - information about a certain feature cannot be derived from information in other features. In linear regression, this independence takes on a stronger meaning. For the problem to be well conditioned, the features need to be linearly independent. And the condition number is precisely a measure of how well these features correlate.
 </p>-->
 
-<!--To do this, we diagonalize $R$,  $U^{-1} \Sigma U = R$ (A technical note: When the roots are repeated, diagonalization fails. Lets sweep this under the rug.). And thus
+<!--To do this, we diagonalize $R$,  $U^{-1} \Sigma U = R$ (A technical note: When the roots are repeated, diagonalization fails. Let's sweep this under the rug.). And thus
 
   $$
   R^{k} = (U^{-1}\Sigma U)^{k} =U^{-1}\Sigma^{k}U

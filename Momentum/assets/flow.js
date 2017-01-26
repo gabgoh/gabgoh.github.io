@@ -72,7 +72,8 @@ var showEigen = function (d,i) {
 var onDragSlider = function (i, handle) {
   var i = Math.floor(Math.exp(i)) 
   display(iter(i), jetc)
-  handle.select("text").text("k="+ Math.round(100*((0.4*i)/100)/60)/100 )
+  handle.select("text").text("k=" + i )
+  //+ Math.round(100*((0.4*i)/100)/60)/100
 }
 
 var slider = sliderGen([920, 60])
@@ -80,6 +81,7 @@ var slider = sliderGen([920, 60])
           .change(onDragSlider)
           .mouseover(showEigen)
           .startxval(2)
+          .tickConfig(1.5,5,true)           
           .tooltip( function(d) { return "λ<sub>"+(d+1)+"</sub> = " + round(FlowSigma[d]) + "<br>x<sub>" + (d+1) + "</sub><sup style=\"position:relative; left:-5px\">0</sup> = " + round(Ub[d]) })
 
 slider(d3.select("#" + divname))

@@ -173,6 +173,7 @@ var slider = sliderGen([width, 60])
               .ticks(stepstoc)
               .change(updateSlider)
               .mouseover(showeigen)
+              .tickConfig(1.5,5,true) 
               .tooltip(function(d) { console.log(Ub); return  "λ<sub>"+(d+1)+"</sub> = " + round(Lambda[d]) + "<br>x<sub>" + (d+1) + "</sub><sup style=\"position:relative; left:-5px\">0</sup> = " + round(Ub[d]) })
               .startxval(2)
 

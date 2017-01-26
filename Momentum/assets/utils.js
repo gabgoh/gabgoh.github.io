@@ -204,7 +204,7 @@ function sliderGen(dims) {
 
     slidersvg.call(tip)
 
-    slidersvg.append("line")
+    var dragger = slidersvg.append("line")
         .attr("class", "track")
         .attr("x1", x.range()[0])
         .attr("x2", x.range()[1])
@@ -265,12 +265,11 @@ function sliderGen(dims) {
     */
     var updateTicks = function(newticks) {
 
-      console.log(newticks)
       var d1 = ticksvg.selectAll("rect")
         .data(newticks,function(d,i) {return i})
       
       d1.exit().remove()
-      d1.merge(d1).transition().duration(1000)
+      d1.merge(d1).transition().duration(50)
         .attr("x", function(i) { return isNaN(i) ? -100: x(i) - 0.5})
 
       var d2 = ticksvg.selectAll("circle")
@@ -287,12 +286,23 @@ function sliderGen(dims) {
     handle.insert("circle")
         .attr("class", "handle")
         .attr("r", cr)
+        .style("fill", "white")
+        .style("fill-opacity", 0.7)
+        .call(d3.drag()
+          .on("start.interrupt", function() { slidersvg.interrupt(); })
+          .on("start drag", function() { 
+            var xval = x.invert(d3.mouse(dragger.node())[0])
+            onChange(xval, handle)
+            handle.attr("transform", "translate(" + x(xval) + ",0)" ); 
+            curr_xval = xval          	
+          }));
 
     handle.insert("text")
           .attr("transform", "translate(0,22)")
           .attr("text-anchor","middle")
           .style("font-size", "10px")
-    
+
+    handle.moveToFront()
     return {xval: function() { return curr_xval }, tick:updateTicks}
 
   }
@@ -357,6 +367,7 @@ function genGraphC(graphWidth, graphHeight, n) {
   var borderTop = 20
   var borderLeft = 5
   var axis = [-1, 1]
+  var ylabel = "$x_i^k - x_i^*$"
 
   function renderGraph(outdiv) {
 
@@ -370,7 +381,7 @@ function genGraphC(graphWidth, graphHeight, n) {
       .style("transform", "rotate(-90deg)")
       .style("text-align", "center")
       .style("font-size", "13px")
-      .html("$x_i^k - x_i^*$")
+      .html(ylabel)
 
     var svg = outdiv.append("svg")
           .attr("width", graphWidth)
@@ -447,6 +458,11 @@ function genGraphC(graphWidth, graphHeight, n) {
     axis = a;
     return renderGraph
   }
+
+  renderGraph.ylabel = function(a) {
+    ylabel = a;
+    return renderGraph
+  }  
 
   return renderGraph
 }
@@ -716,3 +732,9 @@ var givens = function(theta) {
 function round(x) {
   return x.toPrecision(3)
 }
+
+d3.selection.prototype.moveToFront = function() {  
+  return this.each(function(){
+    this.parentNode.appendChild(this);
+  });
+};
