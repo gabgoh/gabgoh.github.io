@@ -395,7 +395,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   </p>
 
   <div id = "poly" style="position:relative"></div>
-  <script>renderPolyFit("poly")</script>
+  <script>renderPolyFit(d3.select("#poly"))</script>
 
   <p>
   Now, this model has more than enough expressive power to overfit any dataset. And yet, for all reasonable runtimes, it does not. Gradient descent produces a reasonable result in a few minutes, and starts overfitting data only at the $k=10^8$ mark (a year and a half of runtime). And the whole thing reaches final convergence in about about 10 billion years, assuming your computer's still running then. All this for polynomial regression in 25 variables! The matrix is painfully ill conditioned - the reason why the whole affair takes so long. 
