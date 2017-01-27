@@ -65,8 +65,8 @@ function phaseDiagram(divin) {
       .style("text-align", "center")
       .style("width", w + "px")
       .style("font-size", "14px")
-      .html(["Underdamped $\\beta < 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$",
-             "Critically Damped $\\beta = 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$", 
+      .html(["Underdamped, $\\beta < 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$",
+             "Critically Damped, $\\beta = 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$", 
              "Overdamped, $\\beta > 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$"][i])
 
 

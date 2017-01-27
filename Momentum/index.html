@@ -113,26 +113,6 @@
   var getbeta  = sliderb( d3.select("#sliderBeta")).xval
 
   </script>
-
-  <!--<div id = "slider"></div>
-  <div id = "mom2" style="margin-bottom:40px"></div>
-  <div id = "obj2"></div>
-  
-  <script src = "assets/banana.js"></script>
-  <script>
-  //var update = renderObj("obj2")
-  var update = function() {}
-  var iterControl = renderIterates(bananaf, [[-2,2],[3,-0.7]], [1,1], "mom2", update)
-  var iterChange = iterControl[0]
-  var getw0 = iterControl[1]
-
-  var StepRange = d3.scaleLinear().domain([0,100]).range([0,0.0062])
-  var MomentumRange = d3.scaleLinear().domain([0,100]).range([0,0.98])
-
-  var update = function (i,j) { iterChange(StepRange(i), MomentumRange(j), getw0()) }
-
-  renderSlider("slider", update)
-  </script>-->
   
   <p>
   But there is a simple tweak to gradient descent which makes things work significantly better. Add an auxiliary sequence, $z^k$, and an extra parameter $\beta$, which Tensorflow calls <a href = "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/training_ops.cc#L129">momentum</a>,
@@ -287,7 +267,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
               .tickConfig(1.5,5,true)              
               .margins(10,15)(d3.select("#milestonesSlider"))
 
-  var updateSliderAlpha = renderMilestones("obj", controlmilestones.tick)
+  var updateSliderAlpha = renderMilestones(d3.select("#obj"), controlmilestones.tick)
 
   var slider = sliderGen([300, 25])
               .ticks([0,1,(2*100)/(101),2])
@@ -445,7 +425,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   This kind of local averaging is effective at smoothing out local variations in the function value, but poor at taking advantage of global structure.
   </p>
   <div id = "flow"></div>
-  <script>renderFlowWidget("flow")</script>
+  <script>renderFlowWidget(d3.select("#flow"))</script>
   <p>
   This observation can be made more precise by looking at the eigenvectors of $L_G$. The eigenvectors of a Laplacian, shown here, form a generalized Fourier basis for $R^n$. Eigenvectors with high frequencies have large eigenvalues, and the smallest eigenvalues are smooth. And thus we arrive at the conclusion
 
@@ -531,7 +511,7 @@ R^{k}=\begin{cases}
    Stare at this formula a bit, and convince yourself of the following facts. If the eigenvalues are real, $x$ and $y$ will approach 0 monotonically. If they are complex, they will oscillate with a frequency as determined by the step-length $\alpha$. And the rate at which they converge is $\max\{|\bar{\lambda}_1|,|\bar{\lambda}_2|\}$. Like gradient descent, the norms of these eigenvalues must be bounded by $1$ for the algorithm to converge. Bach <dt-cite key="flammarion2015averaging"></dt-cite> suggests visualizing these regimes can be visualized in a phase diagram.
   </p>
   <div id = "momentum2D"></div>
-  <script>renderMomentum("momentum2D")</script> 
+  <script>renderMomentum(d3.select("#momentum2D"))</script> 
 
   <p>
 
@@ -631,7 +611,7 @@ R^{k}=\begin{cases}
   var StepRange2 = d3.scaleLinear().domain([0,100]).range([0,1])
   var MomentumRange2 = d3.scaleLinear().domain([0,100]).range([0,1])
 
-  var updatem2 = renderMilestones("objectiveAlphaBeta", function() {})
+  var updatem2 = renderMilestones(d3.select("#objectiveAlphaBeta"), function() {})
   updatem2(1.9, 0.98)
   
   </script>
@@ -716,7 +696,7 @@ R^{k}=\begin{cases}
   </div>
   <script>
 
-  var update = genGraphC(920, 170, 200)
+  var update = stemGraphGen(920, 170, 200)
                 .ylabel("$w^k$ (purple) $\\quad w^\\star$ (pink)")
                 .axis([-0.05,1.05])(d3.select("#iterates"))
 
@@ -878,6 +858,7 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
   -\alpha\beta & 1-\alpha\lambda_{i} - \gamma
   \end{array}\right)
   $$-->
+  
 <dt-appendix></dt-appendix>
 <script type="text/bibliography">
 @article{o2015adaptive,
@@ -968,14 +949,14 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
 
 
 @article{williamsnthpower,
-  title={The nth Power of a 2 X 2 Matrix.},
+  title={The Nth Power of a 2x2 Matrix.},
   author={Williams, Kenneth},
   url={http://people.math.carleton.ca/~williams/papers/pdf/175.pdf}
 }
 
 
 @article{hardtzen,
-  title={The zen of gradient descent},
+  title={The Zen of Gradient Descent},
   author={Hardt, Moritz},
   url={http://blog.mrtz.org/2013/09/07/the-zen-of-gradient-descent.html}
 }

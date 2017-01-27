@@ -186,7 +186,8 @@ function renderPolyFit(divin) {
                   .startxval(2)(divin).xval
 
   /*
-   * Add eigenvalue plot at the bottom
+   * Add eigenvalue plot at the bottom.
+   * Some copy and pasted code here, but its only a 1-time thing.
    */
 
   var svg = divin
@@ -196,6 +197,28 @@ function renderPolyFit(divin) {
       .style("border", "black solid 1px")
       .style("box-shadow", "rgba(0, 0, 0, 0.3) 0px 2px 8px")
 
+  var eigensvg = svg.attr("class", "line")
+      .attr("d", valueline(evalPoly(w)))
+      .append("svg")
+        .attr("width", width)
+        .attr("height", height)
+        .style("border", "black solid 1px")
+        .style("box-shadow", "rgba(0, 0, 0, 0.3) 0px 2px 8px")
+
+  var eigenpath = eigensvg.append("path")
+                  .style("stroke-width", "2px")
+                  .style("stroke", colors[1])
+
+  eigensvg.append("g")     
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + (height/2) + ")")
+    .call(d3.axisTop(x)
+        .ticks(6)
+        .tickSize(2))
+
+  /*
+   * Titles
+   */ 
   divin
     .append("span")
     .style("position","absolute")
@@ -212,24 +235,7 @@ function renderPolyFit(divin) {
     .style("left", "0px")
     .style("font-size", "12px")
     .style("text-align", "center")
-    .html("weights")
-
-  var eigensvg = svg.attr("class", "line")
-      .attr("d", valueline(evalPoly(w)))
-      .append("svg")
-        .attr("width", width)
-        .attr("height", height)
-        .style("border", "black solid 1px")
-        .style("box-shadow", "rgba(0, 0, 0, 0.3) 0px 2px 8px")
-
-  var eigenpath = eigensvg.append("path").style("stroke-width", "2px").style("stroke", colors[1])
-
-  eigensvg.append("g")     
-    .attr("class", "grid")
-    .attr("transform", "translate(0," + (height/2) + ")")
-    .call(d3.axisTop(x)
-        .ticks(6)
-        .tickSize(2))
+    .html("Polynomial with coefficients w<sub>i</sub>")
 
   // Start at some nice looking defaults.
   display_poly(w)

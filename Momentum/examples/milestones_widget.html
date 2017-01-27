@@ -16,12 +16,11 @@
 var slider = sliderGen([917, 25])
             .ticks([0,10,150])
             .tooltip(function(i) {return ["a","b","c","d","e"][i]})
-            .mouseover(function(i) {console.log("Mouseover", i)})
             .cRadius(5)
             .margins(10,15)
 var control = slider(d3.select("#sliderStep"))
 
-var update = renderMilestones("obj", control.tick)
+var update = renderMilestones(d3.select("#obj"), control.tick)
 
 </script>
 </body>

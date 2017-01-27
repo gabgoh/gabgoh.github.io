@@ -208,11 +208,10 @@ function sliderGen(dims) {
     return renderSlider
   }
   return renderSlider
-
 }
 
 /* Generate "stick" graph */
-function genGraphC(graphWidth, graphHeight, n) {
+function stemGraphGen(graphWidth, graphHeight, n) {
   
   var borderTop = 20
   var borderLeft = 5
@@ -317,6 +316,219 @@ function genGraphC(graphWidth, graphHeight, n) {
   return renderGraph
 }
 
+/* Render a stacked graph. D*/
+function stackedBarchartGen(n, m) {
+
+	var axis = [0,1.6]
+
+  function renderStackedGraph(divin) {
+
+	  var dwidth  = 920
+	  var dheight = 180
+
+	  var graphDiv = divin
+	    .style("width",  dwidth + "px")
+	    .style("height", dheight + "px")
+	    .style("position", "relative")
+	    .attr("width", dwidth)
+	    .attr("height", dheight)
+
+	  var margin = {right: 10, left: 10, top: 10, bottom: 10}
+	  var width  = graphDiv.attr("width") - margin.left - margin.right
+	  var height = graphDiv.attr("height") - margin.top - margin.bottom;
+
+	  graphDiv.append("span")
+	    .style("top", (dheight/2 - margin.top) + "px")
+	    .style("left", (-dheight/2 - margin.top) + "px" )
+	    .style("position", "absolute")
+	    .style("width", (dheight - margin.top) + "px")
+	    .style("height", "20px")
+	    .style("position", "absolute")
+	    .style("transform", "rotate(-90deg)")
+	    .style("text-align", "center")
+	    .style("font-size", "13px")
+	    .html("$f(w^k) - f(x^*)$")
+
+	  // graphDiv.append("text")
+	  //         .style("position", "absolute")
+	  //         .style("top", (height/2) + "px")
+	  //         .style("left", "-5px")
+	  //         .style("transform", "rotate(270deg)")
+	  //         .style("font-size", "12px")          
+	  //         .text("loss")
+
+	  var stack = zeros2D(n,m)
+	  var axisheight = 10
+	  var X = d3.scaleLinear().domain([0,stack.length]).range([5,width-5])
+	  var Y = d3.scaleLinear().domain([axis[1],axis[0]]).range([0,height-axisheight])
+
+	  var graphsvg = graphDiv.append("svg")
+	    .attr("width", width)
+	    .attr("height", height-axisheight)
+	    .style("position", "absolute")
+	    .style("left", margin.right)
+	    .style("top", margin.top)
+	    .style("border", "solid 1.5px rgba(0,0,0,1)")
+	    .style("border-radius", "2px")
+	    .style("box-shadow","0px 0px 10px rgba(0, 0, 0, 0.2)")
+
+	  function add(a, b) { return a + b; }
+
+		var col = colorbrewer.RdPu
+
+		var s = []
+	  for (var j = 0; j < m; j ++) {
+
+		  var si = graphsvg.append("g")
+
+		  si.selectAll("line")
+		    .data(stack)
+		    .enter()
+		    .append("line")
+		    .attr("x1", function (d,i) { return X(i) } )
+		    .attr("x2", function (d,i) { return X(i) } )
+		    .attr("y1", function (d,i) { return Y(0) } )
+		    .attr("y2", function (d,i) { return Y(d[0]) } )
+		    .attr("stroke-width",2)
+		    .attr("stroke", col[3][j])
+
+		  s.push(si)
+
+		}
+
+	  graphsvg.append("g").selectAll("circle")
+	    .data(stack)
+	    .enter()
+	    .append("circle")
+	    .attr("cx", function (d,i) { return X(i) } )
+	    .attr("cy", function (d,i) { return Y(d.reduce(add,0)) } )
+	    .attr("r", 2)
+
+	  function updateGraph(stacknew) {
+
+	  	var svgdata = graphsvg.selectAll("circle").data(stacknew)
+	    svgdata.enter().append("circle")
+	    svgdata.merge(svgdata)
+	      .attr("cx", function (d,i) { return X(i) } )
+	      .attr("cy", function (d,i) { return Y(d.reduce(add,0)) } )
+	      .attr("r", 2)
+	    svgdata.exit().remove()
+
+	    for (var j = 0; j < 3; j++) {
+
+		    var svgdatai = s[j].selectAll("line").data(stacknew)
+		    svgdatai.enter().append("line")
+		    svgdatai.merge(svgdatai)
+		    .attr("x1", function (d,i) { return X(i) } )
+		    .attr("x2", function (d,i) { return X(i) } )
+		    .attr("y1", function (d,i) { return Y(d.slice(0,j).reduce(add, 0)) } )
+		    .attr("y2", function (d,i) { return Y(d.slice(0,j+1).reduce(add, 0)) } )
+		    .attr("stroke-width",2)
+		    .attr("stroke", col[3][j])
+		    svgdatai.exit().remove()
+
+	  	}
+
+	  }
+	  
+	  divin.append("svg")
+	    .style("position", "absolute")
+	    .style("top", (height - axisheight + 20) + "px")
+	    .style("width", width + "px")
+	    .style("left", "10px")
+	    .append("g")     
+	    .attr("class", "grid")
+	    .call(d3.axisBottom(X)
+	      .ticks(3)
+	      .tickSize(2))
+
+	  return updateGraph
+
+	}
+
+	return renderStackedGraph
+}
+
+/* 2d "scatterplot" with lines generator */
+function plot2dGen(X, Y, iterColor) {
+
+  var cradius = 1.2
+  var copacity = 1
+  var pathopacity = 1
+  var pathwidth = 1
+  var strokecolor = "black"
+
+  function plot2d(svg) {
+
+      var svgpath = svg.append("path")
+        .attr("opacity", pathopacity)
+        .style("stroke", strokecolor)
+        .style("stroke-width",pathwidth)
+        .style("stroke-linecap","round")
+
+      var valueline = d3.line()
+        .x(function(d) { return X(d[0]); })
+        .y(function(d) { return Y(d[1]); });
+
+      var svgcircle = svg.append("g")
+
+      var update = function(W) {
+
+        // Update Circles
+        var svgdata = svgcircle.selectAll("circle").data(W)
+
+        svgdata.enter().append("circle")
+          .attr("cx", function (d) { return X(d[0]) })
+          .attr("cy", function (d) { return Y(d[1]) })
+          .attr("r", cradius )
+          .style("box-shadow","0px 3px 10px rgba(0, 0, 0, 0.4)")
+          .attr("opacity", copacity)
+          .attr("fill", function(d,i) { return iterColor(i)} )
+
+        svgdata.merge(svgdata)
+          .attr("cx", function (d) { return X(d[0]) })
+          .attr("cy", function (d) { return Y(d[1]) })
+          .attr("r", cradius )      
+          .attr("opacity", copacity)
+          .attr("fill", function(d,i) { return iterColor(i)})
+        svgdata.exit().remove()
+
+        // Update Path
+        svgpath.attr("d", valueline(W))
+
+      }
+
+      return update
+  }
+
+  // var cradius = 1.2
+  // var copacity = 1
+  // var pathopacity = 1
+  // var pathwidth = 1
+
+  plot2d.circleRadius = function(_) {
+    cradius = _; return plot2d
+  }
+
+  plot2d.circleOpacity = function(_) {
+    copacity = _; return plot2d
+  }
+
+  plot2d.pathWidth = function(_) {
+    pathwidth = _; return plot2d
+  }
+
+  plot2d.pathOpacity = function(_) {
+    pathopacity = _; return plot2d
+  }
+
+  plot2d.stroke = function (_) {
+    strokecolor = _; return plot2d;
+  }
+
+  return plot2d
+}
+
 /* Render heatmap of f with colormap cmap onto canvas*/
 function renderHeatmap(canvas, f, cmap) {
   var canvasWidth  = canvas.width;
@@ -342,169 +554,6 @@ function renderHeatmap(canvas, f, cmap) {
   ctx.putImageData(imageData, 0, 0);
 }
 
-/* Do a stacked graph */
-function renderStackedGraph(divname, axis, stack) {
-
-  var dwidth  = 920
-  var dheight = 180
-
-  var graphDiv = d3.select("#" + divname)
-    .style("width",  dwidth + "px")
-    .style("height", dheight + "px")
-    .style("position", "relative")
-    .attr("width", dwidth)
-    .attr("height", dheight)
-
-  var margin = {right: 10, left: 10, top: 10, bottom: 10}
-  var width  = graphDiv.attr("width") - margin.left - margin.right
-  var height = graphDiv.attr("height") - margin.top - margin.bottom;
-
-
-  graphDiv.append("span")
-    .style("top", (dheight/2 - margin.top) + "px")
-    .style("left", (-dheight/2 - margin.top) + "px" )
-    .style("position", "absolute")
-    .style("width", (dheight - margin.top) + "px")
-    .style("height", "20px")
-    .style("position", "absolute")
-    .style("transform", "rotate(-90deg)")
-    .style("text-align", "center")
-    .style("font-size", "13px")
-    .html("$f(w^k) - f(x^*)$")
-
-  // graphDiv.append("text")
-  //         .style("position", "absolute")
-  //         .style("top", (height/2) + "px")
-  //         .style("left", "-5px")
-  //         .style("transform", "rotate(270deg)")
-  //         .style("font-size", "12px")          
-  //         .text("loss")
-
-  var axisheight = 10
-  var X = d3.scaleLinear().domain([0,stack.length]).range([5,width-5])
-  var Y = d3.scaleLinear().domain([axis[1],axis[0]]).range([0,height-axisheight])
-
-  var graphsvg = graphDiv.append("svg")
-    .attr("width", width)
-    .attr("height", height-axisheight)
-    .style("position", "absolute")
-    .style("left", margin.right)
-    .style("top", margin.top)
-    .style("border", "solid 1.5px rgba(0,0,0,1)")
-    .style("border-radius", "2px")
-    .style("box-shadow","0px 0px 10px rgba(0, 0, 0, 0.2)")
-
-  function add(a, b) { return a + b; }
-
-  var s1 = graphsvg.append("g")
-  var col = colorbrewer.RdPu
-
-  s1.selectAll("line")
-    .data(stack)
-    .enter()
-    .append("line")
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(0) } )
-    .attr("y2", function (d,i) { return Y(d[0]) } )
-    .attr("stroke-width",2)
-    .attr("stroke", col[3][0])
-
-  var s2 = graphsvg.append("g")
-  
-  s2.selectAll("line")
-    .data(stack)
-    .enter()
-    .append("line")
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(d[0]) } )
-    .attr("y2", function (d,i) { return Y(d[1]+d[0]) } )
-    .attr("stroke-width",2)
-    .attr("stroke",col[3][1])
-
-  var s3 = graphsvg.append("g")
-  
-  s3.selectAll("line")
-    .data(stack)
-    .enter()
-    .append("line")
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(d[1]+d[0]) } )
-    .attr("y2", function (d,i) { return Y(d[1]+d[0]+d[2]) } )
-    .attr("stroke-width",2)
-    .attr("stroke", col[3][2])
-
-  graphsvg.append("g").selectAll("circle")
-    .data(stack)
-    .enter()
-    .append("circle")
-    .attr("cx", function (d,i) { return X(i) } )
-    .attr("cy", function (d,i) { return Y(d.reduce(add,0)) } )
-    .attr("r", 2)
-
-  function updateGraph(stacknew) {
-
-    var svgdata = graphsvg.selectAll("circle").data(stacknew)
-    svgdata.enter().append("circle")
-    svgdata.merge(svgdata)
-      .attr("cx", function (d,i) { return X(i) } )
-      .attr("cy", function (d,i) { return Y(d.reduce(add,0)) } )
-      .attr("r", 2)
-    svgdata.exit().remove()
-
-   var svgdata1 = s1.selectAll("line").data(stacknew)
-   svgdata1.enter().append("line")
-   svgdata1.merge(svgdata1)
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(0) } )
-    .attr("y2", function (d,i) { return Y(d[0]) } )
-    .attr("stroke-width",2)
-    .attr("stroke", col[3][0])
-   svgdata1.exit().remove()
-
-   var svgdata2 = s2.selectAll("line").data(stacknew)
-   svgdata2.enter().append("line")
-   svgdata2.merge(svgdata2)
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(d[0]) } )
-    .attr("y2", function (d,i) { return Y(d[1]+d[0]) } )
-    .attr("stroke-width",2)
-    .attr("stroke", col[3][1])
-   svgdata2.exit().remove()
-
-   var svgdata3 = s3.selectAll("line").data(stacknew)
-   svgdata3.enter().append("line")
-   svgdata3.merge(svgdata3)
-    .attr("x1", function (d,i) { return X(i) } )
-    .attr("x2", function (d,i) { return X(i) } )
-    .attr("y1", function (d,i) { return Y(d[0]+d[1]) } )
-    .attr("y2", function (d,i) { return Y(d[2]+d[1]+d[0]) } )
-    .attr("stroke-width",2)
-    .attr("stroke", col[3][2])
-   svgdata3.exit().remove()
-
-
-  }
-  
-  d3.select("#" + divname).append("svg")
-    .style("position", "absolute")
-    .style("top", (height - axisheight + 20) + "px")
-    .style("width", width + "px")
-    .style("left", "10px")
-    .append("g")     
-    .attr("class", "grid")
-    .call(d3.axisBottom(X)
-      .ticks(3)
-      .tickSize(2))
-
-  return updateGraph
-
-}
-
 /****************************************************************************
   OPTIMIZATION RELATED FUNCTIONS
 ****************************************************************************/
@@ -520,7 +569,10 @@ function getStepsConvergence(Lambda, alpha) {
   })
 }
 
-/* Run Momentum the good old fashioned way - by iterating. */
+/* 
+  Run Momentum the good old fashioned way - by iterating. 
+  > runMomentum(bananaf, [0,0], 0.00001, 0.5, 100)
+*/
 function runMomentum(f, w0, alpha, beta, totalIters) {
   var Obj = []; var W = []; var z = zeros(w0.length); var w = w0
   var fx = f(w0); var gx = fx[1]
@@ -534,31 +586,6 @@ function runMomentum(f, w0, alpha, beta, totalIters) {
     } else{ break; }
   }
   return [Obj, W]
-}
-
-/*
-Generates array of zeros
-*/
-function ones(n) {
-  return Array.apply(null, Array(n)).map(Number.prototype.valueOf,1);
-}
-
-/*
-Generates array of zeros
-*/
-function zeros(n) {
-  return Array.apply(null, Array(n)).map(Number.prototype.valueOf,0);
-}
-
-/*
-Generates array of zeros
-*/
-function zeros2D(n,m) {
-  var A = []
-  for (var i = 0; i < n; i ++) {
-    A.push(zeros(m))
-  }
-  return A
 }
 
 /*
@@ -585,17 +612,8 @@ function geniter(U, Lambda, b, alpha) {
 }
 
 /*
-x = new numeric.T([1,2,3,4,5],[2,3,4,5,6])
-numeric.prettyPrint(x)
-x.log().mul(10).exp()
-x.mul(-1).add(1).pow(-1)
-
-o = new numeric.T([1,1,1,1,1],[0,0,0,0,0])
-o.div(x)
-/*
-Generates function which computes
-
-sum([A^i for i = 0:(k-1)])*b
+  Generates function which computes the matrix geometric series
+  sum([A^i for i = 0:(k-1)])*b
 */
 function matSum(R,b) {
 
@@ -639,18 +657,18 @@ function matSum(R,b) {
 }
 
 /*
-Closed form solution for accelerated gradient descent 
+  Closed form solution for momentum iteration
 
-z_0 = zeros
-w_0 = zeros
+  z_0 = zeros
+  w_0 = zeros
 
-z+ = beta*z + ([U*Lambda*U']*w - b)
-w+ = w - alpha*z+
+  z+ = beta*z + ([U*Lambda*U']*w - b)
+  w+ = w - alpha*z+
 
-Usage
+  Usage
 
-iter = getiter(U,Lambda, b, alpha)
-w    = iter(1000) <- gets the 1000'th iteration.
+  iter = getiter(U,Lambda, b, alpha)
+  w    = iter(1000) <- gets the 1000'th iteration.
 */
 function geniterMomentum(U, Lambda, b, alpha, beta) {
 
@@ -744,3 +762,28 @@ d3.selection.prototype.moveToFront = function() {
     this.parentNode.appendChild(this);
   });
 };
+
+/*
+  Generates array of zeros
+*/
+function ones(n) {
+  return Array.apply(null, Array(n)).map(Number.prototype.valueOf,1);
+}
+
+/*
+  Generates array of zeros
+*/
+function zeros(n) {
+  return Array.apply(null, Array(n)).map(Number.prototype.valueOf,0);
+}
+
+/*
+  Generates array of zeros
+*/
+function zeros2D(n,m) {
+  var A = []
+  for (var i = 0; i < n; i ++) {
+    A.push(zeros(m))
+  }
+  return A
+}

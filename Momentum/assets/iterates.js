@@ -1,93 +1,19 @@
-function plot2dGen(X, Y, iterColor) {
+/*
+  Make a standard "path of descent" plot which shows iterates
+  on a 2D optimization landscape
 
-  var cradius = 1.2
-  var copacity = 1
-  var pathopacity = 1
-  var pathwidth = 1
-  var strokecolor = "black"
+  Takes in : f, the objective function
+             Name of div where the graphic is rendered
+             update, which gets passed in the objective 
+             values at every iteration
 
-  function plot2d(svg) {
-
-      var svgpath = svg.append("path")
-        .attr("opacity", pathopacity)
-        .style("stroke", strokecolor)
-        .style("stroke-width",pathwidth)
-        .style("stroke-linecap","round")
-
-      var valueline = d3.line()
-        .x(function(d) { return X(d[0]); })
-        .y(function(d) { return Y(d[1]); });
-
-      var svgcircle = svg.append("g")
-
-      var update = function(W) {
-
-        // Update Circles
-        var svgdata = svgcircle.selectAll("circle").data(W)
-
-        svgdata.enter().append("circle")
-          .attr("cx", function (d) { return X(d[0]) })
-          .attr("cy", function (d) { return Y(d[1]) })
-          .attr("r", cradius )
-          .style("box-shadow","0px 3px 10px rgba(0, 0, 0, 0.4)")
-          .attr("opacity", copacity)
-          .attr("fill", function(d,i) { return iterColor(i)} )
-
-        svgdata.merge(svgdata)
-          .attr("cx", function (d) { return X(d[0]) })
-          .attr("cy", function (d) { return Y(d[1]) })
-          .attr("r", cradius )      
-          .attr("opacity", copacity)
-          .attr("fill", function(d,i) { return iterColor(i)})
-        svgdata.exit().remove()
-
-        // Update Path
-        svgpath.attr("d", valueline(W))
-
-      }
-
-      return update
-  }
-
-  // var cradius = 1.2
-  // var copacity = 1
-  // var pathopacity = 1
-  // var pathwidth = 1
-
-  plot2d.circleRadius = function(_) {
-    cradius = _; return plot2d
-  }
-
-  plot2d.circleOpacity = function(_) {
-    copacity = _; return plot2d
-  }
-
-  plot2d.pathWidth = function(_) {
-    pathwidth = _; return plot2d
-  }
-
-  plot2d.pathOpacity = function(_) {
-    pathopacity = _; return plot2d
-  }
-
-  plot2d.stroke = function (_) {
-    strokecolor = _; return plot2d;
-  }
-
-  return plot2d
-}
-//
-// Plot Iterates
-// Takes in : f, the objective functin
-//            Name of div where the graphic is rendered
-//            update, which gets passed in the objective 
-//            values at every iteration
-//
-// Returns : callback `changeParams` to change alpha, beta
-//
-
+  Returns : callback `changeParams` to change alpha, beta
+*/
 function genIterDiagram(f, xstar, axis) {
 
+  /*
+    Configurable Parameters
+  */
   var w = 900
   var h = 300
   var totalIters = 150
@@ -96,7 +22,6 @@ function genIterDiagram(f, xstar, axis) {
   var num_contours = 15
   var onDrag = function() {}
   var w0 =[-1.21, 0.853]
-  //var w0 = [0,0]
 
   function renderIterates(div) {
 
@@ -125,10 +50,6 @@ function genIterDiagram(f, xstar, axis) {
         .style("width", w)
         .style("height", h)
         .style("z-index", 2) 
-
-
-    // var X = d3.scaleLinear().domain([0,1]).range(axis[0])
-    // var Y = d3.scaleLinear().domain([0,1]).range(axis[1])
 
     var X = d3.scaleLinear().domain(axis[0]).range([0, w])
     var Y = d3.scaleLinear().domain(axis[1]).range([0, h])
@@ -164,7 +85,6 @@ function genIterDiagram(f, xstar, axis) {
       .attr("d", "M 0.000 2.000 L 2.939 4.045 L 1.902 0.618 L 4.755 -1.545 L 1.176 -1.618 L 0.000 -5.000 L -1.176 -1.618 L -4.755 -1.545 L -1.902 0.618 L -2.939 4.045 L 0.000 2.000")
       .style("fill", "white")
       .style("stroke-width",1)
-
       
     function iter(alpha, beta, w0) {
 

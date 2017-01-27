@@ -1,4 +1,7 @@
-function renderMomentum(divname) {
+/*
+  Render the whole momentum widget
+*/
+function renderMomentum(div) {
 
   var num_iters = 100
 
@@ -14,34 +17,25 @@ function renderMomentum(divname) {
     return numeric.transpose(m)[coord]
   }
 
-  // function getTrace(alpha, beta, coordinate) {
-  //   var m = []
-  //   var iter = geniterMomentum([[1, 0],[0, 1]], [1,100], [1,100], alpha, beta)
-  //   // run for 500 iterations
-  //   for (var i = 0; i <= num_iters; i++) { m.push(numeric.add(iter(i)[1],-1)) }
-  //   return numeric.transpose(m)[1]
-  // }
-
-  var outdiv = d3.select("#" + divname)
-                 .style("display", "block")
+  var outdiv = div.style("display", "block")
                  .style("margin-left","auto")
                  .style("margin-right","auto")
                  .style("position", "relative")
                  .style("width", "920px")
-                 .style("height", "180px")
+                 .style("height", "200px")
                  .style("border-radius", "5px")
 
-  var outdiv1 = outdiv.append("div").style("position", "absolute").style("top", "0px")
-  var updatePath1 = genGraphC(580, 150, num_iters).axis([-1.2, 1.2])(outdiv1)
+  var outdiv = outdiv.append("div").style("position", "absolute").style("top", "0px")
+  var updatePath = stemGraphGen(580, 150, num_iters).axis([-1.2, 1.2])(outdiv)
 
   render2DSliderGen(function(alpha, beta) {
-    updatePath1(getTrace(alpha, beta, 1,1) )
-  })(d3.select("#"+divname))
+    updatePath(getTrace(alpha, beta, 1,1) )
+  })(div)
 
 }
 
 /*
-Render 2D slider widget
+  Render 2D slider thingy to the right.
 */
 function render2DSliderGen(updatex) {
 
@@ -140,8 +134,8 @@ function render2DSliderGen(updatex) {
     xAxis.append("circle").attr("fill", "black").attr("r", 2)
     xAxis.attr("class", "grid")
       .attr("transform", "translate(51,"+(slider2D_size + 25) +")")  
-      .call(d3.axisBottom(xalpha)
-          .ticks(1)
+      .call(d3.axisBottom(d3.scaleLinear().domain([0,4]).range([0, 2*slider2D_size]))
+          .ticks(2)
           .tickSize(4))
 
     var yAxis = canvasaxis.append("g")
@@ -150,13 +144,15 @@ function render2DSliderGen(updatex) {
       .attr("transform", "translate(46,"+slider2Dtop+")")
       .call(d3.axisLeft(ybeta).ticks(1).tickSize(4))
 
+    // svg alpha ...
     canvasaxis.append("g")
-    .attr("transform", "translate(30,"+(slider2Dtop + slider2D_size/2 - 6) +")")
+    .attr("transform", "translate(32,"+(slider2Dtop + slider2D_size/2 - 6) +")")
     .append("use")
     .attr("xlink:href", "#texbeta")
 
+    // svg beta ...
     canvasaxis.append("g")
-    .attr("transform", "translate(" + (45 + slider2D_size/2) + ","+(slider2Dtop + slider2D_size + 15) +")").text("$\alpha$")
+    .attr("transform", "translate(" + (45 + slider2D_size) + ","+(slider2Dtop + slider2D_size + 22) +")").text("$\alpha$")
     .append("use")
     .attr("xlink:href", "#texalpha")
 
