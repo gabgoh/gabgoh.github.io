@@ -58,16 +58,18 @@ function phaseDiagram(divin) {
                   .circleRadius(1.5) 
                   .stroke(colorbrewer.OrRd[3][0])(svg)
 
-    update(getTrace(0.0001, [0.01, 1 - 0.0001*150 - Math.sqrt(0.0001*150) , 0.999][i], 1,1))
+    var al = 0.0001
+    var optbeta = Math.pow(1 - Math.sqrt(al*100),2)
+    update(getTrace(al, [0.01, optbeta + 0.0001 , 0.999][i], 1,1))
 
     div.append("span")
       .style("position", "absolute")
       .style("text-align", "center")
       .style("width", w + "px")
       .style("font-size", "14px")
-      .html(["Underdamped, $\\beta < 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$",
-             "Critically Damped, $\\beta = 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$", 
-             "Overdamped, $\\beta > 1-\\alpha\\lambda_i-\\sqrt{\\alpha\\lambda_i}$"][i])
+      .html(["Underdamped, $\\beta <   \\beta = (1 - \\sqrt{\\alpha \\lambda_i})^2$",
+             "Critically Damped, $\\beta =   \\beta = (1 - \\sqrt{\\alpha \\lambda_i})^2$", 
+             "Overdamped, $\\beta >   \\beta = (1 - \\sqrt{\\alpha \\lambda_i})^2$"][i])
 
 
     div.append("span")
