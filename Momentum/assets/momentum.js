@@ -3,7 +3,33 @@
 */
 function renderMomentum(div) {
 
-  var num_iters = 100
+  var valueline = d3.line()
+    .x(function(d) { return d[0]; })
+    .y(function(d) { return d[1]; });
+
+  function genPath(s1, s2, e1, e2) {
+    if (s2 > e2) {
+      return valueline([ [s1,s2], 
+                         [s1,s2 - 5],
+                         [e1,e2]] )
+    } else {
+      return valueline([ [s1,s2], 
+                         [s1,s2 + 5],
+                         [e1,e2]] )      
+    }
+  }
+
+  function drawPath(svg, s1, s2, e1, e2) {
+
+    svg.append("path")
+        .attr("opacity", 1)
+        .style("stroke", "black")
+        .style("stroke-width", "1px")
+        .style("stroke-linecap","round")
+        .attr("d", genPath( s1, s2, e1, e2 ))
+
+  }
+  var num_iters = 40
 
   function getTrace(alpha, beta, xy, coord) {
     var m = []
@@ -17,21 +43,104 @@ function renderMomentum(div) {
     return numeric.transpose(m)[coord]
   }
 
-  var outdiv = div.style("display", "block")
-                 .style("margin-left","auto")
-                 .style("margin-right","auto")
-                 .style("position", "relative")
-                 .style("width", "920px")
-                 .style("height", "200px")
-                 .style("border-radius", "5px")
+  function genPhase(t,l,textside, text) {
 
-  var outdiv = outdiv.append("div").style("position", "absolute").style("top", "0px")
-  var updatePath = stemGraphGen(580, 150, num_iters).axis([-1.2, 1.2])(outdiv)
+    var outdiv = div.style("display", "block")
+                   .style("margin-left","auto")
+                   .style("margin-right","auto")
+                   .style("position", "relative")
+                   .style("width", "920px")
+                   .style("height", "550px")
+                   .style("border-radius", "5px")
+                    .on("click", function () { console.log(d3.mouse(this)) })
+
+    var outdiv = outdiv.append("div")
+                .style("position", "absolute")
+                .style("top", t+"px")
+                .style("left", l +"px")
+
+    var updatePath = stemGraphGen(180, 130, num_iters)
+                        .radius1(1)
+                        .axis([-1.4, 1.4])
+                        .labelSize("0px")
+                        .numTicks(2)
+                        (outdiv)
+
+    if (textside == "left") { 
+      outdiv.append("span")
+        .style("position", "absolute")
+        .style("top","20px")
+        .style("left", "-155px")
+        .style("width", "150px")
+        .style("height", "130px")
+        .style("font-size", "13px")
+        .style("line-height", "18px")
+        .style("font-family", "Open Sans")        
+        .style("color", "gray")
+        .style("text-align", "right")                
+        .html(text)
+    }
+
+
+    if (textside == "right") { 
+      outdiv.append("span")
+        .style("position", "absolute")
+        .style("top","20px")
+        .style("left", "200px")
+        .style("width", "150px")
+        .style("height", "130px")
+        .style("font-size", "13px")
+        .style("line-height", "18px")
+        .style("font-family", "Open Sans")        
+        .style("text-align", "left")   
+        .style("color", "gray")                     
+        .html(text)
+    }
+
+    return updatePath
+  }
+
+  var updatePath = genPhase(10,260,"left", "<b>Dampened Ripples</b> <br> R's eigenvalues are complex, have norm $\\leq 1$. $0 \\leq \\alpha \\leq 2/\\lambda_i$. The iterates display low frequency ripples as they spiral to 0.")
+  updatePath(getTrace(0.0017,0.94,1,1))
+  var svg = div.append("svg")
+              .style("position", "absolute")
+              .style("width","920px")
+              .style("height","500px")
+              .style("z-index", 3)
+
+  drawPath( svg, 352, 162, 340, 240 )
+
+  var updatePathOver = genPhase(10,490,"right","<b>Dampened Divergence</b> R's eigenvalues are complex, and have a norm less than one. $\\alpha \\geq 2/\\lambda_i$ causes a increase initial spike (we'd have diverged without momentum) before converging.")
+  updatePathOver(getTrace(0.019,0.84,1,1))
+
+  drawPath( svg, 586, 162, 514, 245 )
+
+  var updatePathMono = genPhase(185,110,"left","<b>Monotonic Convergence</b> R's eigenvalues are both real, are positive, and have norm less than one. The behavior here resembles gradient descent.")
+  updatePathMono(getTrace(0.00093, 0.16,1,1))
+
+  drawPath( svg, 348, 390, 396, 343 )
+
+  var updatePathDiverge = genPhase(185,620,"right","<b>Divergence</b> When $\\max\\{\\sigma_1,\\sigma_2\\} > 1$, the iterates diverge.")
+  updatePathDiverge(getTrace(0.0213, 0.06,1,1))
+
+  drawPath( svg, 583, 390, 446, 335 )
+
+  var updatePathOneStep = genPhase(370,260,"left","<b>Immediate Convergence</b> When $\\alpha = 1/\\lambda_i$, and $\\beta = 0$, we converge in one step. This is a very special point, and kills the error in the eigenspace completely.")
+  updatePathOneStep(getTrace(0.01, 0.0001,1,1))
+
+  drawPath( svg, 296, 272, 337, 322 )
+
+  var updatePathSign = genPhase(370,490,"right","<b>Monotonic Oscillations</b> When $\\alpha > 1/\\lambda_i$, the sign of the term in the exponential is negative. The iterates flip between $+$ and $-$ at each step.")
+  updatePathSign(getTrace(0.02, 0.045,1,1))
+
+  drawPath( svg, 626, 273, 482, 332 )
 
   render2DSliderGen(function(alpha, beta) {
     updatePath(getTrace(alpha, beta, 1,1) )
   })(div)
 
+  div.append("span").style("top", "360px").style("left", "455px").attr("class", "figtext").html("$\\alpha_i\\lambda_i$")
+  div.append("span").style("top", "261px").style("left", "309px").attr("class", "figtext").html("$\\beta$")
 }
 
 /*
@@ -39,9 +148,9 @@ function renderMomentum(div) {
 */
 function render2DSliderGen(updatex) {
 
-  var slider2Dtop  = 20     // Margin at top
-  var slider2Dleft = 610    // How far to the left to put the 2D Slider
-  var slider2D_size = 150;  // Dimensions (square) of 2D Slider
+  var slider2Dtop = 200           // Margin at top
+  var slider2D_size = 140;        // Dimensions (square) of 2D Slider
+  var slider2Dleft = (920/2) - 135  // How far to the left to put the 2D Slider
 
   function render2DSlider(divin){
 
@@ -75,6 +184,7 @@ function render2DSliderGen(updatex) {
         .style("border", "solid 1px black")
         .style("box-shadow","0px 3px 10px rgba(0, 0, 0, 0.4)")
         .on("mousemove", function() {
+
           var pt = d3.mouse(this)
           var alpha = xalpha.invert(pt[0])
           var beta  = ybeta.invert(pt[1])  	
@@ -100,6 +210,7 @@ function render2DSliderGen(updatex) {
           if (Math.max(n1,n2) < 1) {
             updatex(alpha,beta);
           } else {
+            updatex(alpha,beta);
             regime2 = "divergent"
           }
 
@@ -122,11 +233,11 @@ function render2DSliderGen(updatex) {
       return Math.max(e.getRow(0).norm2(), e.getRow(1).norm2()); 
     }, d3.scaleLinear().domain([0,0.3,0.5,0.7,1]).range(colorbrewer.Spectral[5]))
 
-    /* Axis */
+    // /* Axis */
     var canvasaxis = divin.append("svg").style("z-index", 0)
       .style("position","absolute")
       .style("left",slider2Dleft - 50)
-      .style("top", 0)
+      .style("top", (slider2Dtop - 20) + "px")
       .style("width",2*slider2D_size + 70)
       .style("height",slider2D_size + 60)
 
@@ -141,20 +252,9 @@ function render2DSliderGen(updatex) {
     var yAxis = canvasaxis.append("g")
     yAxis.append("circle").style("fill", "black").attr("r", 2)
     yAxis.attr("class", "grid")
-      .attr("transform", "translate(46,"+slider2Dtop+")")
+      .attr("transform", "translate(46,20)")
       .call(d3.axisLeft(ybeta).ticks(1).tickSize(4))
 
-    // svg alpha ...
-    canvasaxis.append("g")
-    .attr("transform", "translate(32,"+(slider2Dtop + slider2D_size/2 - 6) +")")
-    .append("use")
-    .attr("xlink:href", "#texbeta")
-
-    // svg beta ...
-    canvasaxis.append("g")
-    .attr("transform", "translate(" + (45 + slider2D_size) + ","+(slider2Dtop + slider2D_size + 22) +")").text("$\alpha$")
-    .append("use")
-    .attr("xlink:href", "#texalpha")
 
   }
 

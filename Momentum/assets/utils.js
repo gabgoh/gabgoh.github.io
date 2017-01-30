@@ -217,6 +217,11 @@ function stemGraphGen(graphWidth, graphHeight, n) {
   var borderLeft = 5
   var axis = [-1, 1]
   var ylabel = "$x_i^k - x_i^*$"
+  var ylabelsize = "13px"
+  var r1 = 2
+  var r2 = 0
+  var ticks = 10;
+
 
   function renderGraph(outdiv) {
 
@@ -229,7 +234,7 @@ function stemGraphGen(graphWidth, graphHeight, n) {
       .style("position", "absolute")
       .style("transform", "rotate(-90deg)")
       .style("text-align", "center")
-      .style("font-size", "13px")
+      .style("font-size", ylabelsize)
       .html(ylabel)
 
     var svg = outdiv.append("svg")
@@ -275,8 +280,8 @@ function stemGraphGen(graphWidth, graphHeight, n) {
       return dots;
     }
 
-    var dots1 = initData(colorbrewer.RdPu[5][4],2)
-    var dots2 = initData(colorbrewer.RdPu[5][2],0)
+    var dots1 = initData(colorbrewer.RdPu[5][4],r1)
+    var dots2 = initData(colorbrewer.RdPu[5][2],r2)
 
     function updateData(dots, data) {
       dots.selectAll("circle").data(data)
@@ -296,7 +301,7 @@ function stemGraphGen(graphWidth, graphHeight, n) {
       .attr("class", "grid")
       .attr("transform", "translate(0," + y(0) + ")")
       .call(d3.axisBottom(x)
-        .ticks(10)
+        .ticks(ticks)
         .tickSize(2)
         .tickFormat(""))
 
@@ -312,6 +317,21 @@ function stemGraphGen(graphWidth, graphHeight, n) {
     ylabel = a;
     return renderGraph
   }  
+
+  renderGraph.radius1 = function(a) {
+    r1 = a;
+    return renderGraph
+  }  
+
+  renderGraph.labelSize = function(s) {
+  	ylabelsize = s; 
+  	return renderGraph
+  }
+
+  renderGraph.numTicks = function(s) {
+  	ticks = s; 
+  	return renderGraph
+  }
 
   return renderGraph
 }
@@ -786,4 +806,40 @@ function zeros2D(n,m) {
     A.push(zeros(m))
   }
   return A
+}
+
+
+/* 
+Create Vandermonde matrix of size x and order degree 
+*/
+function vandermonde(x, degree){
+	A = zeros2D(x.length,degree + 1)
+	for (var i = 0; i < x.length; i ++){
+	  for (var j = 0; j < degree + 1; j ++) {
+	    A[i][j] = Math.pow(x[i],j)
+	  }
+	}
+	return A 
+}
+
+/* 
+Evaluate a 1D polynomial 
+w[0]x[0] + ... + w[k]x[k], k = w.length
+*/
+function poly(w,x) {
+	s = 0
+	for (var i = 0; i < w.length; i++) { s = s + w[i]*Math.pow(x,i) }
+	return s
+}
+
+
+/* 
+Evaluates the polynomial in range [-1.1, 1.1] at 1800 intervals
+*/
+function evalPoly(w) {
+	var data = []
+	for (var i = -900; i < 900; i++) {
+	  data.push([i/800, 1*poly(w, i/800)])
+	}
+	return data
 }
