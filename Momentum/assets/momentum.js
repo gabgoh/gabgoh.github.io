@@ -130,7 +130,7 @@ function renderMomentum(div) {
 
   drawPath( svg, 296, 272, 337, 322 )
 
-  var updatePathSign = genPhase(370,490,"right","<b>Monotonic Oscillations</b> When $\\alpha > 1/\\lambda_i$, the sign of the term in the exponential is negative. The iterates flip between $+$ and $-$ at each step.")
+  var updatePathSign = genPhase(370,490,"right","<b>Monotonic Oscillations</b> When $\\alpha > 1/\\lambda_i$, the sign of the term in the power is negative. The iterates flip between $+$ and $-$ at each step.")
   updatePathSign(getTrace(0.02, 0.045,1,1))
 
   drawPath( svg, 626, 273, 482, 332 )

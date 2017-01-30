@@ -344,14 +344,14 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <h3>Eigenfeatures</h3>
 
   <p>
-  You might object that the above examples are too simplistic. It is not often the case that a single feature is the culprit. As the number of features get higher, we introduce subtle correlations everywhere, making the question of where the pathological curvature lies murkier.
+  You might object that the above examples are too simplistic: it is not often the case that a single feature is the culprit. As the number of features get higher, we introduce subtle correlations everywhere, making the question of where the pathological curvature lies murkier.
   </p>
 
   <p>
   Consider polynomial regression. We begin with 1D data, $\xi_i$, and lift it to $n$ dimensional space via the feature map
 
   $$
-  \xi \mapsto (\xi^0, \xi^1, \dots, \xi^n).
+  \xi \mapsto (\xi^0, \xi^1, \dots, \xi^n-1).
   $$
 
   To the human eye, these monomials look very much alike. $\xi^2$ resembles $\xi^4$, and $\xi^3$ resembles $\xi^5$. In fact, from a visual inspection of these curves, one might venture that beyond the fourth or so power, the polynomials cannot furnish any new information. Is this truly the case? We can disentangle the correlations by forming our data matrix $Z$,
@@ -359,13 +359,13 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   $$
   Z=\left(\begin{array}{ccccc}
   1 & \xi_{1} & \xi_{1}^{2} & \dots & \xi_{1}^{n-1}\\
-  1 & \xi_{2} & \xi_{2}^{2} & \dots & \xi_{1}^{k-1}\\
+  1 & \xi_{2} & \xi_{2}^{2} & \dots & \xi_{1}^{n-1}\\
   \vdots & \vdots & \vdots & \ddots & \vdots\\
-  1 & \xi_{m} & \xi_{m}^{2} & \dots & \xi_{m}^{k-1}
+  1 & \xi_{m} & \xi_{m}^{2} & \dots & \xi_{m}^{n-1}
   \end{array}\right).
   $$
 
-  and look at the eigenvectors of $Z^TZ$, $Q$. Recall that $Q$ represent a rotation of $w$ space into $x$ space, which has the very special property that gradient descent acts independently on the features there. But $Q$ can also be interpreted as a data preprocessing operator. $Q$ decorrelates the data, since $(ZQ)^T(ZQ)$ is diagonal. Therefore it is seems sensible to visualize this rotation by performing the same transformation on the feature map, giving the "eigenfeaturemap"
+  and looking at the eigenvectors of $Z^TZ$, $Q$. Recall that $Q$ represent a rotation of $w$ space into $x$ space, which has the very special property that gradient descent acts independently on the features there. But $Q$ can also be interpreted as a data preprocessing operator. $Q$ decorrelates the data, since $(ZQ)^T(ZQ)$ is diagonal. Therefore it is seems sensible to visualize this rotation by performing the same transformation on the feature map, giving the "eigenfeaturemap"
 
   $$
   \xi\mapsto Q[\xi^{0},\xi^{1}\dots,\xi^{n}].
@@ -388,7 +388,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
 
 
   <p>
-  The eigenfeatures from 1 to 7, the largest components, are mostly smooth curves capturing variations between the clusters. Following that, we see features for data in finer and finer detail. Smooth variations within clusters, peaks within clusters, and finally, jagged polynomials which differ wildly on neighboring points. It is not a huge jump to conjecture that the eigenfeatures of the largest eigenvectors have the most utility, and the smallest ones are little more than noise. Lets take a look at the iterates of gradient descent behave, starting at $w=0$.
+  The eigenfeatures from 1 to 7, the largest components, are mostly smooth curves capturing variations between the clusters. Following that, we see features of finer and finer detail. Smooth variations within clusters, peaks within clusters, and finally, jagged polynomials which differ wildly on neighboring points. It is not a huge jump to conjecture that the eigenfeatures of the largest eigenvectors have the most utility, and the smallest ones are little more than noise. Lets take a look at the iterates of gradient descent behave, starting at $w=0$.
   </p>
 
   <div id = "poly" style="position:relative"></div>
@@ -530,7 +530,7 @@ R^{k}=\begin{cases}
 \end{cases},\qquad R_{j}=\frac{R-\sigma_{j}I}{\sigma_{1}-\sigma_{2}}
   $$
 
-   This formula may be a lot to take in - and lets not get bogged down in the details. It is sufficient to observe that the path which the iterates take in descent depends strongly on the two eigenvalues of $R$, $\sigma_1, \sigma_2$. And since we need both $\sigma_1$ and $\sigma_2$ to go to 0, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 0$. By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) very distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
+   This formula may be a lot to take in - let's not get bogged down in the details. It is sufficient to observe that the path of convergence depends strongly on the two eigenvalues of $R$, $\sigma_1, \sigma_2$. And since we need both $\sigma_1$ and $\sigma_2$ to go to 0, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 0$. By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) very distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum(d3.select("#momentum2D"))</script> 
@@ -542,7 +542,7 @@ R^{k}=\begin{cases}
   <h3>The Critical Damping Coefficient</h3>
 
   <p>
-  Let us take a brief detour. When $\alpha$ becomes small (as often is the case for the smallest eigenvalues in problems with pathological curvature), Qian <dt-cite key="qian1999momentum"></dt-cite> points out that momentum admits an interesting physical interpretation. Let us try to understand this heuristically, by thinking of a world with discrete time. Here time updates in discrete ticks, and at each tick, $x_i^k$ updates as
+  Let us take a brief detour. When $\alpha$ becomes small (as often is the case for the smallest eigenvalues in problems with pathological curvature), Qian <dt-cite key="qian1999momentum"></dt-cite> points out that momentum admits an interesting physical interpretation. Let us try to understand this heuristically, by thinking of a world with discrete time. In this world, at each tick, $x_i^k$ updates as
 
   $$x_i^{k+1} = x_i^k - \alpha y_i^{k+1}.$$
 
@@ -558,7 +558,7 @@ R^{k}=\begin{cases}
 
   $$y_i^{k+1} = \beta y_i^k.$$
 
-  The particle decelerates. $\beta$ can be thought of as a damping coefficient - the amount of energy the particle loses due at each tick. Finally, the velocity is modified by $\lambda_{i}x_{i}^{k}$ - an external force field. This external force varys in proportion to the particle's position, $x^k_i$, exerting no force when $x^k_i = 0$. This should remind you of something familiar. The damped harmonic oscillator!
+  The particle decelerates. $\beta$ can be thought of as a damping coefficient - the amount of kinetic energy the particle loses due at each tick. Finally, the velocity is modified by $\lambda_{i}x_{i}^{k}$ - an external force field. This external force varies in proportion to the particle's position, $x^k_i$, exerting no force when $x^k_i = 0$. This should remind you of something familiar. The damped harmonic oscillator!
   </p>
 
   <p>
