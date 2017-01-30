@@ -100,53 +100,55 @@ function renderMomentum(div) {
     return updatePath
   }
 
-  var updatePath = genPhase(10,260,"left", "<b>Dampened Ripples</b> <br> R's eigenvalues are complex, have norm $\\leq 1$. $0 \\leq \\alpha \\leq 2/\\lambda_i$. The iterates display low frequency ripples as they spiral to 0.")
-  updatePath(getTrace(0.0017,0.94,1,1))
+  var updateDR = genPhase(10,260,"left", "<b>Dampened Ripples</b> <br> R's eigenvalues are complex, have norm $\\leq 1$. $0 \\leq \\alpha \\leq 2/\\lambda_i$. The iterates display low frequency ripples as they spiral to 0.")
+  updateDR(getTrace(0.0017,0.94,1,1))
+
+  var updateDD = genPhase(10,490,"right","<b>Dampened Divergence</b> R's eigenvalues are complex, and have a norm less than one. $\\alpha \\geq 2/\\lambda_i$ causes a increase initial spike (we'd have diverged without momentum) before converging.")
+  updateDD(getTrace(0.019,0.84,1,1))
+
+  var updateMC = genPhase(185,110,"left","<b>Monotonic Convergence</b> R's eigenvalues are both real, are positive, and have norm less than one. The behavior here resembles gradient descent.")
+  updateMC(getTrace(0.00093, 0.16,1,1))
+
+  var updateD = genPhase(185,620,"right","<b>Divergence</b> When $\\max\\{\\sigma_1,\\sigma_2\\} > 1$, the iterates diverge.")
+  updateD(getTrace(0.0213, 0.06,1,1))
+
+  var updateIC = genPhase(370,260,"left","<b>Immediate Convergence</b> When $\\alpha = 1/\\lambda_i$, and $\\beta = 0$, we converge in one step. This is a very special point, and kills the error in the eigenspace completely.")
+  updateIC(getTrace(0.01, 0.0001,1,1))
+
+  var updateMO = genPhase(370,490,"right","<b>Monotonic Oscillations</b> When $\\alpha > 1/\\lambda_i$, the sign of the term in the power is negative. The iterates flip between $+$ and $-$ at each step.")
+  updateMO(getTrace(0.02, 0.045,1,1))
+
   var svg = div.append("svg")
               .style("position", "absolute")
               .style("width","920px")
               .style("height","500px")
               .style("z-index", 3)
+              .style("pointer-events","none")
 
-  drawPath( svg, 352, 162, 340, 240 )
+  drawPath( svg, 352, 162, 340, 240 ) // Dampened Ripples
+  drawPath( svg, 586, 162, 514, 245 ) // Dampened Divergence
+  drawPath( svg, 348, 390, 396, 343 ) // Immediate Convergence
+  drawPath( svg, 583, 390, 446, 335 ) // Monotonic Oscillation
+  drawPath( svg, 296, 272, 337, 322 ) // Monotonic Convergence
+  drawPath( svg, 626, 273, 482, 332 ) // Divergence
 
-  var updatePathOver = genPhase(10,490,"right","<b>Dampened Divergence</b> R's eigenvalues are complex, and have a norm less than one. $\\alpha \\geq 2/\\lambda_i$ causes a increase initial spike (we'd have diverged without momentum) before converging.")
-  updatePathOver(getTrace(0.019,0.84,1,1))
+  function wrap(f) {
+    return function(alpha, beta) {
+      return f(getTrace(alpha, beta, 1,1))
+    }
+  }
 
-  drawPath( svg, 586, 162, 514, 245 )
-
-  var updatePathMono = genPhase(185,110,"left","<b>Monotonic Convergence</b> R's eigenvalues are both real, are positive, and have norm less than one. The behavior here resembles gradient descent.")
-  updatePathMono(getTrace(0.00093, 0.16,1,1))
-
-  drawPath( svg, 348, 390, 396, 343 )
-
-  var updatePathDiverge = genPhase(185,620,"right","<b>Divergence</b> When $\\max\\{\\sigma_1,\\sigma_2\\} > 1$, the iterates diverge.")
-  updatePathDiverge(getTrace(0.0213, 0.06,1,1))
-
-  drawPath( svg, 583, 390, 446, 335 )
-
-  var updatePathOneStep = genPhase(370,260,"left","<b>Immediate Convergence</b> When $\\alpha = 1/\\lambda_i$, and $\\beta = 0$, we converge in one step. This is a very special point, and kills the error in the eigenspace completely.")
-  updatePathOneStep(getTrace(0.01, 0.0001,1,1))
-
-  drawPath( svg, 296, 272, 337, 322 )
-
-  var updatePathSign = genPhase(370,490,"right","<b>Monotonic Oscillations</b> When $\\alpha > 1/\\lambda_i$, the sign of the term in the power is negative. The iterates flip between $+$ and $-$ at each step.")
-  updatePathSign(getTrace(0.02, 0.045,1,1))
-
-  drawPath( svg, 626, 273, 482, 332 )
-
-  render2DSliderGen(function(alpha, beta) {
-    updatePath(getTrace(alpha, beta, 1,1) )
-  })(div)
+  render2DSliderGen(wrap(updateDR), wrap(updateDD), wrap(updateIC), wrap(updateMO), wrap(updateMC), wrap(updateD))(div)
 
   div.append("span").style("top", "360px").style("left", "455px").attr("class", "figtext").html("$\\alpha_i\\lambda_i$")
   div.append("span").style("top", "261px").style("left", "309px").attr("class", "figtext").html("$\\beta$")
+
 }
 
 /*
   Render 2D slider thingy to the right.
 */
-function render2DSliderGen(updatex) {
+function render2DSliderGen(updateDR, updateDD, updateIC, updateMO, updateMC, updateD) {
 
   var slider2Dtop = 200           // Margin at top
   var slider2D_size = 140;        // Dimensions (square) of 2D Slider
@@ -204,14 +206,41 @@ function render2DSliderGen(updatex) {
           } else {
             n1 = numeric.norm2(e.x[0], e.y[0])    
             n2 = numeric.norm2(e.x[1], e.y[1]) 
-            regime = "complex,"               
+            regime = "complex"               
           }
 
           if (Math.max(n1,n2) < 1) {
-            updatex(alpha,beta);
+            regime2 = "convergent"
           } else {
-            updatex(alpha,beta);
             regime2 = "divergent"
+          }
+
+          if (alpha < 1/100) {
+            regime3 = "short"
+          } else if (alpha < 2/100) {
+            regime3 = "long"
+          } else {
+            regime3 = "verylong"
+          }
+
+          if (regime == "real" && regime3 == "long") {
+            updateMO(alpha,beta)
+          }
+
+          if (regime == "real" && regime3 == "short") {
+            updateMC(alpha,beta)
+          }
+
+          if (regime == "complex" && (regime3 == "short" || regime3=="long")) {
+            updateDR(alpha,beta)
+          }
+
+          if (regime2 == "divergent") {
+            updateD(alpha,beta)
+          }
+
+          if (regime2 == "convergent" && regime3 == "verylong") {
+            updateDD(alpha,beta)
           }
 
           var divwidth = div.node().getBoundingClientRect().width;
@@ -220,7 +249,7 @@ function render2DSliderGen(updatex) {
           div.style("top", (pt[1] + slider2Dtop - divheight - 6) + "px")
           
           div.html("s1 =" + round(n1) + 
-                   "<br>s2 =" + round(n2) + "<br> " + regime + " " + regime2)
+                   "<br>s2 =" + round(n2) + "<br> " + regime + " " + regime2 + " " + regime3)
           div.style("opacity",1)  
         })
         .on("mouseout", function() {
