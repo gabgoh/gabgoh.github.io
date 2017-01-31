@@ -324,10 +324,10 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <p>
   This makes intuitive sense. The principle components of $X$ measure the quality of data in the corresponding directions. And thus, the strongest principle components also give the strongest error correcting signals in the gradient! Let's refine this insight with a few examples.
   </p> -->
-  <h3>Improper Scaling</h3>
+  <h3>Bad Scaling</h3>
 
   <p>
-  One simple culprit of pathological curvature is a bad scaling of the data. Even if the data were perfectly uncorrelated, i.e. $Z^TZ$ was diagonal, the condition number of the matrix still depends on the variance of the individual features (the values of the diagonal). If the ratio of the largest and smallest variances are large, the matrix $Z^TZ$ becomes ill conditioned.
+  One simple culprit of pathological curvature is a bad scaling of the data. Even if the data were perfectly uncorrelated with mean 0, i.e. $Z^TZ$ was diagonal, the condition number of the matrix still depends on the variance of the individual features (the values of the diagonal). If the ratio of the largest and smallest variances are large, the matrix $Z^TZ$ becomes ill conditioned.
   </p>
 
   <p>
