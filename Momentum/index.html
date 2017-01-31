@@ -241,7 +241,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   we can visualize the contributions of each eigenspace to the loss $f(w^k)$.
   </p>
   <div id = "sliderStepAlpha" style="width:920px; height:20px">
-  <text style="font-size: 15px; top: -9px; left: 10px; position: relative;">	α</text>
+  <text style="font-size: 15px; top: -9px; left: 10px; position: relative;">  α</text>
   </div>
   <div id = "obj"></div>  
   <div id = "milestonesSlider" style="width:920px; height:20px"> </div> 
@@ -478,7 +478,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   $$
 
   following <dt-cite key="o2015adaptive"></dt-cite>, we go through the same motions, with the change of variables $
-  x^{k} = Q(w^{k} - w^\star)$ and $ y^{k} = Qz^{k}$ to yield the separable update rule
+  x^{k} = Q(w^{k} - w^\star)$ and $ y^{k} = Qz^{k}$ to yield the update rule
 
   $$
   \begin{aligned}
@@ -487,8 +487,10 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   \end{aligned}
   $$
 
-  In matrix form, we can write the update as
+  in which each of the components of $x$ and $y$ act independently of the other coordinates (though $x_i$ and $y_i$ are coupled). And therefore,
 
+  <dt-fn>
+  This is true as we can write updates in matrix form as
   $$
   \left(\!\!\begin{array}{cc}
   1 & 0\\
@@ -522,6 +524,22 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   \end{array}\!\!\right)
   $$
 
+  </dt-fn>
+  $$
+  \left(\!\!\begin{array}{c}
+  y_{i}^{k}\\
+  x_{i}^{k}
+  \end{array}\!\!\right)=R^k\left(\!\!\begin{array}{c}
+  y_{i}^{0}\\
+  x_{i}^{0}
+  \end{array}\!\!\right)
+  \qquad 
+  R = \left(\!\!\begin{array}{cc}
+  \beta & \lambda_{i}\\
+  -\alpha\beta & 1-\alpha\lambda_{i}
+  \end{array}\!\!\right).
+  $$
+<!-- 
   Where 
 
   $$
@@ -530,7 +548,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   -\alpha\beta & 1-\alpha\lambda_{i}
   \end{array}\!\!\right)
   $$
-
+ -->
   We are almost there. We need a second trick. There are many ways of taking a matrix to the $k^{th}$ power. But for the $2 \times 2$ case there is an elegant and little known formula <dt-cite key="williamsnthpower"></dt-cite> in terms of the eigenvectors of $R$, $\sigma_1$ and $\sigma_2$. 
 
   $$
@@ -540,11 +558,11 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
 \end{cases},\qquad R_{j}=\frac{R-\sigma_{j}I}{\sigma_{1}-\sigma_{2}}}
   $$
 
-   This formula may be a lot to take in, but I've highlighted the important bits. It is sufficient to observe that our iterates depend on two, not one geometric series, which may have real or complex values. And since we need both $\sigma_1$ and $\sigma_2$ to converge, our convergence criteria is now 
+   This formula may be a lot to take in, but I've highlighted the important bits. This formula plays the exact same role the individual convergence rates, $1-\alpha\lambda_i$ do in gradient descent. But instead of one geometric series, we have two, which may have real or complex values. And since we need both $\sigma_1$ and $\sigma_2$ to converge, our convergence criteria is now 
 
    $$\max \{|\sigma_1|, |\sigma_2|\} < 1.$$
 
-   The exact values of $\alpha$ and $\beta$ needed to achieve this is complicated. But by plotting $\max \{|\sigma_1|, |\sigma_2|\}$, we can understand the (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
+   The exact values of $\alpha$ and $\beta$ needed to achieve this is complicated. But by plotting $\max \{|\sigma_1|, |\sigma_2|\}$ <dt-cite key="flammarion2015averaging"></dt-cite>, we see that there are distinct regions of the parameter space which reveal a rich taxonomy of convergence behavior 
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum(d3.select("#momentum2D"))</script> 
