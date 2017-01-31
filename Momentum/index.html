@@ -134,7 +134,7 @@
 
   $$f(w) = \tfrac{1}{2}w^TAw - b^Tw, \qquad w \in \mathbf{R}^n. $$
 
-  Simple as this model may be, it is rich enough to approximate of many functions (think of $A$ as your favorite model of curvature - the Hessian, Fisher Information Matrix, etc) and captures all the key features of pathological curvature. And more importantly, we can write a formula for gradient descent iterations here in closed form, with no approximating bounds or inequalities.
+  Simple as this model may be, it is rich enough to approximate of many functions (think of $A$ as your favorite model of curvature - the Hessian, Fisher Information Matrix <dt-cite key="amari1998natural"></dt-cite>, etc) and captures all the key features of pathological curvature. And more importantly, we can write a formula for gradient descent iterations here in closed form, with no approximating bounds or inequalities.
   </p>
 
   <p>
@@ -327,7 +327,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <h3>Bad Scaling</h3>
 
   <p>
-  One simple culprit of pathological curvature is a bad scaling of the data. Even if the data were perfectly uncorrelated with mean 0, i.e. $Z^TZ$ was diagonal, the condition number of the matrix still depends on the variance of the individual features (the values of the diagonal). If the ratio of the largest and smallest variances are large, the matrix $Z^TZ$ becomes ill conditioned.
+  One simple culprit of pathological curvature is a bad scaling of the data. Even if the data were perfectly uncorrelated with mean 0, i.e. $Z^TZ$ was diagonal, the condition number of the matrix still depends on the variance of the individual features (the values of the diagonal). If the ratio of the largest and smallest variances are large, the matrix $Z^TZ$ becomes ill conditioned <dt-fn>This holds even if the matrix is correlated, see <dt-cite key="wiesler2011convergence"></dt-cite></dt-fn>.
   </p>
 
   <p>
@@ -1105,6 +1105,25 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
   year={1999},
   publisher={Elsevier},
   doi={10.1016/s0893-6080(98)00116-6}
+}
+
+@article{amari1998natural,
+  title={Natural gradient works efficiently in learning},
+  author={Amari, Shun-Ichi},
+  journal={Neural computation},
+  volume={10},
+  number={2},
+  pages={251--276},
+  year={1998},
+  publisher={MIT Press}
+}
+
+@inproceedings{wiesler2011convergence,
+  title={A convergence analysis of log-linear training},
+  author={Wiesler, Simon and Ney, Hermann},
+  booktitle={Advances in Neural Information Processing Systems},
+  pages={657--665},
+  year={2011}
 }
 </script>
 
