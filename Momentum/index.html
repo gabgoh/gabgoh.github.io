@@ -48,7 +48,7 @@
 
  $$w^{k+1} = w^k-\alpha\nabla f(w^k),$$
 
-  and the symptoms of bad curvature are somewhat subtle. Your choice of $\alpha$, the step-size, seems correct. The gradients don't blow up. There is no division by zero, no NaNs, no square rooting of minus one. In fact, things often begin quite well - with an impressive, almost immediate decrease in the loss $f(x^k)$. But as the iterations progress, you start to get a nagging feeling you're not making as much progress as you should be. You're iterating hard, but the loss, $f(w^k)$ isn't getting smaller. Should you keep iterating, and hope for the best?
+  and its symptoms somewhat subtle. Your choice of $\alpha$, the step-size, seems correct. The gradients don't blow up. There is no division by zero, no NaNs, no square rooting of minus one. In fact, things often begin quite well - with an impressive, almost immediate decrease in the loss $f(x^k)$. But as the iterations progress, you start to get a nagging feeling you're not making as much progress as you should be. You're iterating hard, but the loss, $f(w^k)$ isn't getting smaller. Should you keep iterating, and hope for the best?
   </p>
 
   <p>
@@ -101,7 +101,7 @@
   </script>
   
   <p>
-  But there is a simple tweak to gradient descent which makes things work significantly better. Add an auxiliary sequence, $z^k$, and an extra parameter $\beta$, which Tensorflow calls <a href = "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/training_ops.cc#L129">momentum</a>,
+  But there is a simple tweak to gradient descent which makes things work much better. Add an auxiliary sequence, $z^k$, and an extra parameter $\beta$, which Tensorflow calls <a href = "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/training_ops.cc#L129">momentum</a>,
 
   $$
   \begin{aligned}
@@ -116,12 +116,12 @@
   Optimizers call this minor miracle "acceleration".
   </p>
 
-  <p>
+<!--   <p>
   Now, If you've heard about momentum before, you might now be anticipating something along the lines of "Momentum smoothens out oscillations within gradient descent, allowing the iterates to move in the direction of the true optimum". This little bit of mathematical folklore is unfortunately a half truth. As the above demo clearly shows, momentum can help even when there are no oscillations, sometimes even creating its own oscillations when pushed too far. The smoothing effect of momentum, as far as I can tell, is not the only source of its power.
-  </p>
+  </p> -->
 
   <p>
-  More insidiously, statements like these may give one the impression momentum is a cheap hack. A simple trick to get around gradient descent's more aberrant behavior. The truth, if anything, is the other way round. First, momentum gives about a quadratic speedup on convex functions. This is no small matter - this is the speedup you get from the Fast Fourier Transform, and Grover's Algorithm. When the universe speeds things up for you quadratically, you should start to pay attention. 
+  This tiny modification may seem like a cheap hack. A simple trick to get around gradient descent's more aberrant behavior - a smoother for oscillations between steep canyons. But the truth, if anything, is the other way round. It is gradient descent which is the hack. First, momentum gives about a quadratic speedup on convex functions. This is no small matter - this is the speedup you get from the Fast Fourier Transform, and Grover's Algorithm. When the universe speeds things up for you quadratically, you should start to pay attention. 
   </p>
 
   <p>  
@@ -231,10 +231,10 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   </p>
   <h3>Decomposing the Error</h3>
   <p>
-  The above equation admits a simple interpretation. $x^0$ is the component of the error in the initial guess in the space of $Q$. And each of the errors in the eigenspaces follow its own, solitary path to the minimum, at a rate of $1-\alpha\lambda_i$. The closer that number is to $1$, the slower it converges.
+  The above equation admits a simple interpretation. $x^0$ is the component of the error in the initial guess in the space of $Q$. And each of these errors in the eigenspaces follow its own, solitary path to the minimum, at a rate of $1-\alpha\lambda_i$. The closer that number is to $1$, the slower it converges.
   </p>
   <p>
-  For reasonable choices of step-sizes, the eigenvectors with largest eigenvectors converge the fastest. This triggers an explosion of progress in the first few iterations, before things slow down as the smaller eigenvector's struggles are revealed. By writing the contributions of each eigenspaces's sub-optimality to the loss
+  For most step-sizes, the eigenvectors with largest eigenvectors converge the fastest. This triggers an explosion of progress in the first few iterations, before things slow down as the smaller eigenvector's struggles are revealed. By writing the contributions of each eigenspaces's sub-optimality to the loss
   $$
   f(w^{k})-f(w^{\star})=\sum(1-\alpha\lambda_{i})^{2k}\lambda_{i}[x_{i}^{0}]^2
   $$
@@ -278,7 +278,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   $$
   </p>
   <p>
-  Setting the step-length too large will hinder the large eigenspaces, while a step-length too small hurts everything. Let's find the optimal $\alpha$ which minimizes the convergence rate. This can be done by solving a one dimensional optimization problem over $\alpha$ to get
+  Setting the step-length too large will hinder the large eigenspaces, while a step-length too small hurts everything. The optimal $\alpha$ can be done by solving a one dimensional optimization problem over $\alpha$ to get
   $$
   \begin{aligned}
   \text{optimal }\alpha ={\mathop{\text{argmin}}\limits_\alpha}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{n}},\\
@@ -288,11 +288,11 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   For ill conditioned problems, the optimal $\alpha$ gets uncomfortably close to limit of divergence. This, however, justifies the heuristic of choosing the largest stepsize you can get away with. 
   </p>
   <p>
-  Notice that the ratio $\lambda_n/\lambda_1$ determines the convergence rate of the problem. In fact, this ratio appears often enough that we give it a name, and a symbol - the condition number.
+  Notice the ratio $\lambda_n/\lambda_1$ determines the convergence rate of the problem. In fact, this ratio appears often enough that we give it a name, and a symbol - the condition number.
   $$
   \text{condition number} := \kappa :=\frac{\lambda_n}{\lambda_1}
   $$
-  The condition number means many things. It is a measure of how singular a matrix is. It is a measure of how robust $A^{-1}b$ is to perturbations in $b$. And in this context - the condition number gives us a measure of how poorly gradient descent will perform. A ratio of $1$ is ideal, giving convergence in one step (of course, the function is trivial). And larger the ratio, the slower gradient descent will be. The condition number is a direct measure of the amount of pathological curvature in a problem.
+  The condition number means many things. It is a measure of how singular a matrix is. It is a measure of how robust $A^{-1}b$ is to perturbations in $b$. And in this context - the condition number gives us a measure of how poorly gradient descent will perform. A ratio of $1$ is ideal, giving convergence in one step (of course, the function is trivial). And larger the ratio, the slower gradient descent will be. The condition number is therefore a direct measure pathological curvature.
   </p>
 
   <h2>
@@ -300,7 +300,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   </h2>
 
   <p>
-  The above analysis reveals an interesting insight - all errors are not made equal. Indeed, there are different kinds of errors, $n$, to be exact, one for each of the eigenvectors of $A$. And gradient descent is better at correcting some kinds of errors better than others. The pathological directions, the eigenvectors with small eigenvalues, are what causes gradient descent to slow down. With this understanding, we can analyze the precise path the iterates take to the solution, shedding light on a number of interesting phenomena.
+  The above analysis reveals an interesting insight - all errors are not made equal. Indeed, there are different kinds of errors, $n$, to be exact, one for each of the eigenvectors of $A$. And gradient descent is better at correcting some kinds of errors better than others. The pathological directions, the eigenvectors with smallest eigenvalues, are what causes gradient descent to slow down. With this understanding, we can analyze the precise path the iterates take to the solution, shedding light on a number of interesting phenomena.
   </p>
 
   <h3>Implicit Regularization</h3>
@@ -315,7 +315,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   $$
   \text{minimize}\qquad\tfrac{1}{2}w^{T}Z^{T}Zw-(Zd)^{T}w
   $$
-
+  a quadratic function. To understand gradient descent on linear regression, we must understand the eigenvectors of $A^TA$.
 <!--   Now notice a surprising connection to unsupervised learning. The directions $q_i$ are exactly principle components of $Z$! And thus we arrive at a first conclusion
    </p>
    <p><i>
@@ -369,18 +369,19 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   \end{array}\right).
   $$
 
-  and looking at the eigenvectors of $Z^TZ$, $Q$. Recall that $Q$ represent a rotation of $w$ space into $x$ space, which has the very special property that gradient descent acts independently on the features there. But $Q$ can also be interpreted as a data preprocessing operator. $Q$ decorrelates the data, since $(ZQ)^T(ZQ)$ is diagonal. Therefore it is seems sensible to visualize this rotation by performing the same transformation on the feature map, giving the "eigenfeaturemap"
+  and looking at the eigenvectors of $Z^TZ$. The eigenvectors, $Q$, if you will recall represent a rotation of $w$ space into $x$ space, which has the very special property that gradient descent acts independently on the features there. But $Q$ can also be interpreted as a data preprocessing operator. $Q$ decorrelates the data, since $(ZQ)^T(ZQ)$ is diagonal. Therefore it is seems sensible to visualize this rotation by performing the same transformation on the feature map, giving our data decorrelated features, 
 
   $$
   \xi\mapsto Q[\xi^{0},\xi^{1}\ldots,\xi^{n}].
   $$
 
+  This eigenfeaturemap is visualized below.
   </p>
 
 
 <div id = "poly2"></div>
 
-<div id="eigenFeatures" style="display:block; margin-left:auto; margin-right:auto; width:920px; position:relative; top:5px; height:230px">
+<div id="eigenFeatures" style="display:block; margin-left:auto; margin-right:auto; width:920px; position:relative; top:20px; height:250px">
   <svg>
   </svg>
 </div>
@@ -466,7 +467,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   \end{aligned}
   $$
 
-  Since $\nabla f(w^k) = Ax - b$, the update is
+  Since $\nabla f(w^k) = Ax - b$, the update on the quadratic is
 
   $$
   \begin{aligned}
@@ -488,36 +489,45 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   In matrix form, we can write the update as
 
   $$
-  \left(\begin{array}{cc}
+  \left(\!\!\begin{array}{cc}
   1 & 0\\
   \alpha & 1
-  \end{array}\right)\Bigg(\begin{array}{c}
+  \end{array}\!\!\right)\Bigg(\!\!\begin{array}{c}
   y_{i}^{k+1}\\
   x_{i}^{k+1}
-  \end{array}\Bigg)=\left(\begin{array}{cc}
+  \end{array}\!\!\Bigg)=\left(\!\!\begin{array}{cc}
   \beta & \lambda_{i}\\
   0 & 1
-  \end{array}\right)\left(\begin{array}{c}
+  \end{array}\!\!\right)\left(\!\!\begin{array}{c}
   y_{i}^{k}\\
   x_{i}^{k}
-  \end{array}\right)
+  \end{array}\!\!\right)
   
   $$
   which implies, by inverting the matrix on the left,
   $$
-  \Bigg(\begin{array}{c}
+  \Bigg(\!\!\begin{array}{c}
   y_{i}^{k+1}\\
   x_{i}^{k+1}
-  \end{array}\Bigg)=\left(\begin{array}{cc}
+  \end{array}\!\!\Bigg)=\left(\!\!\begin{array}{cc}
   \beta & \lambda_{i}\\
   -\alpha\beta & 1-\alpha\lambda_{i}
-  \end{array}\right)\left(\begin{array}{c}
+  \end{array}\!\!\right)\left(\!\!\begin{array}{c}
   y_{i}^{k}\\
   x_{i}^{k}
-  \end{array}\right)=R^{k+1}\left(\begin{array}{c}
+  \end{array}\!\!\right)=R^{k+1}\left(\!\!\begin{array}{c}
   x_{i}^{0}\\
   y_{i}^{0}
-  \end{array}\right)
+  \end{array}\!\!\right)
+  $$
+
+  Where 
+
+  $$
+  R = \left(\!\!\begin{array}{cc}
+  \beta & \lambda_{i}\\
+  -\alpha\beta & 1-\alpha\lambda_{i}
+  \end{array}\!\!\right)
   $$
 
   We are almost there. We need a second trick. There are many ways of taking a matrix to the $k^{th}$ power. But for the $2 \times 2$ case there is an elegant and little known formula <dt-cite key="williamsnthpower"></dt-cite> in terms of the eigenvectors of $R$, $\sigma_1$ and $\sigma_2$. 
@@ -529,14 +539,17 @@ R^{k}=\begin{cases}
 \end{cases},\qquad R_{j}=\frac{R-\sigma_{j}I}{\sigma_{1}-\sigma_{2}}
   $$
 
-   This formula may be a lot to take in, and let's not get bogged down in the details. It is sufficient to observe that our iterates depend on two, not one geometric series, which may be real or complex, $\sigma_1$ and $\sigma_2$. And since we need both $\sigma_1$ and $\sigma_2$ to converge, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 1$. By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
+   This formula may be a lot to take in, and let's not get bogged down in the details. It is sufficient to observe that our iterates depend on two, not one geometric series, which may be real or complex, $\sigma_1,\sigma^2_1,\ldots$ and $\sigma_2,\sigma^2_2,\ldots$. And since we need both $\sigma_1$ and $\sigma_2$ to converge, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 1$. 
+   </p>
+   <p>
+   By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum(d3.select("#momentum2D"))</script> 
 
   <p>
 
-  Notice an immediate boon we get. Momentum allows us to use a crank up the step-length up by a factor of 2 before diverging. But the true magic happens when we find the sweet spot of alpha and beta. 
+  Notice an immediate boon we get. Momentum allows us to use a crank up the step-length up by a factor of 2 before diverging. But the true magic happens when we find the sweet spot of $\alpha$ and $\beta$. 
   </p>
   <h3>The Critical Damping Coefficient</h3>
 

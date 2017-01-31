@@ -32,12 +32,12 @@ function renderEigenFeatures(divin) {
     .style("margin-left","auto")
     .style("margin-right","auto")
     .style("width", width+"px")
-    .style("height", (height+40) + "px")
+    .style("height", (height+70) + "px")
     .style("position", "relative")
 
   divin.append("span")
         .style("left", "0px")
-        .style("top", "-30px")
+        .style("top", "0px")
         .attr("class", "figtext")
         .style("width", "300px")
         .style("text-align", "left")
@@ -101,7 +101,7 @@ function renderEigenFeatures(divin) {
       .style("border", "black solid 1px")
       .style("border-radius", "3px")
       .style("box-shadow", "rgba(0, 0, 0, 0.3) 0px 0px 8px")
-      .style("top", "30px")
+      .style("top", "60px")
       .style("position", "absolute")
 
   var eigensvg = svg.attr("class", "line")
