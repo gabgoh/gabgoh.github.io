@@ -2,7 +2,9 @@
 <!doctype html>
 <meta charset="utf-8">
 <script src="http://distill.pub/template.js"></script>
-<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
 <script src = "assets/lib/d3.v4.min.js"></script>
 <script src = "assets/lib/numeric-1.2.6.min.js"></script>
 <script src = "assets/utils.js"></script>
@@ -44,7 +46,7 @@
   <p>
   The problem manifests when minimizing a function $f$ using gradient descent,
 
-  \[w^{k+1} = w^k-\alpha\nabla f(w^k),\]
+ $$w^{k+1} = w^k-\alpha\nabla f(w^k),$$
 
   and the symptoms of bad curvature are somewhat subtle. Your choice of $\alpha$, the step-size, seems correct. The gradients don't blow up. There is no division by zero, no NaNs, no square rooting of minus one. In fact, things often begin quite well - with an impressive, almost immediate decrease in the loss $f(x^k)$. But as the iterations progress, you start to get a nagging feeling you're not making as much progress as you should be. You're iterating hard, but the loss, $f(w^k)$ isn't getting smaller. Should you keep iterating, and hope for the best?
   </p>
@@ -101,10 +103,12 @@
   <p>
   But there is a simple tweak to gradient descent which makes things work significantly better. Add an auxiliary sequence, $z^k$, and an extra parameter $\beta$, which Tensorflow calls <a href = "https://github.com/tensorflow/tensorflow/blob/master/tensorflow/core/kernels/training_ops.cc#L129">momentum</a>,
 
-  \begin{align*}
+  $$
+  \begin{aligned}
   z^{k+1}&=\beta z^{k}+\nabla f(w^{k})\\
   w^{k+1}&=w^{k}-\alpha z^{k+1}.
-  \end{align*}
+  \end{aligned}
+  $$
 
   When $ \beta = 0 $ , we recover gradient descent. But for $ \beta = 0.99 $ (sometimes $ 0.999$, if things are really bad), the situation improves quite dramatically.
   </p>
@@ -207,7 +211,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   Every symmetric matrix $A$ has an eigenvalue decomposition
 
   $$
-  A=Q\mbox{diag}(\lambda_{1},\cdots,\lambda_{n})Q^{T},\qquad Q = [q_1,\dots,q_n],
+  A=Q \text{diag}(\lambda_{1},\ldots,\lambda_{n})Q^{T},\qquad Q = [q_1,\ldots,q_n],
   $$
 
   and as per convention, we will assume that the $\lambda_i$'s are sorted, from smallest $\lambda_1$ to biggest $\lambda_n$. Perform a change of variables, $x^{k} = Q^T(w^{k} - w^\star)$. And the iterations break apart, becoming
@@ -264,7 +268,7 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   
   </script>
   <p>
-  The loss, $f(w^k)$ is a superposition of exponentially decaying curves. For the quadratic function $f$ with $A = \mbox{diag}([1,10,100])$ and $b = [1,1/\sqrt{10}, 1/\sqrt{100}]$, we see three curves, each with its own rate of decay, depending on the step-length $\alpha$. The timeline beneath the plot visualizes the milestones of descent - with a tick every time error in one eigenspace as it dips below a certain tolerance. Our iterates thus move through 3 stages of convergence, and when the $k$ passes the final milestone, convergence is achieved. The rate at which the slowest error goes down is referred to as the convergence rate.
+  The loss, $f(w^k)$ is a superposition of exponentially decaying curves. For the quadratic function $f$ with $A = \text{diag}([1,10,100])$ and $b = [1,1/\sqrt{10}, 1/\sqrt{100}]$, we see three curves, each with its own rate of decay, depending on the step-length $\alpha$. The timeline beneath the plot visualizes the milestones of descent - with a tick every time error in one eigenspace as it dips below a certain tolerance. Our iterates thus move through 3 stages of convergence, and when the $k$ passes the final milestone, convergence is achieved. The rate at which the slowest error goes down is referred to as the convergence rate.
   <h3>Choosing A Step-size</h3>
   <p>
   The above analysis gives us immediate guidance as to how to set a step-size $\alpha$. In order to converge, $|1-\alpha \lambda_i|$ must be strictly less than 1 for all $i$. All workable step-sizes, therefore, fall in the interval
@@ -276,17 +280,17 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   <p>
   Setting the step-length too large will hinder the large eigenspaces, while a step-length too small hurts everything. Let's find the optimal $\alpha$ which minimizes the convergence rate. This can be done by solving a one dimensional optimization problem over $\alpha$ to get
   $$
-  \begin{align*}
-  \mbox{optimal $\alpha$ = }\underset{\alpha}{\mbox{argmin}}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{n}},\\
-  \mbox{convergence rate  = }\underset{\alpha}{\mbox{min}}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{\lambda_{n}/\lambda_{1}-1}{\lambda_{n}/\lambda_{1}+1}.,
-  \end{align*}
+  \begin{aligned}
+  \text{optimal }\alpha ={\mathop{\text{argmin}}\limits_\alpha}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{2}{\lambda_{1}+\lambda_{n}},\\
+  \text{convergence rate = }{\min_\alpha}\{\max_{i}\{1-\alpha\lambda_{i}\}\} & =\frac{\lambda_{n}/\lambda_{1}-1}{\lambda_{n}/\lambda_{1}+1}.,
+  \end{aligned}
   $$
   For ill conditioned problems, the optimal $\alpha$ gets uncomfortably close to limit of divergence. This, however, justifies the heuristic of choosing the largest stepsize you can get away with. 
   </p>
   <p>
   Notice that the ratio $\lambda_n/\lambda_1$ determines the convergence rate of the problem. In fact, this ratio appears often enough that we give it a name, and a symbol - the condition number.
   $$
-  \mbox{condition number} := \kappa :=\frac{\lambda_n}{\lambda_1}
+  \text{condition number} := \kappa :=\frac{\lambda_n}{\lambda_1}
   $$
   The condition number means many things. It is a measure of how singular a matrix is. It is a measure of how robust $A^{-1}b$ is to perturbations in $b$. And in this context - the condition number gives us a measure of how poorly gradient descent will perform. A ratio of $1$ is ideal, giving convergence in one step (of course, the function is trivial). And larger the ratio, the slower gradient descent will be. The condition number is a direct measure of the amount of pathological curvature in a problem.
   </p>
@@ -304,12 +308,12 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   Linear Regression, conveniently a quadratic objective, provides a cartoon we need for understanding pathological curvature in deep learning. Let's do a quick refresher. In Linear Regression we fit $n$ features (the components of $z_i$) to observations $d_i$. Assume there are $m$ data points, stacked to form matrix $Z$. Then Linear Regression is
 
   $$
-  \mbox{minimize}\qquad \frac{1}{2}\sum_i^m (z_i^Tw - d_i)^2 = \tfrac{1}{2}\|Zw-d\|^2
+  \text{minimize}\qquad \frac{1}{2}\sum_i^m (z_i^Tw - d_i)^2 = \tfrac{1}{2}\|Zw-d\|^2
   $$
 
   which is equivalent to
   $$
-  \mbox{minimize}\qquad \tfrac{1}{2}w^{T}\underset{A}{\underbrace{Z^{T}Z}}w-\underset{b}{\underbrace{(Zd)}}^T w
+  \text{minimize}\qquad\tfrac{1}{2}w^{T}Z^{T}Zw-(Zd)^{T}w
   $$
 
 <!--   Now notice a surprising connection to unsupervised learning. The directions $q_i$ are exactly principle components of $Z$! And thus we arrive at a first conclusion
@@ -351,24 +355,24 @@ c1.control(0.018,0,numeric.dot(Ut,[1.7,2.1]))
   Consider polynomial regression. We begin with 1D data, $\xi_i$, and lift it to $n$ dimensional space via the feature map
 
   $$
-  \xi \mapsto (\xi^0, \xi^1, \dots, \xi^n-1).
+  \xi \mapsto (\xi^0, \xi^1, \ldots, \xi^{n-1}).
   $$
 
   To the human eye, these monomials look very much alike. $\xi^2$ resembles $\xi^4$, and $\xi^3$ resembles $\xi^5$. In fact, from a visual inspection of these curves, one might venture that beyond the fourth or so power, the polynomials cannot furnish any new information. Is this truly the case? We can disentangle the correlations by forming our data matrix $Z$,
 
   $$
   Z=\left(\begin{array}{ccccc}
-  1 & \xi_{1} & \xi_{1}^{2} & \dots & \xi_{1}^{n-1}\\
-  1 & \xi_{2} & \xi_{2}^{2} & \dots & \xi_{1}^{n-1}\\
+  1 & \xi_{1} & \xi_{1}^{2} & \ldots & \xi_{1}^{n-1}\\
+  1 & \xi_{2} & \xi_{2}^{2} & \ldots & \xi_{1}^{n-1}\\
   \vdots & \vdots & \vdots & \ddots & \vdots\\
-  1 & \xi_{m} & \xi_{m}^{2} & \dots & \xi_{m}^{n-1}
+  1 & \xi_{m} & \xi_{m}^{2} & \ldots & \xi_{m}^{n-1}
   \end{array}\right).
   $$
 
   and looking at the eigenvectors of $Z^TZ$, $Q$. Recall that $Q$ represent a rotation of $w$ space into $x$ space, which has the very special property that gradient descent acts independently on the features there. But $Q$ can also be interpreted as a data preprocessing operator. $Q$ decorrelates the data, since $(ZQ)^T(ZQ)$ is diagonal. Therefore it is seems sensible to visualize this rotation by performing the same transformation on the feature map, giving the "eigenfeaturemap"
 
   $$
-  \xi\mapsto Q[\xi^{0},\xi^{1}\dots,\xi^{n}].
+  \xi\mapsto Q[\xi^{0},\xi^{1}\ldots,\xi^{n}].
   $$
 
   </p>
@@ -410,11 +414,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   $$
   The matrix $L_G$ is the Laplacian matrix, and can be written explicitly as
   $$
-  [L_{G}]_{ij}=\begin{cases}
-  \mbox{degree of vertex $i$} & i=j\\
-  -1 & i\neq j,(i,j)\mbox{ or }(j,i)\in E\\
-  0 & \mbox{otherwise}
-  \end{cases}
+  [L_{G}]_{ij}=\begin{cases} \text{degree of vertex }i & i=j\\ -1 & i\neq j,(i,j)\text{ or }(j,i)\in E\\ 0 & \text{otherwise} \end{cases} 
   $$
   The study of Laplacians and their quadratic forms form a rich field of mathematics, which relate the linear algebraic properties of the matrix $L_G$ and the graph $G$. There is one pertinent fact relevant to this article. The conditioning of $L_G$ is directly connected to the connectivity of the graph. Small world graphs, like expanders and dense graphs, have excellent conditioning. Long, wiry graphs, like paths and grids, condition poorly. The reason for this will be clear in a moment.
   </p>
@@ -423,7 +423,7 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   Let us consider a toy example. On a grid of pixels let $G$ be the graph with vertices as pixels and edges connecting neighbouring pixels. Let $D$ be a set of a few distinguished vertices. Then we try to
 
   $$
-  \mbox{minimize} \qquad  \frac{1}{2} \sum_{i\in D} (w_i - 1)^2 + \frac{1}{2} \sum_{i,j\in E} (w_i - w_j)^2.
+  \text{minimize} \qquad  \frac{1}{2} \sum_{i\in D} (w_i - 1)^2 + \frac{1}{2} \sum_{i,j\in E} (w_i - w_j)^2.
   $$
 
   This is the colorization problem. The two sums in the function serve distinct purposes. The first is the colorizer - making the distinguished pixels closer to $1$ (our target color). And the second is a smoother, spreading out these colors in the pixels of the image. It is clear the optimal solution is the vector of all ones, and a simple inspection of the gradient iteration reveals we take a long time to get there. The gradient step, for each component, is some form of weighted average of the current value and its neighbors:
@@ -460,29 +460,29 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   Let's turn our attention back to momentum. Recall the momentum update is
 
   $$
-  \begin{align*}
+  \begin{aligned}
   z^{k+1}&=\beta z^{k}+\nabla f(w^{k})\\
   w^{k+1}&=w^{k}-\alpha z^{k+1}.
-  \end{align*}
+  \end{aligned}
   $$
 
   Since $\nabla f(w^k) = Ax - b$, the update is
 
   $$
-  \begin{align*}
+  \begin{aligned}
   z^{k+1}&=\beta z^{k}+ (Aw^{k}-b)\\
   w^{k+1}&=w^{k}-\alpha z^{k+1}
-  \end{align*}
+  \end{aligned}
   $$
 
   following <dt-cite key="o2015adaptive"></dt-cite>, we go through the same motions, with the change of variables $
   x^{k} = Q(w^{k} - w^\star)$ and $ y^{k} = Qz^{k}$ to yield the separable update rule
 
   $$
-  \begin{align*}
+  \begin{aligned}
   y_{i}^{k+1}&=\beta y_{i}^{k}+\lambda_{i}x_{i}^{k}\\
   x_{i}^{k+1}&=x_{i}^{k}-\alpha y_{i}^{k+1}.
-  \end{align*}
+  \end{aligned}
   $$
 
   In matrix form, we can write the update as
@@ -508,17 +508,16 @@ renderNN(function(i) {control.eigen(25-i)}, function(i) {control.poly(25-i)})
   \Bigg(\begin{array}{c}
   y_{i}^{k+1}\\
   x_{i}^{k+1}
-  \end{array}\Bigg)=\underset{R}{\underbrace{\left(\begin{array}{cc}
+  \end{array}\Bigg)=\left(\begin{array}{cc}
   \beta & \lambda_{i}\\
   -\alpha\beta & 1-\alpha\lambda_{i}
-  \end{array}\right)}}\left(\begin{array}{c}
+  \end{array}\right)\left(\begin{array}{c}
   y_{i}^{k}\\
   x_{i}^{k}
-  \end{array}\right) = 
-  R^{k+1}\left(\begin{array}{c}
+  \end{array}\right)=R^{k+1}\left(\begin{array}{c}
   x_{i}^{0}\\
   y_{i}^{0}
-  \end{array}\right).
+  \end{array}\right)
   $$
 
   We are almost there. We need a second trick. There are many ways of taking a matrix to the $k^{th}$ power. But for the $2 \times 2$ case there is an elegant and little known formula <dt-cite key="williamsnthpower"></dt-cite> in terms of the eigenvectors of $R$, $\sigma_1$ and $\sigma_2$. 
@@ -530,7 +529,7 @@ R^{k}=\begin{cases}
 \end{cases},\qquad R_{j}=\frac{R-\sigma_{j}I}{\sigma_{1}-\sigma_{2}}
   $$
 
-   This formula may be a lot to take in - let's not get bogged down in the details. It is sufficient to observe that the path of convergence depends strongly on the two eigenvalues of $R$, $\sigma_1, \sigma_2$. And since we need both $\sigma_1$ and $\sigma_2$ to go to 0, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 0$. By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) very distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
+   This formula may be a lot to take in, and let's not get bogged down in the details. It is sufficient to observe that our iterates depend on two, not one geometric series, which may be real or complex, $\sigma_1$ and $\sigma_2$. And since we need both $\sigma_1$ and $\sigma_2$ to converge, our convergence criteria is now $\max \{|\sigma_1|, |\sigma_2|\} < 1$. By plotting the graph of $\max \{|\sigma_1|, |\sigma_2|\}$, we see (as suggested by Bach <dt-cite key="flammarion2015averaging"></dt-cite>) distinct regions of the parameter space corresponding to a rich taxonomy of convergence behavior 
   </p>
   <div id = "momentum2D"></div>
   <script>renderMomentum(d3.select("#momentum2D"))</script> 
@@ -588,7 +587,7 @@ R^{k}=\begin{cases}
   \min_{\alpha,\beta}\max\left\{ \bigg\| \! \left(\begin{array}{cc}
   \beta & \lambda_{i}\\
   -\alpha\beta & 1-\lambda_{i}
-  \end{array}\right) \! \bigg\|,\dots,\bigg\| \! \left(\begin{array}{cc}
+  \end{array}\right) \! \bigg\|,\ldots,\bigg\| \! \left(\begin{array}{cc}
   \beta & \lambda_{n}\\
   -\alpha\beta & 1-\lambda_{n}
   \end{array}\right)\! \bigg\|\right\}.
@@ -662,11 +661,11 @@ R^{k}=\begin{cases}
   <p>
   To understand the limits of what we can do, we must first formally define the algorithmic space in which we are searching. Here's one possible definition. The observation we will make is that both Gradient Descent and momentum can be "unrolled". Indeed, since
   $$
-  \begin{align*}w^{1} & =w^{0}-\alpha\nabla f(w^{0})\\
+  \begin{aligned}w^{1} & =w^{0}-\alpha\nabla f(w^{0})\\
   w^{2} & =w^{1}-\alpha\nabla f(w^{1})=w^{0}-\alpha\nabla f(w^{1})-\alpha\nabla f(w^{0})\\
    & \vdots\\
   w^{k} & =w^{0}-\alpha\nabla f(w^{k-1})+\cdots+\alpha\nabla f(w^{0})
-  \end{align*}
+  \end{aligned}
   $$
   can write gradient descent as
 
@@ -683,13 +682,13 @@ R^{k}=\begin{cases}
   In fact, all manner of first order algorithms, including the Conjugate Gradient algorithm, AdaMax, Averaged Gradient and more can be written in (though not quite so neatly) this unrolled form. Therefore the class of algorithms for which
 
   $$
-  w^{k} = w^{0}+\sum_{i}^{k}\gamma_{i}^{k}\nabla f(w^{i}) \qquad \mbox{ for some $\gamma_{i}^{k}$}
+  w^{k} = w^{0}+\sum_{i}^{k}\gamma_{i}^{k}\nabla f(w^{i}) \qquad \text{ for some } \gamma_{i}^{k}
   $$
 
   is a superset of momentum, gradient descent and a whole bunch of other iterations you might dream up. This is what is assumed in Assumption 2.1.4 <dt-cite key="nesterov2013introductory"></dt-cite> of Nesterov. But let's push this even further, and expand this class to allow different step sizes for different directions.
 
   $$
-  w^{k}\in w^{0}+\sum_{i}^{k}\Gamma{i}^{k}\nabla f(w^{i}) \qquad \mbox{ for some diagonal matrix $\Gamma{i}^{k}$}.
+  w^{k}\in w^{0}+\sum_{i}^{k}\Gamma_{i}^{k}\nabla f(w^{i}) \qquad \text{ for some diagonal matrix } \Gamma{i}^{k} .
   $$
 
   This class of methods has now covers most of the popular algorithms for training neural networks, including Adam and Adagrad. We shall refer to this class of methods as "Linear First Order Methods". Now comes the Achille's heel of all methods of this kind.
@@ -788,23 +787,23 @@ R^{k}=\begin{cases}
 
   $$
 
-\begin{align*}
+\begin{aligned}
 w^{0} & =0\\
-w^{1} & =[w_{1}^{1},0,\dots,0]\\
-w^{2} & =[w_{1}^{1},w_{2}^{2},0,\dots,0]\\
+w^{1} & =[w_{1}^{1},0,\ldots,0]\\
+w^{2} & =[w_{1}^{1},w_{2}^{2},0,\ldots,0]\\
  & \vdots\\
-w^{k} & =[w_{1}^{k},w_{2}^{k},\dots,w_{k}^{k},0,\dots,0]
-\end{align*}
+w^{k} & =[w_{1}^{k},w_{2}^{k},\ldots,w_{k}^{k},0,\ldots,0]
+\end{aligned}
   $$  
   
   Think of this restriction as a "speed of light" of information transfer. Error signals will take at least $k$ steps to move from $w_0$ can propagate to $w_k$. We can therefore sum up the errors which can not have changed yet
 
   $$
-\begin{align*}
+\begin{aligned}
 \|w^{k}-w^{\star}\| & \geq\sum_{i=k+1}^{n}\!\!w_{i}^{\star}\\
  & =\sum_{i=k+1}^{n}\!\!\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^{i}\\
  & =\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^{k}\|w^{k}-w^{0}\|+\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^{n}
-\end{align*}
+\end{aligned}
   $$
 
   With the final term going to 0 as $n$ gets large. And there we have it - the lower bound, which no linear first order algorithm, not ADAM or AdaGrad or Conjugate Gradients, can do better than. 
@@ -857,10 +856,10 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
     The demo above suggests that $\beta$ is optimized when the eigenvalues of $R$, 
 
     $$
-  \begin{align*}
+  \begin{aligned}
   \sigma_{1} & =\tfrac{1}{2}\big(1+\beta-\alpha\lambda_{i}+\sqrt{(1+\beta+\alpha\lambda_{i})^{2}-4\beta}\big)\\
   \sigma_{2} & =\tfrac{1}{2}\big(1+\beta-\alpha\lambda_{i}-\sqrt{(1+\beta+\alpha\lambda_{i})^{2}-4\beta}\big)
-  \end{align*}
+  \end{aligned}
     $$
 
     are repeated, $\sigma_{1} = \sigma_{2}$. So setting the discriminant to 0, we get, for any choice of stepsize $\alpha$, 
@@ -871,10 +870,10 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
 
     Now we optimize for $\alpha$ the way we did before, to get
     $$
-  \begin{align*}
-  \mbox{ }\underset{\alpha}{\mbox{argmin}}\{\max_{i}\{1-\sqrt{\alpha_{i}\lambda_{i}}\}\} & =\left(\frac{2}{\sqrt{\lambda_{1}}+\sqrt{\lambda_{n}}}\right)^{2}.\\
-  \underset{\alpha}{\mbox{min}}\{\max_{i}\{1-\sqrt{\alpha_{i}\lambda_{i}}\}\} & =\frac{\sqrt{\lambda_{n}/\lambda_{1}}-1}{\sqrt{\lambda_{n}/\lambda_{1}}+1}
-  \end{align*}
+  \begin{aligned}
+  \text{ }\underset{\alpha}{\text{argmin}}\{\max_{i}\{1-\sqrt{\alpha_{i}\lambda_{i}}\}\} & =\left(\frac{2}{\sqrt{\lambda_{1}}+\sqrt{\lambda_{n}}}\right)^{2}.\\
+  \underset{\alpha}{\text{min}}\{\max_{i}\{1-\sqrt{\alpha_{i}\lambda_{i}}\}\} & =\frac{\sqrt{\lambda_{n}/\lambda_{1}}-1}{\sqrt{\lambda_{n}/\lambda_{1}}+1}
+  \end{aligned}
     $$
   </dt-fn>-->
 
@@ -1070,11 +1069,13 @@ Geoff Hinton calls this phenomena, in a rather raunchy biological analogy, "coad
 }
 </script>
 
-<script>
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\$','\$']],
-    processEscapes: true
-  }
-});
-</script>
+  <script>
+      renderMathInElement(
+          document.body,
+          {
+              delimiters: [
+                  {left: "$$", right: "$$", display: true},
+                  {left: "$", right: "$", display: false},
+              ]
+          }
+      );  </script>
