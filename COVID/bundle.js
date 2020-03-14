@@ -22169,14 +22169,14 @@
     			t0 = space();
     			div0 = element("div");
     			t1 = space();
-    			set_style(span, "opacity", "0.5");
+    			set_style(span, "opacity", "0.3");
     			add_location(span, file$3, 813, 16, 29631);
     			attr_dev(div0, "class", "tick svelte-1f81k73");
     			set_style(div0, "position", "relative");
     			set_style(div0, "left", "0px");
     			set_style(div0, "top", "35px");
     			set_style(div0, "max-width", "130px");
-    			set_style(div0, "color", "#999");
+    			set_style(div0, "color", "#BBB");
     			set_style(div0, "background-color", "white");
     			set_style(div0, "padding-left", "4px");
     			set_style(div0, "padding-right", "4px");
@@ -22233,7 +22233,7 @@
     }
 
     function create_fragment$3(ctx) {
-    	var link, t0, h2, t2, p0, t4, p1, t5, b0, a0, t7, t8, b1, t10, span0, b2, t12, span1, b3, t14, span2, b4, t16, a1, t18, a2, t20, span3, t21, t22, div67, div50, div49, div0, b5, br0, t24, t25_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "", t25, t26, div7, t27, t28, div5, div1, t30, div4, div2, span4, t32, i0, t33_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][0])) + "", t33, t34, t35_value = (100*ctx.Iters[ctx.active_][0]).toFixed(2) + "", t35, t36, t37, div3, span5, t39, i1, t40_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t40, t41, t42, div6, t44, div14, updating_checked, t45, t46, div12, div8, t48, div11, div9, span6, t50, i2, t51_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][1])) + "", t51, t52, t53_value = (100*ctx.Iters[ctx.active_][1]).toFixed(2) + "", t53, t54, t55, div10, span7, t57, i3, t58_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t58, t59, t60, div13, t62, div21, updating_checked_1, t63, t64, div19, div15, t66, div18, div16, span8, t68, i4, t69_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][2])) + "", t69, t70, t71_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t71, t72, t73, div17, span9, t75, i5, t76_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t76, t77, t78, div20, t79, i6, t81, t82, div28, t83, t84, div26, div22, t86, div25, div23, span10, t88, i7, t89_value = formatNumber$1(ctx.Math.round(ctx.N* (1-ctx.Iters[ctx.active_][0]-ctx.Iters[ctx.active_][1]-ctx.Iters[ctx.active_][2])+ctx.I0 )) + "", t89, t90, t91_value = ((100*(1-ctx.Iters[ctx.active_][0]-ctx.Iters[ctx.active_][1]-ctx.Iters[ctx.active_][2]-ctx.I0/ctx.N))).toFixed(2) + "", t91, t92, t93, div24, span11, t95, i8, t96_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.get_d(ctx.active_)[3]+ctx.get_d(ctx.active_)[4]+ctx.get_d(ctx.active_)[5]+ctx.get_d(ctx.active_)[6]+ctx.get_d(ctx.active_)[7]) )) + "", t96, t97, t98, div27, t100, div34, updating_checked_2, t101, t102, div32, div29, t104, div31, div30, span12, t106, i9, t107_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.Iters[ctx.active_][7]+ctx.Iters[ctx.active_][8]) )) + "", t107, t108, t109_value = (100*(ctx.Iters[ctx.active_][7]+ctx.Iters[ctx.active_][8])).toFixed(2) + "", t109, t110, t111, div33, t113, div41, t114, updating_checked_3, t115, div39, div35, t117, div37, div36, span13, t119, i10, t120_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.Iters[ctx.active_][5]+ctx.Iters[ctx.active_][6]) )) + "", t120, t121, t122_value = (100*(ctx.Iters[ctx.active_][5]+ctx.Iters[ctx.active_][6])).toFixed(2) + "", t122, t123, t124, div38, span14, t126, i11, t127_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.get_d(ctx.active_)[5]+ctx.get_d(ctx.active_)[6]))) + "", t127, t128, t129, div40, t131, div48, t132, updating_checked_4, t133, div46, div42, t135, div45, div43, span15, t137, i12, t138_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][9])) + "", t138, t139, t140_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t140, t141, t142, div44, span16, t144, i13, t145_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t145, t146, t147, div47, t149, div66, div51, updating_checked_5, updating_active, t150, div52, t151, div53, t152, div64, div63, div54, span17, raw1_value = math_inline("\\mathcal{R}_t=" + (ctx.R0*ctx.InterventionAmt).toFixed(2) ) + "", t153, t154, show_if = ctx.xScaleTime(ctx.InterventionTime) >= 100, t155, div59, div58, div56, div55, t156, t157_value = format("d")(ctx.InterventionTime) + "", t157, t158, br1, t159, div57, t160_value = (ctx.InterventionAmt).toFixed(2) + "", t160, t161, input0, t162, div62, div60, t164, span18, div61, t166, div65, t167, div107, div70, div68, t169, div69, t171, div106, div76, div71, t173, div72, t174, br2, t175, div73, t176_value = format(",")(ctx.Math.round(ctx.N)) + "", t176, t177, input1, t178, div74, t179, br3, t180, div75, t181, t182, input2, t183, div81, div79, div77, t184, html_tag, raw2_value = math_inline("\\mathcal{R}_0") + "", t185, div78, t186, br4, t187, div80, t188, t189, input3, t190, div87, div82, t192, div83, t193, html_tag_1, raw3_value = math_inline("T^{-1}_{\\text{inc}}") + "", t194, br5, t195, div84, t196_value = (ctx.D_incbation).toFixed(2) + "", t196, t197, t198, input4, t199, div85, t200, html_tag_2, raw4_value = math_inline("T^{-1}_{\\text{inf}}") + "", t201, br6, t202, div86, t203, t204, t205, input5, t206, div93, div88, t208, div89, t209, br7, t210, div90, t211_value = (ctx.CFR*100).toFixed(2) + "", t211, t212, t213, input6, t214, div91, t215, br8, t216, div92, t217, t218, t219, input7, input7_min_value, t220, div99, div94, t222, div95, t223, br9, t224, div96, t225, t226, t227, input8, t228, div97, t229, br10, t230, div98, t231, t232, t233, input9, t234, div105, div100, t236, div101, t237, br11, t238, div102, t239_value = (ctx.P_SEVERE*100).toFixed(2) + "", t239, t240, t241, input10, t242, div103, t243, br12, t244, div104, t245, t246, t247, input11, t248, p2, t249, t250_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "", t250, t251, a3, t253, input12, t254, t255_value = ((1-(ctx.Math.pow(1 - (ctx.Iters[ctx.active_][2])*(0.45/100), ctx.p_num_ind)))*100).toFixed(5) + "", t255, t256, a4, t258, t259, p3, t261, div108, table, tr0, th0, t262, th1, t264, th2, t265, br13, t266, html_tag_3, raw5_value = math_inline("\\mathcal{R}_0") + "", t267, th3, t268, br14, t269, html_tag_4, raw6_value = math_inline("T^{-1}_{\\text{inc}}") + "", t270, t271, th4, t272, br15, t273, html_tag_5, raw7_value = math_inline("T^{-1}_{\\text{inf}}") + "", t274, t275, tr1, td0, a5, t277, td1, t279, td2, t281, td3, t283, td4, t285, tr2, td5, a6, t287, td6, t289, td7, t291, td8, t293, td9, t295, tr3, td10, a7, t297, td11, t299, td12, t301, td13, t303, td14, t305, tr4, td15, a8, t307, td16, t309, td17, t311, td18, t312, td19, t313, tr5, td20, a9, t315, td21, t317, td22, t319, td23, t321, td24, t322, tr6, td25, a10, t324, td26, t326, td27, t328, td28, t330, td29, t332, tr7, td30, a11, t334, td31, t336, td32, t338, td33, t340, td34, t342, tr8, td35, a12, t344, td36, t346, td37, t347, td38, t349, td39, t350, tr9, td40, a13, t352, td41, t354, td42, t356, td43, t357, td44, t358, tr10, td45, a14, t360, td46, t362, td47, t363, td48, t365, td49, t367, td50, t368, tr11, td51, a15, t370, td52, t372, td53, t374, td54, t375, td55, t376, p4, t377, a16, t379, a17, t381, t382, p5, t383, a18, t385, t386, p6, b6, br16, t388, html_tag_6, raw8_value = math_inline("I,R") + "", t389, i14, t391, i15, t393, i16, t395, t396, p7, b7, br17, t398, a19, t400, a20, t402, t403, div111, div110, div109, t405, form, textarea, current, dispose;
+    	var link, t0, h2, t2, p0, t4, p1, t5, b0, a0, t7, t8, b1, t10, span0, b2, t12, span1, b3, t14, span2, b4, t16, a1, t18, a2, t20, span3, t21, t22, div67, div50, div49, div0, b5, br0, t24, t25_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "", t25, t26, div7, t27, t28, div5, div1, t30, div4, div2, span4, t32, i0, t33_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][0])) + "", t33, t34, t35_value = (100*ctx.Iters[ctx.active_][0]).toFixed(2) + "", t35, t36, t37, div3, span5, t39, i1, t40_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t40, t41, t42, div6, t44, div14, updating_checked, t45, t46, div12, div8, t48, div11, div9, span6, t50, i2, t51_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][1])) + "", t51, t52, t53_value = (100*ctx.Iters[ctx.active_][1]).toFixed(2) + "", t53, t54, t55, div10, span7, t57, i3, t58_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t58, t59, t60, div13, t62, div21, updating_checked_1, t63, t64, div19, div15, t66, div18, div16, span8, t68, i4, t69_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][2])) + "", t69, t70, t71_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t71, t72, t73, div17, span9, t75, i5, t76_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t76, t77, t78, div20, t79, i6, t81, t82, div28, t83, t84, div26, div22, t86, div25, div23, span10, t88, i7, t89_value = formatNumber$1(ctx.Math.round(ctx.N* (1-ctx.Iters[ctx.active_][0]-ctx.Iters[ctx.active_][1]-ctx.Iters[ctx.active_][2])+ctx.I0 )) + "", t89, t90, t91_value = ((100*(1-ctx.Iters[ctx.active_][0]-ctx.Iters[ctx.active_][1]-ctx.Iters[ctx.active_][2]-ctx.I0/ctx.N))).toFixed(2) + "", t91, t92, t93, div24, span11, t95, i8, t96_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.get_d(ctx.active_)[3]+ctx.get_d(ctx.active_)[4]+ctx.get_d(ctx.active_)[5]+ctx.get_d(ctx.active_)[6]+ctx.get_d(ctx.active_)[7]) )) + "", t96, t97, t98, div27, t100, div34, updating_checked_2, t101, t102, div32, div29, t104, div31, div30, span12, t106, i9, t107_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.Iters[ctx.active_][7]+ctx.Iters[ctx.active_][8]) )) + "", t107, t108, t109_value = (100*(ctx.Iters[ctx.active_][7]+ctx.Iters[ctx.active_][8])).toFixed(2) + "", t109, t110, t111, div33, t113, div41, t114, updating_checked_3, t115, div39, div35, t117, div37, div36, span13, t119, i10, t120_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.Iters[ctx.active_][5]+ctx.Iters[ctx.active_][6]) )) + "", t120, t121, t122_value = (100*(ctx.Iters[ctx.active_][5]+ctx.Iters[ctx.active_][6])).toFixed(2) + "", t122, t123, t124, div38, span14, t126, i11, t127_value = formatNumber$1(ctx.Math.round(ctx.N*(ctx.get_d(ctx.active_)[5]+ctx.get_d(ctx.active_)[6]))) + "", t127, t128, t129, div40, t131, div48, t132, updating_checked_4, t133, div46, div42, t135, div45, div43, span15, t137, i12, t138_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.Iters[ctx.active_][9])) + "", t138, t139, t140_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t140, t141, t142, div44, span16, t144, i13, t145_value = formatNumber$1(ctx.Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t145, t146, t147, div47, t149, div66, div51, updating_checked_5, updating_active, t150, div52, t151, div53, t152, div64, div63, div54, span17, raw1_value = math_inline("\\mathcal{R}_t=" + (ctx.R0*ctx.InterventionAmt).toFixed(2) ) + "", t153, t154, show_if = ctx.xScaleTime(ctx.InterventionTime) >= 100, t155, div59, div58, div56, div55, t156, t157_value = format("d")(ctx.InterventionTime) + "", t157, t158, br1, t159, div57, t160_value = (ctx.InterventionAmt).toFixed(2) + "", t160, t161, input0, t162, div62, div60, t164, span18, div61, t166, div65, t167, div107, div70, div68, t169, div69, t171, div106, div76, div71, t173, div72, t174, br2, t175, div73, t176_value = format(",")(ctx.Math.round(ctx.N)) + "", t176, t177, input1, t178, div74, t179, br3, t180, div75, t181, t182, input2, t183, div81, div79, div77, t184, html_tag, raw2_value = math_inline("\\mathcal{R}_0") + "", t185, div78, t186, br4, t187, div80, t188, t189, input3, t190, div87, div82, t192, div83, t193, html_tag_1, raw3_value = math_inline("T^{-1}_{\\text{inc}}") + "", t194, br5, t195, div84, t196_value = (ctx.D_incbation).toFixed(2) + "", t196, t197, t198, input4, t199, div85, t200, html_tag_2, raw4_value = math_inline("T^{-1}_{\\text{inf}}") + "", t201, br6, t202, div86, t203, t204, t205, input5, t206, div93, div88, t208, div89, t209, br7, t210, div90, t211_value = (ctx.CFR*100).toFixed(2) + "", t211, t212, t213, input6, t214, div91, t215, br8, t216, div92, t217, t218, t219, input7, input7_min_value, t220, div99, div94, t222, div95, t223, br9, t224, div96, t225, t226, t227, input8, t228, div97, t229, br10, t230, div98, t231, t232, t233, input9, t234, div105, div100, t236, div101, t237, br11, t238, div102, t239_value = (ctx.P_SEVERE*100).toFixed(2) + "", t239, t240, t241, input10, t242, div103, t243, br12, t244, div104, t245, t246, t247, input11, t248, p2, t249, t250_value = ctx.Math.round(ctx.indexToTime(ctx.active_)) + "", t250, t251, a3, t253, input12, t254, t255_value = ((1-(ctx.Math.pow(1 - (ctx.Iters[ctx.active_][2])*(0.45/100), ctx.p_num_ind)))*100).toFixed(5) + "", t255, t256, a4, t258, t259, p3, t261, div108, table, tr0, th0, t262, th1, t264, th2, t265, br13, t266, html_tag_3, raw5_value = math_inline("\\mathcal{R}_0") + "", t267, th3, t268, br14, t269, html_tag_4, raw6_value = math_inline("T^{-1}_{\\text{inc}}") + "", t270, t271, th4, t272, br15, t273, html_tag_5, raw7_value = math_inline("T^{-1}_{\\text{inf}}") + "", t274, t275, tr1, td0, a5, t277, td1, t279, td2, t281, td3, t283, td4, t285, tr2, td5, a6, t287, td6, t289, td7, t291, td8, t293, td9, t295, tr3, td10, a7, t297, td11, t299, td12, t301, td13, t303, td14, t305, tr4, td15, a8, t307, td16, t309, td17, t311, td18, t312, td19, t313, tr5, td20, a9, t315, td21, t317, td22, t319, td23, t321, td24, t322, tr6, td25, a10, t324, td26, t326, td27, t328, td28, t330, td29, t332, tr7, td30, a11, t334, td31, t336, td32, t338, td33, t340, td34, t342, tr8, td35, a12, t344, td36, t346, td37, t347, td38, t349, td39, t350, tr9, td40, a13, t352, td41, t354, td42, t356, td43, t357, td44, t358, tr10, td45, a14, t360, td46, t362, td47, t363, td48, t365, td49, t367, td50, t368, tr11, td51, a15, t370, td52, t372, td53, t374, td54, t375, td55, t376, p4, t377, a16, t379, a17, t381, t382, p5, t383, a18, t385, t386, p6, b6, br16, t388, html_tag_6, raw8_value = math_inline("I,R") + "", t389, i14, t391, i15, t393, i16, t395, t396, p7, b7, br17, t398, a19, t400, a20, t402, a21, t404, a22, t406, t407, div111, div110, div109, t409, form, textarea, current, dispose;
 
     	var checkbox0 = new Checkbox({
     		props: { color: "#CCC" },
@@ -23121,13 +23121,19 @@
     			t400 = text(" for RK4 Integrator. ");
     			a20 = element("a");
     			a20.textContent = "Chris Olah";
-    			t402 = text(" for wonderful feedback. Charlie Huang for context and discussion.");
-    			t403 = space();
+    			t402 = text(", ");
+    			a21 = element("a");
+    			a21.textContent = "Shan Carter";
+    			t404 = text(" and ");
+    			a22 = element("a");
+    			a22.textContent = "Ludwig Schubert";
+    			t406 = text(" wonderful feedback. Charlie Huang for context and discussion.");
+    			t407 = space();
     			div111 = element("div");
     			div110 = element("div");
     			div109 = element("div");
     			div109.textContent = "Export parameters:";
-    			t405 = space();
+    			t409 = space();
     			form = element("form");
     			textarea = element("textarea");
     			attr_dev(link, "rel", "stylesheet");
@@ -23957,10 +23963,16 @@
     			attr_dev(a20, "href", "https://twitter.com/ch402");
     			attr_dev(a20, "class", "svelte-1f81k73");
     			add_location(a20, file$3, 1030, 82, 39579);
+    			attr_dev(a21, "href", "https://twitter.com/shancarter");
+    			attr_dev(a21, "class", "svelte-1f81k73");
+    			add_location(a21, file$3, 1030, 134, 39631);
+    			attr_dev(a22, "href", "https://twitter.com/ludwigschubert");
+    			attr_dev(a22, "class", "svelte-1f81k73");
+    			add_location(a22, file$3, 1031, 9, 39693);
     			attr_dev(p7, "class", "center svelte-1f81k73");
     			add_location(p7, file$3, 1028, 0, 39446);
     			attr_dev(div109, "class", "legendtext svelte-1f81k73");
-    			add_location(div109, file$3, 1037, 4, 39837);
+    			add_location(div109, file$3, 1039, 4, 39962);
     			attr_dev(textarea, "type", "textarea");
     			attr_dev(textarea, "rows", "1");
     			attr_dev(textarea, "cols", "5000");
@@ -23971,15 +23983,15 @@
     			attr_dev(textarea, "id", "fname");
     			attr_dev(textarea, "name", "fname");
     			textarea.value = ctx.state;
-    			add_location(textarea, file$3, 1039, 6, 39903);
-    			add_location(form, file$3, 1038, 4, 39890);
+    			add_location(textarea, file$3, 1041, 6, 40028);
+    			add_location(form, file$3, 1040, 4, 40015);
     			attr_dev(div110, "class", "center svelte-1f81k73");
     			set_style(div110, "padding", "10px");
     			set_style(div110, "margin-top", "3px");
     			set_style(div110, "width", "925px");
-    			add_location(div110, file$3, 1036, 2, 39759);
+    			add_location(div110, file$3, 1038, 2, 39884);
     			set_style(div111, "margin-bottom", "30px");
-    			add_location(div111, file$3, 1034, 0, 39722);
+    			add_location(div111, file$3, 1036, 0, 39847);
 
     			dispose = [
     				listen_dev(div57, "mousedown", ctx.lock_yaxis),
@@ -24673,11 +24685,15 @@
     			append_dev(p7, t400);
     			append_dev(p7, a20);
     			append_dev(p7, t402);
-    			insert_dev(target, t403, anchor);
+    			append_dev(p7, a21);
+    			append_dev(p7, t404);
+    			append_dev(p7, a22);
+    			append_dev(p7, t406);
+    			insert_dev(target, t407, anchor);
     			insert_dev(target, div111, anchor);
     			append_dev(div111, div110);
     			append_dev(div110, div109);
-    			append_dev(div110, t405);
+    			append_dev(div110, t409);
     			append_dev(div110, form);
     			append_dev(form, textarea);
     			current = true;
@@ -25101,7 +25117,7 @@
     				detach_dev(p6);
     				detach_dev(t396);
     				detach_dev(p7);
-    				detach_dev(t403);
+    				detach_dev(t407);
     				detach_dev(div111);
     			}
 
