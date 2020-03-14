@@ -23525,7 +23525,7 @@
     			add_location(div65, file$3, 790, 6, 27790);
     			set_style(div66, "flex", "0 0 890px");
     			set_style(div66, "width", "890px");
-    			set_style(div66, "height", "" + (height$1+118) + "px");
+    			set_style(div66, "height", "" + (height$1+128) + "px");
     			set_style(div66, "position", "relative");
     			add_location(div66, file$3, 706, 2, 24082);
     			attr_dev(div67, "class", "chart svelte-5n6n5");
