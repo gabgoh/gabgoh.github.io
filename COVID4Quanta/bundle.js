@@ -25426,7 +25426,7 @@
     		Sol: ctx.Sol,
     		N: ctx.N,
     		height: 280,
-    		width: 350
+    		width: 345
     	};
     	if (ctx.mobile !== void 0) {
     		seir_props.mobile = ctx.mobile;
@@ -25501,29 +25501,30 @@
     			div4 = element("div");
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=370");
-    			add_location(meta, file$7, 263, 2, 8265);
+    			add_location(meta, file$7, 263, 2, 8264);
     			set_style(div0, "position", "relative");
     			set_style(div0, "grid-area", "top");
     			set_style(div0, "left", "-20px");
-    			add_location(div0, file$7, 266, 4, 8362);
+    			add_location(div0, file$7, 266, 4, 8378);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
-    			add_location(div1, file$7, 279, 4, 8701);
+    			add_location(div1, file$7, 279, 4, 8717);
     			set_style(div2, "grid-area", "left-bottom");
     			set_style(div2, "padding", "2px 4px 0px 0px");
-    			add_location(div2, file$7, 281, 4, 8785);
-    			attr_dev(div3, "class", "legendtext svelte-1bwkjxt");
+    			add_location(div2, file$7, 281, 4, 8801);
+    			attr_dev(div3, "class", "legendtext svelte-rkdkx6");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "grid-area", "right-bottom");
-    			add_location(div3, file$7, 293, 4, 9183);
+    			add_location(div3, file$7, 293, 4, 9199);
     			set_style(div4, "grid-area", "line2");
     			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
-    			add_location(div4, file$7, 297, 4, 9386);
-    			attr_dev(div5, "class", "chartmobile svelte-1bwkjxt");
+    			add_location(div4, file$7, 297, 4, 9402);
+    			attr_dev(div5, "class", "chartmobile svelte-rkdkx6");
     			set_style(div5, "width", "360px");
-    			add_location(div5, file$7, 264, 2, 8310);
+    			set_style(div5, "overflow", "hidden");
+    			add_location(div5, file$7, 264, 2, 8309);
     		},
 
     		m: function mount(target, anchor) {
@@ -25768,28 +25769,28 @@
     			selector.$$.fragment.c();
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=980");
-    			add_location(meta, file$7, 219, 2, 7041);
+    			add_location(meta, file$7, 219, 2, 7040);
     			set_style(div0, "margin-right", "5px");
     			set_style(div0, "grid-area", "left-top");
-    			add_location(div0, file$7, 222, 4, 7132);
+    			add_location(div0, file$7, 222, 4, 7131);
     			set_style(div1, "margin-right", "5px");
     			set_style(div1, "grid-area", "left-bottom");
-    			add_location(div1, file$7, 235, 4, 7492);
+    			add_location(div1, file$7, 235, 4, 7491);
     			set_style(div2, "border-right", "2.5px dotted rgb(200,200,200)");
     			set_style(div2, "grid-area", "vline");
-    			add_location(div2, file$7, 245, 4, 7771);
-    			attr_dev(div3, "class", "legendtext svelte-1bwkjxt");
+    			add_location(div2, file$7, 245, 4, 7770);
+    			attr_dev(div3, "class", "legendtext svelte-rkdkx6");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "20px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "padding", "10px");
-    			add_location(div3, file$7, 253, 6, 8065);
+    			add_location(div3, file$7, 253, 6, 8064);
     			set_style(div4, "position", "relative");
     			set_style(div4, "grid-area", "right");
-    			add_location(div4, file$7, 249, 4, 7863);
-    			attr_dev(div5, "class", "chart svelte-1bwkjxt");
+    			add_location(div4, file$7, 249, 4, 7862);
+    			attr_dev(div5, "class", "chart svelte-rkdkx6");
     			set_style(div5, "width", "980px");
-    			add_location(div5, file$7, 220, 2, 7086);
+    			add_location(div5, file$7, 220, 2, 7085);
     		},
 
     		m: function mount(target, anchor) {
@@ -25932,9 +25933,9 @@
     			if_block_anchor = empty();
     			attr_dev(input, "type", "checkbox");
     			input.checked = true;
-    			add_location(input, file$7, 215, 0, 6945);
+    			add_location(input, file$7, 215, 0, 6944);
     			set_style(div, "padding", "5px");
-    			add_location(div, file$7, 214, 0, 6918);
+    			add_location(div, file$7, 214, 0, 6917);
 
     			dispose = [
     				listen_dev(window, "resize", ctx.onwindowresize),
