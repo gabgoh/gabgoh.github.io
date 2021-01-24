@@ -25397,7 +25397,7 @@
 
     const file$7 = "src/App.svelte";
 
-    // (263:0) {:else}
+    // (262:0) {:else}
     function create_else_block$4(ctx) {
     	var meta, t0, div5, div0, updating_mobile, updating_OMInterventionAmt, updating_InterventionTime, updating_checked, updating_active, t1, div1, t2, div2, updating_checked_1, t3, div3, t4, div4, current;
 
@@ -25510,31 +25510,30 @@
     			t4 = space();
     			div4 = element("div");
     			attr_dev(meta, "name", "viewport");
-    			attr_dev(meta, "content", "width=371");
-    			add_location(meta, file$7, 263, 2, 8263);
+    			attr_dev(meta, "content", "width=381");
+    			add_location(meta, file$7, 262, 2, 8246);
     			set_style(div0, "position", "relative");
     			set_style(div0, "grid-area", "top");
     			set_style(div0, "left", "-20px");
-    			add_location(div0, file$7, 266, 4, 8372);
+    			add_location(div0, file$7, 265, 4, 8343);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
-    			add_location(div1, file$7, 279, 4, 8711);
+    			add_location(div1, file$7, 278, 4, 8682);
     			set_style(div2, "grid-area", "left-bottom");
     			set_style(div2, "padding", "2px 15px 0px 0px");
-    			add_location(div2, file$7, 281, 4, 8795);
-    			attr_dev(div3, "class", "legendtext svelte-1ebg68x");
+    			add_location(div2, file$7, 280, 4, 8766);
+    			attr_dev(div3, "class", "legendtext svelte-owwsho");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "grid-area", "right-bottom");
-    			add_location(div3, file$7, 293, 4, 9194);
+    			add_location(div3, file$7, 292, 4, 9165);
     			set_style(div4, "grid-area", "line2");
     			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
-    			add_location(div4, file$7, 297, 4, 9397);
-    			attr_dev(div5, "class", "chartmobile svelte-1ebg68x");
-    			set_style(div5, "width", "90%");
-    			set_style(div5, "margin", "10px");
-    			add_location(div5, file$7, 264, 2, 8308);
+    			add_location(div4, file$7, 296, 4, 9368);
+    			attr_dev(div5, "class", "chartmobile svelte-owwsho");
+    			set_style(div5, "width", "381px");
+    			add_location(div5, file$7, 263, 2, 8291);
     		},
 
     		m: function mount(target, anchor) {
@@ -25621,11 +25620,11 @@
     			destroy_component(selector);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$4.name, type: "else", source: "(263:0) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$4.name, type: "else", source: "(262:0) {:else}", ctx });
     	return block;
     }
 
-    // (220:0) {#if !mobile}
+    // (219:0) {#if !mobile}
     function create_if_block$4(ctx) {
     	var meta, t0, div5, div0, updating_checked, t1, div1, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, t2, div2, t3, div4, updating_OMInterventionAmt, updating_InterventionTime, updating_checked_1, updating_active, t4, div3, current;
 
@@ -25779,28 +25778,28 @@
     			selector.$$.fragment.c();
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=980");
-    			add_location(meta, file$7, 220, 2, 7041);
+    			add_location(meta, file$7, 219, 2, 7024);
     			set_style(div0, "margin-right", "5px");
     			set_style(div0, "grid-area", "left-top");
-    			add_location(div0, file$7, 223, 4, 7132);
+    			add_location(div0, file$7, 222, 4, 7115);
     			set_style(div1, "margin-right", "5px");
     			set_style(div1, "grid-area", "left-bottom");
-    			add_location(div1, file$7, 236, 4, 7492);
+    			add_location(div1, file$7, 235, 4, 7475);
     			set_style(div2, "border-right", "2.5px dotted rgb(200,200,200)");
     			set_style(div2, "grid-area", "vline");
-    			add_location(div2, file$7, 246, 4, 7771);
-    			attr_dev(div3, "class", "legendtext svelte-1ebg68x");
+    			add_location(div2, file$7, 245, 4, 7754);
+    			attr_dev(div3, "class", "legendtext svelte-owwsho");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "padding", "10px");
-    			add_location(div3, file$7, 254, 6, 8065);
+    			add_location(div3, file$7, 253, 6, 8048);
     			set_style(div4, "position", "relative");
     			set_style(div4, "grid-area", "right");
-    			add_location(div4, file$7, 250, 4, 7863);
-    			attr_dev(div5, "class", "chart svelte-1ebg68x");
+    			add_location(div4, file$7, 249, 4, 7846);
+    			attr_dev(div5, "class", "chart svelte-owwsho");
     			set_style(div5, "width", "980px");
-    			add_location(div5, file$7, 221, 2, 7086);
+    			add_location(div5, file$7, 220, 2, 7069);
     		},
 
     		m: function mount(target, anchor) {
@@ -25908,7 +25907,7 @@
     			destroy_component(selector);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(220:0) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(219:0) {#if !mobile}", ctx });
     	return block;
     }
 
@@ -25943,9 +25942,9 @@
     			if_block_anchor = empty();
     			attr_dev(input, "type", "checkbox");
     			input.checked = true;
-    			add_location(input, file$7, 216, 0, 6945);
+    			add_location(input, file$7, 215, 0, 6928);
     			set_style(div, "padding", "5px");
-    			add_location(div, file$7, 215, 0, 6918);
+    			add_location(div, file$7, 214, 0, 6901);
 
     			dispose = [
     				listen_dev(window, "resize", ctx.onwindowresize),
