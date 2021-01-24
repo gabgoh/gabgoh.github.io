@@ -22,6 +22,9 @@
     function safe_not_equal(a, b) {
         return a != a ? b == b : a !== b || ((a && typeof a === 'object') || typeof a === 'function');
     }
+    function null_to_empty(value) {
+        return value == null ? '' : value;
+    }
 
     function append(target, node) {
         target.appendChild(node);
@@ -5106,7 +5109,7 @@
 
     const file$4 = "src/SEIRPanel.svelte";
 
-    // (129:0) {#if !mobile}
+    // (144:0) {#if !mobile}
     function create_if_block_3(ctx) {
     	var div, t0, t1_value = Math.round(ctx.indexToTime(ctx.active_)) + "", t1;
 
@@ -5115,7 +5118,7 @@
     			div = element("div");
     			t0 = text("DAY ");
     			t1 = text(t1_value);
-    			attr_dev(div, "class", "title svelte-plbp0p");
+    			attr_dev(div, "class", "title svelte-z1j36i");
     			set_style(div, "margin", "auto");
     			set_style(div, "width", "100%");
     			set_style(div, "margin-right", "20px");
@@ -5127,7 +5130,7 @@
     			set_style(div, "text-align", "center");
     			set_style(div, "background-color", "rgb(82, 132, 247)");
     			set_style(div, "margin-bottom", "20px");
-    			add_location(div, file$4, 129, 0, 2279);
+    			add_location(div, file$4, 144, 0, 2586);
     		},
 
     		m: function mount(target, anchor) {
@@ -5148,11 +5151,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_3.name, type: "if", source: "(129:0) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_3.name, type: "if", source: "(144:0) {#if !mobile}", ctx });
     	return block;
     }
 
-    // (139:4) {:else}
+    // (154:4) {:else}
     function create_else_block_1(ctx) {
     	var div;
 
@@ -5160,8 +5163,8 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population not immune";
-    			attr_dev(div, "class", "legendtext svelte-plbp0p");
-    			add_location(div, file$4, 139, 6, 2818);
+    			attr_dev(div, "class", "legendtext svelte-z1j36i");
+    			add_location(div, file$4, 154, 6, 3163);
     		},
 
     		m: function mount(target, anchor) {
@@ -5174,11 +5177,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block_1.name, type: "else", source: "(139:4) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block_1.name, type: "else", source: "(154:4) {:else}", ctx });
     	return block;
     }
 
-    // (137:4) {#if !mobile}
+    // (152:4) {#if !mobile}
     function create_if_block_2$1(ctx) {
     	var div;
 
@@ -5186,8 +5189,8 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population not immune to the virus";
-    			attr_dev(div, "class", "legendtext svelte-plbp0p");
-    			add_location(div, file$4, 137, 6, 2735);
+    			attr_dev(div, "class", "legendtext svelte-z1j36i");
+    			add_location(div, file$4, 152, 6, 3080);
     		},
 
     		m: function mount(target, anchor) {
@@ -5200,11 +5203,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2$1.name, type: "if", source: "(137:4) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2$1.name, type: "if", source: "(152:4) {#if !mobile}", ctx });
     	return block;
     }
 
-    // (163:4) {:else}
+    // (178:4) {:else}
     function create_else_block$1(ctx) {
     	var div;
 
@@ -5212,8 +5215,8 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Incubating the virus";
-    			attr_dev(div, "class", "legendtext svelte-plbp0p");
-    			add_location(div, file$4, 163, 6, 3769);
+    			attr_dev(div, "class", "legendtext svelte-z1j36i");
+    			add_location(div, file$4, 178, 6, 4114);
     		},
 
     		m: function mount(target, anchor) {
@@ -5226,11 +5229,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$1.name, type: "else", source: "(163:4) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$1.name, type: "else", source: "(178:4) {:else}", ctx });
     	return block;
     }
 
-    // (161:4) {#if !mobile}
+    // (176:4) {#if !mobile}
     function create_if_block_1$1(ctx) {
     	var div;
 
@@ -5238,8 +5241,8 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population incubating the virus";
-    			attr_dev(div, "class", "legendtext svelte-plbp0p");
-    			add_location(div, file$4, 161, 6, 3689);
+    			attr_dev(div, "class", "legendtext svelte-z1j36i");
+    			add_location(div, file$4, 176, 6, 4034);
     		},
 
     		m: function mount(target, anchor) {
@@ -5252,11 +5255,11 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1$1.name, type: "if", source: "(161:4) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1$1.name, type: "if", source: "(176:4) {#if !mobile}", ctx });
     	return block;
     }
 
-    // (186:4) {#if !mobile}
+    // (201:4) {#if !mobile}
     function create_if_block$1(ctx) {
     	var div;
 
@@ -5264,8 +5267,8 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population that can transmit the virus";
-    			attr_dev(div, "class", "legendtext svelte-plbp0p");
-    			add_location(div, file$4, 186, 6, 4656);
+    			attr_dev(div, "class", "legendtext svelte-z1j36i");
+    			add_location(div, file$4, 201, 6, 5001);
     		},
 
     		m: function mount(target, anchor) {
@@ -5278,12 +5281,12 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$1.name, type: "if", source: "(186:4) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$1.name, type: "if", source: "(201:4) {#if !mobile}", ctx });
     	return block;
     }
 
     function create_fragment$4(ctx) {
-    	var t0, div33, div1, div0, t2, t3, div2, span0, t4, div7, div6, div3, span1, b0, t5_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "", t5, t6, t7, t8_value = format(".3r")(100*ctx.Iters[ctx.active_][0]) + "", t8, t9, t10, div4, span2, t11_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t11, t12, t13, div5, t14, div8, t15, div10, div9, t17, t18, div11, span3, updating_checked, t19, div16, div15, div12, i0, span4, b1, t20_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "", t20, t21, t22, t23_value = format(".1%")(ctx.Iters[ctx.active_][1]) + "", t23, t24, t25, div13, span5, t26_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t26, t27, t28, div14, t29, div17, t30, div19, div18, t32, t33, div20, span6, updating_checked_1, t34, div24, div23, div21, span7, b2, t35_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "", t35, t36, t37, t38_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t38, t39, t40, div22, span8, t41_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t41, t42, t43, div25, t44, div27, div26, t46, div28, span9, updating_checked_2, t47, div32, div31, div29, span10, b3, i1, t48_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "", t48, t49, t50, t51_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t51, t52, t53, div30, span11, t54_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t54, t55, current;
+    	var t0, div33, div1, div0, t2, t3, div2, span0, t4, div7, div6, div3, span1, b0, t5_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][0]/1000) + "", t5, t6, t7, t8_value = format(".3r")(100*ctx.Iters[ctx.active_][0]) + "", t8, t9, t10, div4, span2, t11_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[0])) + "", t11, t12, t13, div5, t14, div8, t15, div10, div9, t17, t18, div11, span3, updating_checked, t19, div16, div15, div12, i0, span4, b1, t20_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][1]/1000) + "", t20, t21, t22, t23_value = format(".1%")(ctx.Iters[ctx.active_][1]) + "", t23, t24, t25, div13, span5, t26_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[1])) + "", t26, t27, t28, div14, t29, div17, t30, div19, div18, t32, t33, div20, span6, updating_checked_1, t34, div24, div23, div21, span7, b2, t35_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][2]/1000) + "", t35, t36, t37, t38_value = (100*ctx.Iters[ctx.active_][2]).toFixed(2) + "", t38, t39, t40, div22, span8, t41_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[2])) + "", t41, t42, t43, div25, t44, div27, div26, t46, div28, span9, updating_checked_2, t47, div32, div31, div29, span10, b3, i1, t48_value = formatnumber(ctx.N*ctx.Iters[ctx.active_][9]/1000) + "", t48, t49, t50, t51_value = (100*ctx.Iters[ctx.active_][9]).toFixed(2) + "", t51, t52, t53, div30, span11, t54_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "", t54, t55, div33_class_value, current;
 
     	var if_block0 = (!ctx.mobile) && create_if_block_3(ctx);
 
@@ -5476,116 +5479,116 @@
     			span11 = element("span");
     			t54 = text(t54_value);
     			t55 = text(" / day");
-    			attr_dev(div0, "class", "legendtitle svelte-plbp0p");
-    			add_location(div0, file$4, 135, 4, 2668);
-    			attr_dev(div1, "class", "x11 svelte-plbp0p");
+    			attr_dev(div0, "class", "legendtitle svelte-z1j36i");
+    			add_location(div0, file$4, 150, 4, 3013);
+    			attr_dev(div1, "class", "x11 svelte-z1j36i");
     			set_style(div1, "grid-area", "x11");
-    			add_location(div1, file$4, 134, 2, 2622);
-    			add_location(span0, file$4, 143, 4, 2937);
-    			attr_dev(div2, "class", "x12 svelte-plbp0p");
+    			add_location(div1, file$4, 149, 2, 2967);
+    			add_location(span0, file$4, 158, 4, 3282);
+    			attr_dev(div2, "class", "x12 svelte-z1j36i");
     			set_style(div2, "grid-area", "x12");
-    			add_location(div2, file$4, 142, 2, 2891);
-    			add_location(b0, file$4, 147, 60, 3172);
-    			attr_dev(span1, "class", "legendtitle svelte-plbp0p");
-    			add_location(span1, file$4, 147, 34, 3146);
-    			attr_dev(div3, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div3, file$4, 147, 6, 3118);
-    			attr_dev(span2, "class", "legendblue svelte-plbp0p");
-    			add_location(span2, file$4, 149, 34, 3342);
-    			attr_dev(div4, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div4, file$4, 149, 6, 3314);
+    			add_location(div2, file$4, 157, 2, 3236);
+    			add_location(b0, file$4, 162, 60, 3517);
+    			attr_dev(span1, "class", "legendtitle svelte-z1j36i");
+    			add_location(span1, file$4, 162, 34, 3491);
+    			attr_dev(div3, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div3, file$4, 162, 6, 3463);
+    			attr_dev(span2, "class", "legendblue svelte-z1j36i");
+    			add_location(span2, file$4, 164, 34, 3687);
+    			attr_dev(div4, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div4, file$4, 164, 6, 3659);
     			set_style(div5, "position", "absolute");
     			set_style(div5, "top", "19px");
-    			add_location(div5, file$4, 150, 6, 3441);
+    			add_location(div5, file$4, 165, 6, 3786);
     			set_style(div6, "padding-top", "2px");
     			set_style(div6, "padding-bottom", "1px");
-    			add_location(div6, file$4, 146, 4, 3060);
-    			attr_dev(div7, "class", "x13 svelte-plbp0p");
+    			add_location(div6, file$4, 161, 4, 3405);
+    			attr_dev(div7, "class", "x13 svelte-z1j36i");
     			set_style(div7, "position", "relative");
     			set_style(div7, "grid-area", "x13");
-    			add_location(div7, file$4, 145, 2, 2995);
-    			attr_dev(div8, "class", "line svelte-plbp0p");
+    			add_location(div7, file$4, 160, 2, 3340);
+    			attr_dev(div8, "class", "line svelte-z1j36i");
     			set_style(div8, "grid-area", "line1");
-    			add_location(div8, file$4, 156, 2, 3550);
-    			attr_dev(div9, "class", "legendtitle svelte-plbp0p");
-    			add_location(div9, file$4, 159, 4, 3626);
-    			attr_dev(div10, "class", "x21 svelte-plbp0p");
-    			add_location(div10, file$4, 158, 2, 3604);
-    			add_location(span3, file$4, 167, 4, 3863);
-    			attr_dev(div11, "class", "x22 svelte-plbp0p");
-    			add_location(div11, file$4, 166, 2, 3841);
-    			add_location(b1, file$4, 171, 63, 4111);
-    			attr_dev(span4, "class", "legendtitle svelte-plbp0p");
-    			add_location(span4, file$4, 171, 37, 4085);
-    			add_location(i0, file$4, 171, 34, 4082);
-    			attr_dev(div12, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div12, file$4, 171, 6, 4054);
-    			attr_dev(span5, "class", "legendblue svelte-plbp0p");
-    			add_location(span5, file$4, 173, 34, 4276);
-    			attr_dev(div13, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div13, file$4, 173, 6, 4248);
+    			add_location(div8, file$4, 171, 2, 3895);
+    			attr_dev(div9, "class", "legendtitle svelte-z1j36i");
+    			add_location(div9, file$4, 174, 4, 3971);
+    			attr_dev(div10, "class", "x21 svelte-z1j36i");
+    			add_location(div10, file$4, 173, 2, 3949);
+    			add_location(span3, file$4, 182, 4, 4208);
+    			attr_dev(div11, "class", "x22 svelte-z1j36i");
+    			add_location(div11, file$4, 181, 2, 4186);
+    			add_location(b1, file$4, 186, 63, 4456);
+    			attr_dev(span4, "class", "legendtitle svelte-z1j36i");
+    			add_location(span4, file$4, 186, 37, 4430);
+    			add_location(i0, file$4, 186, 34, 4427);
+    			attr_dev(div12, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div12, file$4, 186, 6, 4399);
+    			attr_dev(span5, "class", "legendblue svelte-z1j36i");
+    			add_location(span5, file$4, 188, 34, 4621);
+    			attr_dev(div13, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div13, file$4, 188, 6, 4593);
     			set_style(div14, "position", "absolute");
     			set_style(div14, "top", "19px");
-    			add_location(div14, file$4, 175, 6, 4405);
+    			add_location(div14, file$4, 190, 6, 4750);
     			set_style(div15, "position", "relative");
     			set_style(div15, "padding-top", "2px");
     			set_style(div15, "padding-bottom", "1px");
-    			add_location(div15, file$4, 170, 4, 3976);
-    			attr_dev(div16, "class", "x23 svelte-plbp0p");
-    			add_location(div16, file$4, 169, 2, 3954);
-    			attr_dev(div17, "class", "line svelte-plbp0p");
+    			add_location(div15, file$4, 185, 4, 4321);
+    			attr_dev(div16, "class", "x23 svelte-z1j36i");
+    			add_location(div16, file$4, 184, 2, 4299);
+    			attr_dev(div17, "class", "line svelte-z1j36i");
     			set_style(div17, "grid-area", "line2");
-    			add_location(div17, file$4, 181, 2, 4514);
-    			attr_dev(div18, "class", "legendtitle svelte-plbp0p");
-    			add_location(div18, file$4, 184, 4, 4590);
-    			attr_dev(div19, "class", "x31 svelte-plbp0p");
-    			add_location(div19, file$4, 183, 2, 4568);
-    			add_location(span6, file$4, 191, 4, 4769);
-    			attr_dev(div20, "class", "x32 svelte-plbp0p");
-    			add_location(div20, file$4, 190, 2, 4747);
-    			add_location(b2, file$4, 195, 60, 5014);
-    			attr_dev(span7, "class", "legendtitle svelte-plbp0p");
-    			add_location(span7, file$4, 195, 34, 4988);
-    			attr_dev(div21, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div21, file$4, 195, 6, 4960);
-    			attr_dev(span8, "class", "legendblue svelte-plbp0p");
-    			add_location(span8, file$4, 197, 34, 5182);
-    			attr_dev(div22, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div22, file$4, 197, 6, 5154);
+    			add_location(div17, file$4, 196, 2, 4859);
+    			attr_dev(div18, "class", "legendtitle svelte-z1j36i");
+    			add_location(div18, file$4, 199, 4, 4935);
+    			attr_dev(div19, "class", "x31 svelte-z1j36i");
+    			add_location(div19, file$4, 198, 2, 4913);
+    			add_location(span6, file$4, 206, 4, 5114);
+    			attr_dev(div20, "class", "x32 svelte-z1j36i");
+    			add_location(div20, file$4, 205, 2, 5092);
+    			add_location(b2, file$4, 210, 60, 5359);
+    			attr_dev(span7, "class", "legendtitle svelte-z1j36i");
+    			add_location(span7, file$4, 210, 34, 5333);
+    			attr_dev(div21, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div21, file$4, 210, 6, 5305);
+    			attr_dev(span8, "class", "legendblue svelte-z1j36i");
+    			add_location(span8, file$4, 212, 34, 5527);
+    			attr_dev(div22, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div22, file$4, 212, 6, 5499);
     			set_style(div23, "position", "relative");
     			set_style(div23, "padding-top", "2px");
     			set_style(div23, "padding-bottom", "1px");
-    			add_location(div23, file$4, 194, 4, 4882);
-    			attr_dev(div24, "class", "x33 svelte-plbp0p");
-    			add_location(div24, file$4, 193, 2, 4860);
-    			attr_dev(div25, "class", "line svelte-plbp0p");
+    			add_location(div23, file$4, 209, 4, 5227);
+    			attr_dev(div24, "class", "x33 svelte-z1j36i");
+    			add_location(div24, file$4, 208, 2, 5205);
+    			attr_dev(div25, "class", "line svelte-z1j36i");
     			set_style(div25, "grid-area", "line3");
-    			add_location(div25, file$4, 202, 2, 5328);
-    			attr_dev(div26, "class", "legendtitle svelte-plbp0p");
-    			add_location(div26, file$4, 205, 4, 5404);
-    			attr_dev(div27, "class", "x31 svelte-plbp0p");
-    			add_location(div27, file$4, 204, 2, 5382);
-    			add_location(span9, file$4, 208, 4, 5479);
-    			attr_dev(div28, "class", "x32 svelte-plbp0p");
-    			add_location(div28, file$4, 207, 2, 5457);
-    			add_location(i1, file$4, 212, 63, 5707);
-    			add_location(b3, file$4, 212, 60, 5704);
-    			attr_dev(span10, "class", "legendtitle svelte-plbp0p");
-    			add_location(span10, file$4, 212, 34, 5678);
-    			attr_dev(div29, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div29, file$4, 212, 6, 5650);
-    			attr_dev(span11, "class", "legendblue svelte-plbp0p");
-    			add_location(span11, file$4, 214, 34, 5876);
-    			attr_dev(div30, "class", "legendtextnum svelte-plbp0p");
-    			add_location(div30, file$4, 214, 6, 5848);
+    			add_location(div25, file$4, 217, 2, 5673);
+    			attr_dev(div26, "class", "legendtitle svelte-z1j36i");
+    			add_location(div26, file$4, 220, 4, 5749);
+    			attr_dev(div27, "class", "x31 svelte-z1j36i");
+    			add_location(div27, file$4, 219, 2, 5727);
+    			add_location(span9, file$4, 223, 4, 5824);
+    			attr_dev(div28, "class", "x32 svelte-z1j36i");
+    			add_location(div28, file$4, 222, 2, 5802);
+    			add_location(i1, file$4, 227, 63, 6052);
+    			add_location(b3, file$4, 227, 60, 6049);
+    			attr_dev(span10, "class", "legendtitle svelte-z1j36i");
+    			add_location(span10, file$4, 227, 34, 6023);
+    			attr_dev(div29, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div29, file$4, 227, 6, 5995);
+    			attr_dev(span11, "class", "legendblue svelte-z1j36i");
+    			add_location(span11, file$4, 229, 34, 6221);
+    			attr_dev(div30, "class", "legendtextnum svelte-z1j36i");
+    			add_location(div30, file$4, 229, 6, 6193);
     			set_style(div31, "padding-top", "2px");
     			set_style(div31, "padding-bottom", "1px");
-    			add_location(div31, file$4, 211, 4, 5592);
-    			attr_dev(div32, "class", "x33 svelte-plbp0p");
-    			add_location(div32, file$4, 210, 2, 5570);
-    			attr_dev(div33, "class", "grid-container svelte-plbp0p");
+    			add_location(div31, file$4, 226, 4, 5937);
+    			attr_dev(div32, "class", "x33 svelte-z1j36i");
+    			add_location(div32, file$4, 225, 2, 5915);
+    			attr_dev(div33, "class", div33_class_value = "" + null_to_empty((ctx.mobile ? 'grid-container-mobile': 'grid-container')) + " svelte-z1j36i");
     			set_style(div33, "width", "100%");
-    			add_location(div33, file$4, 132, 0, 2570);
+    			add_location(div33, file$4, 147, 0, 2877);
     		},
 
     		l: function claim(nodes) {
@@ -5820,6 +5823,10 @@
 
     			if ((!current || changed.N || changed.get_d || changed.active_) && t54_value !== (t54_value = formatNumber$1(Math.round(ctx.N*ctx.get_d(ctx.active_)[9])) + "")) {
     				set_data_dev(t54, t54_value);
+    			}
+
+    			if ((!current || changed.mobile) && div33_class_value !== (div33_class_value = "" + null_to_empty((ctx.mobile ? 'grid-container-mobile': 'grid-container')) + " svelte-z1j36i")) {
+    				attr_dev(div33, "class", div33_class_value);
     			}
     		},
 
@@ -25504,7 +25511,7 @@
     			add_location(meta, file$7, 263, 2, 8264);
     			set_style(div0, "position", "relative");
     			set_style(div0, "grid-area", "top");
-    			set_style(div0, "left", "-20px");
+    			set_style(div0, "left", "-25px");
     			add_location(div0, file$7, 266, 4, 8378);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
