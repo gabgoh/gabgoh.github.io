@@ -5056,7 +5056,7 @@
     			div = element("div");
     			t0 = text("DAY ");
     			t1 = text(t1_value);
-    			attr_dev(div, "class", "title svelte-1lfr04f");
+    			attr_dev(div, "class", "title svelte-1fjxak2");
     			set_style(div, "margin", "auto");
     			set_style(div, "width", "100%");
     			set_style(div, "margin-right", "20px");
@@ -5101,7 +5101,7 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population not immune";
-    			attr_dev(div, "class", "legendtext svelte-1lfr04f");
+    			attr_dev(div, "class", "legendtext svelte-1fjxak2");
     			add_location(div, file$4, 130, 6, 2638);
     		},
 
@@ -5127,7 +5127,7 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population not immune to the virus";
-    			attr_dev(div, "class", "legendtext svelte-1lfr04f");
+    			attr_dev(div, "class", "legendtext svelte-1fjxak2");
     			add_location(div, file$4, 128, 6, 2555);
     		},
 
@@ -5153,7 +5153,7 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Incubating the virus";
-    			attr_dev(div, "class", "legendtext svelte-1lfr04f");
+    			attr_dev(div, "class", "legendtext svelte-1fjxak2");
     			add_location(div, file$4, 154, 6, 3593);
     		},
 
@@ -5179,7 +5179,7 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Number of people incubating the virus";
-    			attr_dev(div, "class", "legendtext svelte-1lfr04f");
+    			attr_dev(div, "class", "legendtext svelte-1fjxak2");
     			add_location(div, file$4, 152, 6, 3507);
     		},
 
@@ -5205,7 +5205,7 @@
     		c: function create() {
     			div = element("div");
     			div.textContent = "Population that can transmit the virus";
-    			attr_dev(div, "class", "legendtext svelte-1lfr04f");
+    			attr_dev(div, "class", "legendtext svelte-1fjxak2");
     			add_location(div, file$4, 177, 6, 4483);
     		},
 
@@ -5417,23 +5417,23 @@
     			span11 = element("span");
     			t54 = text(t54_value);
     			t55 = text(" / day");
-    			attr_dev(div0, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(div0, "class", "legendtitle svelte-1fjxak2");
     			add_location(div0, file$4, 126, 4, 2488);
-    			attr_dev(div1, "class", "x11 svelte-1lfr04f");
+    			attr_dev(div1, "class", "x11 svelte-1fjxak2");
     			set_style(div1, "grid-area", "x11");
     			add_location(div1, file$4, 125, 2, 2442);
     			add_location(span0, file$4, 134, 4, 2757);
-    			attr_dev(div2, "class", "x12 svelte-1lfr04f");
+    			attr_dev(div2, "class", "x12 svelte-1fjxak2");
     			set_style(div2, "grid-area", "x12");
     			add_location(div2, file$4, 133, 2, 2711);
     			add_location(b0, file$4, 138, 60, 2992);
-    			attr_dev(span1, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(span1, "class", "legendtitle svelte-1fjxak2");
     			add_location(span1, file$4, 138, 34, 2966);
-    			attr_dev(div3, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div3, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div3, file$4, 138, 6, 2938);
     			attr_dev(span2, "class", "legendblue");
     			add_location(span2, file$4, 140, 34, 3160);
-    			attr_dev(div4, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div4, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div4, file$4, 140, 6, 3132);
     			set_style(div5, "position", "absolute");
     			set_style(div5, "top", "19px");
@@ -5441,29 +5441,29 @@
     			set_style(div6, "padding-top", "2px");
     			set_style(div6, "padding-bottom", "1px");
     			add_location(div6, file$4, 137, 4, 2880);
-    			attr_dev(div7, "class", "x13 svelte-1lfr04f");
+    			attr_dev(div7, "class", "x13 svelte-1fjxak2");
     			set_style(div7, "position", "relative");
     			set_style(div7, "grid-area", "x13");
     			add_location(div7, file$4, 136, 2, 2815);
-    			attr_dev(div8, "class", "line svelte-1lfr04f");
+    			attr_dev(div8, "class", "line svelte-1fjxak2");
     			set_style(div8, "grid-area", "line1");
     			add_location(div8, file$4, 147, 2, 3368);
-    			attr_dev(div9, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(div9, "class", "legendtitle svelte-1fjxak2");
     			add_location(div9, file$4, 150, 4, 3444);
-    			attr_dev(div10, "class", "x21 svelte-1lfr04f");
+    			attr_dev(div10, "class", "x21 svelte-1fjxak2");
     			add_location(div10, file$4, 149, 2, 3422);
     			add_location(span3, file$4, 158, 4, 3687);
-    			attr_dev(div11, "class", "x22 svelte-1lfr04f");
+    			attr_dev(div11, "class", "x22 svelte-1fjxak2");
     			add_location(div11, file$4, 157, 2, 3665);
     			add_location(b1, file$4, 162, 63, 3935);
-    			attr_dev(span4, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(span4, "class", "legendtitle svelte-1fjxak2");
     			add_location(span4, file$4, 162, 37, 3909);
     			add_location(i0, file$4, 162, 34, 3906);
-    			attr_dev(div12, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div12, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div12, file$4, 162, 6, 3878);
     			attr_dev(span5, "class", "legendblue");
     			add_location(span5, file$4, 164, 34, 4103);
-    			attr_dev(div13, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div13, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div13, file$4, 164, 6, 4075);
     			set_style(div14, "position", "absolute");
     			set_style(div14, "top", "19px");
@@ -5472,59 +5472,59 @@
     			set_style(div15, "padding-top", "2px");
     			set_style(div15, "padding-bottom", "1px");
     			add_location(div15, file$4, 161, 4, 3800);
-    			attr_dev(div16, "class", "x23 svelte-1lfr04f");
+    			attr_dev(div16, "class", "x23 svelte-1fjxak2");
     			add_location(div16, file$4, 160, 2, 3778);
-    			attr_dev(div17, "class", "line svelte-1lfr04f");
+    			attr_dev(div17, "class", "line svelte-1fjxak2");
     			set_style(div17, "grid-area", "line2");
     			add_location(div17, file$4, 172, 2, 4341);
-    			attr_dev(div18, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(div18, "class", "legendtitle svelte-1fjxak2");
     			add_location(div18, file$4, 175, 4, 4417);
-    			attr_dev(div19, "class", "x31 svelte-1lfr04f");
+    			attr_dev(div19, "class", "x31 svelte-1fjxak2");
     			add_location(div19, file$4, 174, 2, 4395);
     			add_location(span6, file$4, 182, 4, 4596);
-    			attr_dev(div20, "class", "x32 svelte-1lfr04f");
+    			attr_dev(div20, "class", "x32 svelte-1fjxak2");
     			add_location(div20, file$4, 181, 2, 4574);
     			add_location(b2, file$4, 186, 60, 4841);
-    			attr_dev(span7, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(span7, "class", "legendtitle svelte-1fjxak2");
     			add_location(span7, file$4, 186, 34, 4815);
-    			attr_dev(div21, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div21, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div21, file$4, 186, 6, 4787);
     			attr_dev(span8, "class", "legendblue");
     			add_location(span8, file$4, 188, 34, 5009);
-    			attr_dev(div22, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div22, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div22, file$4, 188, 6, 4981);
     			set_style(div23, "position", "relative");
     			set_style(div23, "padding-top", "2px");
     			set_style(div23, "padding-bottom", "1px");
     			add_location(div23, file$4, 185, 4, 4709);
-    			attr_dev(div24, "class", "x33 svelte-1lfr04f");
+    			attr_dev(div24, "class", "x33 svelte-1fjxak2");
     			add_location(div24, file$4, 184, 2, 4687);
-    			attr_dev(div25, "class", "line svelte-1lfr04f");
+    			attr_dev(div25, "class", "line svelte-1fjxak2");
     			set_style(div25, "grid-area", "line3");
     			add_location(div25, file$4, 193, 2, 5155);
-    			attr_dev(div26, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(div26, "class", "legendtitle svelte-1fjxak2");
     			add_location(div26, file$4, 196, 4, 5231);
-    			attr_dev(div27, "class", "x31 svelte-1lfr04f");
+    			attr_dev(div27, "class", "x31 svelte-1fjxak2");
     			add_location(div27, file$4, 195, 2, 5209);
     			add_location(span9, file$4, 199, 4, 5306);
-    			attr_dev(div28, "class", "x32 svelte-1lfr04f");
+    			attr_dev(div28, "class", "x32 svelte-1fjxak2");
     			add_location(div28, file$4, 198, 2, 5284);
     			add_location(i1, file$4, 203, 63, 5534);
     			add_location(b3, file$4, 203, 60, 5531);
-    			attr_dev(span10, "class", "legendtitle svelte-1lfr04f");
+    			attr_dev(span10, "class", "legendtitle svelte-1fjxak2");
     			add_location(span10, file$4, 203, 34, 5505);
-    			attr_dev(div29, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div29, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div29, file$4, 203, 6, 5477);
     			attr_dev(span11, "class", "legendblue");
     			add_location(span11, file$4, 205, 34, 5703);
-    			attr_dev(div30, "class", "legendtextnum svelte-1lfr04f");
+    			attr_dev(div30, "class", "legendtextnum svelte-1fjxak2");
     			add_location(div30, file$4, 205, 6, 5675);
     			set_style(div31, "padding-top", "2px");
     			set_style(div31, "padding-bottom", "1px");
     			add_location(div31, file$4, 202, 4, 5419);
-    			attr_dev(div32, "class", "x33 svelte-1lfr04f");
+    			attr_dev(div32, "class", "x33 svelte-1fjxak2");
     			add_location(div32, file$4, 201, 2, 5397);
-    			attr_dev(div33, "class", "grid-container svelte-1lfr04f");
+    			attr_dev(div33, "class", "grid-container svelte-1fjxak2");
     			set_style(div33, "width", "100%");
     			add_location(div33, file$4, 123, 0, 2390);
     		},
@@ -24384,346 +24384,282 @@
 
     const file$6 = "src/SEIR.svelte";
 
-    // (443:2) {:else}
+    // (419:2) {:else}
     function create_else_block$3(ctx) {
-    	var div0, t0, div1, t1, div4, div3, div2, div3_style_value, t2, div10, div9, div8, div7, div5, t4, div6, t5, t6_value = format("d")(ctx.InterventionTime) + "", t6;
+    	var div2, div1, div0, div1_style_value, t0, div8, div7, div6, div5, div3, t2, div4, t3, t4_value = format("d")(ctx.InterventionTime) + "", t4;
 
     	const block = {
     		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
     			div0 = element("div");
     			t0 = space();
-    			div1 = element("div");
-    			t1 = space();
-    			div4 = element("div");
-    			div3 = element("div");
-    			div2 = element("div");
-    			t2 = space();
-    			div10 = element("div");
-    			div9 = element("div");
     			div8 = element("div");
     			div7 = element("div");
-    			div5 = element("div");
-    			div5.textContent = "← Drag →";
-    			t4 = space();
     			div6 = element("div");
-    			t5 = text("Day ");
-    			t6 = text(t6_value);
-    			attr_dev(div0, "id", "xAxisDrag");
-    			set_style(div0, "pointer-events", "all");
-    			set_style(div0, "position", "absolute");
-    			set_style(div0, "top", "" + (ctx.height+80) + "px");
-    			set_style(div0, "left", "" + 0 + "px");
-    			set_style(div0, "width", "" + 780 + "px");
-    			set_style(div0, "background-color", "#222");
-    			set_style(div0, "opacity", "0");
-    			set_style(div0, "height", "25px");
-    			set_style(div0, "cursor", "col-resize");
-    			add_location(div0, file$6, 444, 4, 12977);
-    			attr_dev(div1, "id", "yAxisDrag");
-    			set_style(div1, "pointer-events", "all");
-    			set_style(div1, "position", "absolute");
-    			set_style(div1, "top", "" + 55 + "px");
-    			set_style(div1, "left", "" + 0 + "px");
-    			set_style(div1, "width", "" + 20 + "px");
-    			set_style(div1, "background-color", "#222");
-    			set_style(div1, "opacity", "0");
-    			set_style(div1, "height", "425px");
-    			set_style(div1, "cursor", "row-resize");
-    			add_location(div1, file$6, 456, 4, 13312);
-    			attr_dev(div2, "style", "width:150px; \n                  position:relative; \n                  /*background-color: black;*/\n                  top:-65px; \n                  left: -80px; \n                  height: 60px; \n                  padding-right: 15px; \n                  cursor:col-resize; \n                  position:absolute;");
-    			add_location(div2, file$6, 481, 6, 14300);
-    			attr_dev(div3, "id", "dottedline");
-    			attr_dev(div3, "style", div3_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px");
-    			add_location(div3, file$6, 470, 6, 13814);
-    			set_style(div4, "position", "absolute");
-    			set_style(div4, "width", "" + (ctx.width+15) + "px");
-    			set_style(div4, "height", "" + ctx.height + "px");
-    			set_style(div4, "position", "absolute");
-    			set_style(div4, "top", "80px");
-    			set_style(div4, "left", "25px");
-    			set_style(div4, "pointer-events", "none");
-    			add_location(div4, file$6, 469, 4, 13671);
-    			attr_dev(div5, "class", "paneldesc svelte-x1nlou");
+    			div5 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "← Drag →";
+    			t2 = space();
+    			div4 = element("div");
+    			t3 = text("Day ");
+    			t4 = text(t4_value);
+    			attr_dev(div0, "style", "width:150px; \n                  position:relative; \n                  /*background-color: black;*/\n                  top:-65px; \n                  left: -80px; \n                  height: 60px; \n                  padding-right: 15px; \n                  cursor:col-resize; \n                  position:absolute;");
+    			add_location(div0, file$6, 433, 6, 12974);
+    			attr_dev(div1, "id", "dottedline");
+    			attr_dev(div1, "style", div1_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px");
+    			add_location(div1, file$6, 422, 6, 12488);
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			set_style(div2, "height", "" + ctx.height + "px");
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "top", "80px");
+    			set_style(div2, "left", "25px");
+    			set_style(div2, "pointer-events", "none");
+    			add_location(div2, file$6, 421, 4, 12345);
+    			attr_dev(div3, "class", "paneldesc svelte-x1nlou");
+    			set_style(div3, "position", "absolute");
+    			set_style(div3, "font-size", "10px");
+    			set_style(div3, "text-align", "center");
+    			set_style(div3, "width", "100px");
+    			set_style(div3, "left", "-16px");
+    			set_style(div3, "top", "-15px");
+    			add_location(div3, file$6, 470, 14, 14643);
+    			set_style(div4, "text-align", "center");
+    			set_style(div4, "padding", "0px");
+    			set_style(div4, "margin", "0px");
+    			set_style(div4, "color", "white");
+    			set_style(div4, "font-weight", "bold");
+    			set_style(div4, "top", "-2px");
+    			set_style(div4, "position", "relative");
+    			add_location(div4, file$6, 471, 14, 14802);
+    			attr_dev(div5, "class", "caption draggymobile svelte-x1nlou");
+    			set_style(div5, "pointer-events", "none");
+    			set_style(div5, "width", "60px");
     			set_style(div5, "position", "absolute");
-    			set_style(div5, "font-size", "10px");
-    			set_style(div5, "text-align", "center");
-    			set_style(div5, "width", "100px");
-    			set_style(div5, "left", "-16px");
-    			set_style(div5, "top", "-15px");
-    			add_location(div5, file$6, 518, 14, 15969);
-    			set_style(div6, "text-align", "center");
-    			set_style(div6, "padding", "0px");
-    			set_style(div6, "margin", "0px");
-    			set_style(div6, "color", "white");
-    			set_style(div6, "font-weight", "bold");
-    			set_style(div6, "top", "-2px");
+    			set_style(div5, "left", "0");
+    			set_style(div5, "top", "0px");
+    			set_style(div5, "height", "10px");
+    			set_style(div5, "padding", "5px 7px 7px 7px");
+    			set_style(div5, "background-color", "rgb(71, 129, 255)");
+    			set_style(div5, "border", "1px solid rgb(200,200,200)");
+    			set_style(div5, "border-radius", "20px");
+    			add_location(div5, file$6, 460, 12, 14014);
     			set_style(div6, "position", "relative");
-    			add_location(div6, file$6, 519, 14, 16128);
-    			attr_dev(div7, "class", "caption draggymobile svelte-x1nlou");
-    			set_style(div7, "pointer-events", "none");
-    			set_style(div7, "width", "60px");
+    			set_style(div6, "top", "-35px");
+    			set_style(div6, "left", "" + (-102+63) + "px");
+    			add_location(div6, file$6, 459, 10, 13938);
     			set_style(div7, "position", "absolute");
-    			set_style(div7, "left", "0");
-    			set_style(div7, "top", "0px");
-    			set_style(div7, "height", "10px");
-    			set_style(div7, "padding", "5px 7px 7px 7px");
-    			set_style(div7, "background-color", "rgb(71, 129, 255)");
-    			set_style(div7, "border", "1px solid rgb(200,200,200)");
-    			set_style(div7, "border-radius", "20px");
-    			add_location(div7, file$6, 508, 12, 15340);
-    			set_style(div8, "position", "relative");
-    			set_style(div8, "top", "-35px");
-    			set_style(div8, "left", "" + (-102+63) + "px");
-    			add_location(div8, file$6, 507, 10, 15264);
-    			set_style(div9, "position", "absolute");
-    			set_style(div9, "top", "30px");
-    			set_style(div9, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    			set_style(div9, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
-    			set_style(div9, "width", "2px");
-    			set_style(div9, "background-color", "rgb(255, 255, 255, 0.5)");
-    			set_style(div9, "border-right", "1px dashed rgb(0,0,0, 0.5)");
-    			set_style(div9, "cursor", "col-resize");
-    			set_style(div9, "height", "" + (ctx.height-54) + "px");
-    			add_location(div9, file$6, 497, 6, 14852);
-    			set_style(div10, "position", "absolute");
-    			set_style(div10, "width", "" + (ctx.width+15) + "px");
-    			set_style(div10, "height", "" + (ctx.height + 30) + "px");
-    			set_style(div10, "position", "absolute");
-    			set_style(div10, "top", "20px");
-    			set_style(div10, "left", "25px");
-    			set_style(div10, "pointer-events", "none");
-    			add_location(div10, file$6, 496, 4, 14705);
+    			set_style(div7, "top", "30px");
+    			set_style(div7, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div7, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div7, "width", "2px");
+    			set_style(div7, "background-color", "rgb(255, 255, 255, 0.5)");
+    			set_style(div7, "border-right", "1px dashed rgb(0,0,0, 0.5)");
+    			set_style(div7, "cursor", "col-resize");
+    			set_style(div7, "height", "" + (ctx.height-54) + "px");
+    			add_location(div7, file$6, 449, 6, 13526);
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "width", "" + (ctx.width+15) + "px");
+    			set_style(div8, "height", "" + (ctx.height + 30) + "px");
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "top", "20px");
+    			set_style(div8, "left", "25px");
+    			set_style(div8, "pointer-events", "none");
+    			add_location(div8, file$6, 448, 4, 13379);
     		},
 
     		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div1, anchor);
-    			insert_dev(target, t1, anchor);
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div3);
-    			append_dev(div3, div2);
-    			insert_dev(target, t2, anchor);
-    			insert_dev(target, div10, anchor);
-    			append_dev(div10, div9);
-    			append_dev(div9, div8);
+    			insert_dev(target, div8, anchor);
     			append_dev(div8, div7);
-    			append_dev(div7, div5);
-    			append_dev(div7, t4);
     			append_dev(div7, div6);
-    			append_dev(div6, t5);
-    			append_dev(div6, t6);
+    			append_dev(div6, div5);
+    			append_dev(div5, div3);
+    			append_dev(div5, t2);
+    			append_dev(div5, div4);
+    			append_dev(div4, t3);
+    			append_dev(div4, t4);
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.height) {
-    				set_style(div0, "top", "" + (ctx.height+80) + "px");
-    			}
-
-    			if ((changed.xScaleTime || changed.InterventionTime || changed.width || changed.height) && div3_style_value !== (div3_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px")) {
-    				attr_dev(div3, "style", div3_style_value);
+    			if ((changed.xScaleTime || changed.InterventionTime || changed.width || changed.height) && div1_style_value !== (div1_style_value = "pointer-events: all;\n                  position: absolute;\n                  top:-20px;\n                  left:" + ctx.xScaleTime(ctx.InterventionTime) + "px;\n                  visibility: " + ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden') + ";\n                  width:2px;\n                  pointer-events: all;\n                   /*background-color: black;*/\n                  cursor:col-resize;\n                  height:" + (ctx.height+19) + "px")) {
+    				attr_dev(div1, "style", div1_style_value);
     			}
 
     			if (changed.width) {
-    				set_style(div4, "width", "" + (ctx.width+15) + "px");
+    				set_style(div2, "width", "" + (ctx.width+15) + "px");
     			}
 
     			if (changed.height) {
-    				set_style(div4, "height", "" + ctx.height + "px");
+    				set_style(div2, "height", "" + ctx.height + "px");
     			}
 
-    			if ((changed.InterventionTime) && t6_value !== (t6_value = format("d")(ctx.InterventionTime) + "")) {
-    				set_data_dev(t6, t6_value);
+    			if ((changed.InterventionTime) && t4_value !== (t4_value = format("d")(ctx.InterventionTime) + "")) {
+    				set_data_dev(t4, t4_value);
     			}
 
     			if (changed.xScaleTime || changed.InterventionTime) {
-    				set_style(div9, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    				set_style(div7, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
     			}
 
     			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
-    				set_style(div9, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    				set_style(div7, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
     			}
 
     			if (changed.height) {
-    				set_style(div9, "height", "" + (ctx.height-54) + "px");
+    				set_style(div7, "height", "" + (ctx.height-54) + "px");
     			}
 
     			if (changed.width) {
-    				set_style(div10, "width", "" + (ctx.width+15) + "px");
+    				set_style(div8, "width", "" + (ctx.width+15) + "px");
     			}
 
     			if (changed.height) {
-    				set_style(div10, "height", "" + (ctx.height + 30) + "px");
+    				set_style(div8, "height", "" + (ctx.height + 30) + "px");
     			}
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach_dev(div0);
+    				detach_dev(div2);
     				detach_dev(t0);
-    				detach_dev(div1);
-    				detach_dev(t1);
-    				detach_dev(div4);
-    				detach_dev(t2);
-    				detach_dev(div10);
+    				detach_dev(div8);
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$3.name, type: "else", source: "(443:2) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$3.name, type: "else", source: "(419:2) {:else}", ctx });
     	return block;
     }
 
     // (356:2) {#if !mobile}
     function create_if_block$3(ctx) {
-    	var div0, t0, div1, t1, div4, div3, div2, t2, div13, div12, div11, div10, div5, t4, div9, div6, t5, span, t6_value = format("d")(ctx.InterventionTime) + "", t6, t7, div7, t8, t9_value = ctx.OMInterventionAmt.toFixed(2) + "", t9, t10, br, t11, div8, input, dispose;
+    	var div2, div1, div0, t0, div11, div10, div9, div8, div3, t2, div7, div4, t3, span, t4_value = format("d")(ctx.InterventionTime) + "", t4, t5, div5, t6, t7_value = ctx.OMInterventionAmt.toFixed(2) + "", t7, t8, br, t9, div6, input, dispose;
 
     	const block = {
     		c: function create() {
+    			div2 = element("div");
+    			div1 = element("div");
     			div0 = element("div");
     			t0 = space();
-    			div1 = element("div");
-    			t1 = space();
-    			div4 = element("div");
-    			div3 = element("div");
-    			div2 = element("div");
-    			t2 = space();
-    			div13 = element("div");
-    			div12 = element("div");
     			div11 = element("div");
     			div10 = element("div");
-    			div5 = element("div");
-    			div5.textContent = "← Drag →";
-    			t4 = space();
     			div9 = element("div");
-    			div6 = element("div");
-    			t5 = text("Intervention day: ");
-    			span = element("span");
-    			t6 = text(t6_value);
-    			t7 = space();
-    			div7 = element("div");
-    			t8 = text("Intervention effectiveness to decrease transmission by ");
-    			t9 = text(t9_value);
-    			t10 = text("%");
-    			br = element("br");
-    			t11 = space();
     			div8 = element("div");
+    			div3 = element("div");
+    			div3.textContent = "← Drag →";
+    			t2 = space();
+    			div7 = element("div");
+    			div4 = element("div");
+    			t3 = text("Intervention day: ");
+    			span = element("span");
+    			t4 = text(t4_value);
+    			t5 = space();
+    			div5 = element("div");
+    			t6 = text("Intervention effectiveness to decrease transmission by ");
+    			t7 = text(t7_value);
+    			t8 = text("%");
+    			br = element("br");
+    			t9 = space();
+    			div6 = element("div");
     			input = element("input");
-    			attr_dev(div0, "id", "xAxisDrag");
-    			set_style(div0, "pointer-events", "all");
-    			set_style(div0, "position", "absolute");
-    			set_style(div0, "top", "" + (ctx.height+80) + "px");
-    			set_style(div0, "left", "" + 0 + "px");
-    			set_style(div0, "width", "" + 780 + "px");
-    			set_style(div0, "background-color", "#222");
-    			set_style(div0, "opacity", "0");
-    			set_style(div0, "height", "25px");
+    			set_style(div0, "width", "150px");
+    			set_style(div0, "position", "relative");
+    			set_style(div0, "top", "-65px");
+    			set_style(div0, "left", "-80px");
+    			set_style(div0, "height", "140px");
+    			set_style(div0, "padding-right", "15px");
     			set_style(div0, "cursor", "col-resize");
-    			add_location(div0, file$6, 357, 4, 9095);
-    			attr_dev(div1, "id", "yAxisDrag");
+    			set_style(div0, "position", "absolute");
+    			add_location(div0, file$6, 369, 6, 9707);
+    			attr_dev(div1, "id", "dottedline");
     			set_style(div1, "pointer-events", "all");
     			set_style(div1, "position", "absolute");
-    			set_style(div1, "top", "" + 55 + "px");
-    			set_style(div1, "left", "" + 0 + "px");
-    			set_style(div1, "width", "" + 20 + "px");
-    			set_style(div1, "background-color", "#222");
-    			set_style(div1, "opacity", "0");
-    			set_style(div1, "height", "425px");
-    			set_style(div1, "cursor", "row-resize");
-    			add_location(div1, file$6, 369, 4, 9430);
-    			set_style(div2, "width", "150px");
-    			set_style(div2, "position", "relative");
-    			set_style(div2, "top", "-65px");
-    			set_style(div2, "left", "-80px");
-    			set_style(div2, "height", "140px");
-    			set_style(div2, "padding-right", "15px");
-    			set_style(div2, "cursor", "col-resize");
+    			set_style(div1, "top", "-40px");
+    			set_style(div1, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div1, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div1, "width", "2px");
+    			set_style(div1, "pointer-events", "all");
+    			set_style(div1, "cursor", "col-resize");
+    			set_style(div1, "height", "" + (ctx.height+19) + "px");
+    			add_location(div1, file$6, 359, 6, 9269);
     			set_style(div2, "position", "absolute");
-    			add_location(div2, file$6, 393, 6, 10370);
-    			attr_dev(div3, "id", "dottedline");
-    			set_style(div3, "pointer-events", "all");
+    			set_style(div2, "width", "" + (ctx.width+15) + "px");
+    			set_style(div2, "height", "" + ctx.height + "px");
+    			set_style(div2, "position", "absolute");
+    			set_style(div2, "top", "100px");
+    			set_style(div2, "left", "25px");
+    			set_style(div2, "pointer-events", "none");
+    			add_location(div2, file$6, 358, 4, 9126);
+    			attr_dev(div3, "class", "paneldesc svelte-x1nlou");
     			set_style(div3, "position", "absolute");
-    			set_style(div3, "top", "-40px");
-    			set_style(div3, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    			set_style(div3, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
-    			set_style(div3, "width", "2px");
-    			set_style(div3, "pointer-events", "all");
-    			set_style(div3, "cursor", "col-resize");
-    			set_style(div3, "height", "" + (ctx.height+19) + "px");
-    			add_location(div3, file$6, 383, 6, 9932);
-    			set_style(div4, "position", "absolute");
-    			set_style(div4, "width", "" + (ctx.width+15) + "px");
-    			set_style(div4, "height", "" + ctx.height + "px");
-    			set_style(div4, "position", "absolute");
-    			set_style(div4, "top", "100px");
-    			set_style(div4, "left", "25px");
-    			set_style(div4, "pointer-events", "none");
-    			add_location(div4, file$6, 382, 4, 9789);
-    			attr_dev(div5, "class", "paneldesc svelte-x1nlou");
-    			set_style(div5, "position", "absolute");
-    			set_style(div5, "text-align", "center");
-    			set_style(div5, "width", "100px");
-    			set_style(div5, "left", "47px");
-    			set_style(div5, "top", "-20px");
-    			add_location(div5, file$6, 430, 14, 12053);
+    			set_style(div3, "text-align", "center");
+    			set_style(div3, "width", "100px");
+    			set_style(div3, "left", "47px");
+    			set_style(div3, "top", "-20px");
+    			add_location(div3, file$6, 406, 14, 11390);
     			set_style(span, "color", "red");
-    			add_location(span, file$6, 432, 154, 12409);
-    			attr_dev(div6, "class", "paneltitle svelte-x1nlou");
-    			set_style(div6, "margin-top", "5px");
-    			set_style(div6, "padding-bottom", "5px");
-    			set_style(div6, "margin-bottom", "5px");
-    			set_style(div6, "border-bottom", "2px dotted grey");
-    			add_location(div6, file$6, 432, 16, 12271);
-    			add_location(br, file$6, 433, 171, 12665);
-    			attr_dev(div7, "class", "paneldesc svelte-x1nlou");
-    			set_style(div7, "text-align", "center");
-    			set_style(div7, "margin-bottom", "3px");
-    			add_location(div7, file$6, 433, 16, 12510);
+    			add_location(span, file$6, 408, 154, 11746);
+    			attr_dev(div4, "class", "paneltitle svelte-x1nlou");
+    			set_style(div4, "margin-top", "5px");
+    			set_style(div4, "padding-bottom", "5px");
+    			set_style(div4, "margin-bottom", "5px");
+    			set_style(div4, "border-bottom", "2px dotted grey");
+    			add_location(div4, file$6, 408, 16, 11608);
+    			add_location(br, file$6, 409, 171, 12002);
+    			attr_dev(div5, "class", "paneldesc svelte-x1nlou");
+    			set_style(div5, "text-align", "center");
+    			set_style(div5, "margin-bottom", "3px");
+    			add_location(div5, file$6, 409, 16, 11847);
     			attr_dev(input, "class", "range svelte-x1nlou");
     			attr_dev(input, "type", "range");
     			attr_dev(input, "min", "0");
     			attr_dev(input, "max", "1");
     			attr_dev(input, "step", "0.01");
-    			add_location(input, file$6, 435, 18, 12744);
-    			set_style(div8, "pointer-events", "all");
-    			add_location(div8, file$6, 434, 16, 12692);
-    			attr_dev(div9, "class", "paneltext draggy2 svelte-x1nlou");
-    			set_style(div9, "text-align", "center");
-    			add_location(div9, file$6, 431, 14, 12194);
-    			attr_dev(div10, "class", "caption draggy svelte-x1nlou");
-    			set_style(div10, "pointer-events", "none");
-    			set_style(div10, "width", "180px");
+    			add_location(input, file$6, 411, 18, 12081);
+    			set_style(div6, "pointer-events", "all");
+    			add_location(div6, file$6, 410, 16, 12029);
+    			attr_dev(div7, "class", "paneltext draggy2 svelte-x1nlou");
+    			set_style(div7, "text-align", "center");
+    			add_location(div7, file$6, 407, 14, 11531);
+    			attr_dev(div8, "class", "caption draggy svelte-x1nlou");
+    			set_style(div8, "pointer-events", "none");
+    			set_style(div8, "width", "180px");
+    			set_style(div8, "position", "absolute");
+    			set_style(div8, "left", "0");
+    			set_style(div8, "top", "90px");
+    			set_style(div8, "height", "105px");
+    			set_style(div8, "padding", "5px 7px 7px 7px");
+    			set_style(div8, "box-shadow", "0px 0px 5px rgb(0,0,0,0.1)");
+    			set_style(div8, "background-color", "white");
+    			set_style(div8, "border", "1px solid rgb(200,200,200)");
+    			set_style(div8, "border-radius", "3px");
+    			add_location(div8, file$6, 395, 12, 10697);
+    			set_style(div9, "position", "relative");
+    			set_style(div9, "top", "-225px");
+    			set_style(div9, "left", "-102px");
+    			add_location(div9, file$6, 394, 10, 10625);
     			set_style(div10, "position", "absolute");
-    			set_style(div10, "left", "0");
-    			set_style(div10, "top", "90px");
-    			set_style(div10, "height", "105px");
-    			set_style(div10, "padding", "5px 7px 7px 7px");
-    			set_style(div10, "box-shadow", "0px 0px 5px rgb(0,0,0,0.1)");
-    			set_style(div10, "background-color", "white");
-    			set_style(div10, "border", "1px solid rgb(200,200,200)");
-    			set_style(div10, "border-radius", "3px");
-    			add_location(div10, file$6, 419, 12, 11360);
-    			set_style(div11, "position", "relative");
-    			set_style(div11, "top", "-225px");
-    			set_style(div11, "left", "-102px");
-    			add_location(div11, file$6, 418, 10, 11288);
-    			set_style(div12, "position", "absolute");
-    			set_style(div12, "top", "0px");
-    			set_style(div12, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
-    			set_style(div12, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
-    			set_style(div12, "width", "2px");
-    			set_style(div12, "background-color", "rgb(255, 255, 255, 0.5)");
-    			set_style(div12, "border-right", "1px dashed rgb(0,0,0, 0.5)");
-    			set_style(div12, "cursor", "col-resize");
-    			set_style(div12, "height", "" + (ctx.height-59) + "px");
-    			add_location(div12, file$6, 408, 6, 10877);
-    			set_style(div13, "position", "absolute");
-    			set_style(div13, "width", "" + (ctx.width+15) + "px");
-    			set_style(div13, "height", "" + (ctx.height + 30) + "px");
-    			set_style(div13, "position", "absolute");
-    			set_style(div13, "top", "120px");
-    			set_style(div13, "left", "25px");
-    			set_style(div13, "pointer-events", "none");
-    			add_location(div13, file$6, 407, 4, 10729);
+    			set_style(div10, "top", "0px");
+    			set_style(div10, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    			set_style(div10, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    			set_style(div10, "width", "2px");
+    			set_style(div10, "background-color", "rgb(255, 255, 255, 0.5)");
+    			set_style(div10, "border-right", "1px dashed rgb(0,0,0, 0.5)");
+    			set_style(div10, "cursor", "col-resize");
+    			set_style(div10, "height", "" + (ctx.height-59) + "px");
+    			add_location(div10, file$6, 384, 6, 10214);
+    			set_style(div11, "position", "absolute");
+    			set_style(div11, "width", "" + (ctx.width+15) + "px");
+    			set_style(div11, "height", "" + (ctx.height + 30) + "px");
+    			set_style(div11, "position", "absolute");
+    			set_style(div11, "top", "120px");
+    			set_style(div11, "left", "25px");
+    			set_style(div11, "pointer-events", "none");
+    			add_location(div11, file$6, 383, 4, 10066);
 
     			dispose = [
     				listen_dev(input, "change", ctx.input_change_input_handler),
@@ -24733,103 +24669,91 @@
     		},
 
     		m: function mount(target, anchor) {
-    			insert_dev(target, div0, anchor);
+    			insert_dev(target, div2, anchor);
+    			append_dev(div2, div1);
+    			append_dev(div1, div0);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, div1, anchor);
-    			insert_dev(target, t1, anchor);
-    			insert_dev(target, div4, anchor);
-    			append_dev(div4, div3);
-    			append_dev(div3, div2);
-    			insert_dev(target, t2, anchor);
-    			insert_dev(target, div13, anchor);
-    			append_dev(div13, div12);
-    			append_dev(div12, div11);
+    			insert_dev(target, div11, anchor);
     			append_dev(div11, div10);
-    			append_dev(div10, div5);
-    			append_dev(div10, t4);
     			append_dev(div10, div9);
-    			append_dev(div9, div6);
-    			append_dev(div6, t5);
-    			append_dev(div6, span);
-    			append_dev(span, t6);
-    			append_dev(div9, t7);
-    			append_dev(div9, div7);
-    			append_dev(div7, t8);
-    			append_dev(div7, t9);
-    			append_dev(div7, t10);
-    			append_dev(div7, br);
-    			append_dev(div9, t11);
     			append_dev(div9, div8);
-    			append_dev(div8, input);
+    			append_dev(div8, div3);
+    			append_dev(div8, t2);
+    			append_dev(div8, div7);
+    			append_dev(div7, div4);
+    			append_dev(div4, t3);
+    			append_dev(div4, span);
+    			append_dev(span, t4);
+    			append_dev(div7, t5);
+    			append_dev(div7, div5);
+    			append_dev(div5, t6);
+    			append_dev(div5, t7);
+    			append_dev(div5, t8);
+    			append_dev(div5, br);
+    			append_dev(div7, t9);
+    			append_dev(div7, div6);
+    			append_dev(div6, input);
 
     			set_input_value(input, ctx.OMInterventionAmt);
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.height) {
-    				set_style(div0, "top", "" + (ctx.height+80) + "px");
-    			}
-
     			if (changed.xScaleTime || changed.InterventionTime) {
-    				set_style(div3, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    				set_style(div1, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
     			}
 
     			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
-    				set_style(div3, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    				set_style(div1, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
     			}
 
     			if (changed.height) {
-    				set_style(div3, "height", "" + (ctx.height+19) + "px");
+    				set_style(div1, "height", "" + (ctx.height+19) + "px");
     			}
 
     			if (changed.width) {
-    				set_style(div4, "width", "" + (ctx.width+15) + "px");
+    				set_style(div2, "width", "" + (ctx.width+15) + "px");
     			}
 
     			if (changed.height) {
-    				set_style(div4, "height", "" + ctx.height + "px");
+    				set_style(div2, "height", "" + ctx.height + "px");
     			}
 
-    			if ((changed.InterventionTime) && t6_value !== (t6_value = format("d")(ctx.InterventionTime) + "")) {
-    				set_data_dev(t6, t6_value);
+    			if ((changed.InterventionTime) && t4_value !== (t4_value = format("d")(ctx.InterventionTime) + "")) {
+    				set_data_dev(t4, t4_value);
     			}
 
-    			if ((changed.OMInterventionAmt) && t9_value !== (t9_value = ctx.OMInterventionAmt.toFixed(2) + "")) {
-    				set_data_dev(t9, t9_value);
+    			if ((changed.OMInterventionAmt) && t7_value !== (t7_value = ctx.OMInterventionAmt.toFixed(2) + "")) {
+    				set_data_dev(t7, t7_value);
     			}
 
     			if (changed.OMInterventionAmt) set_input_value(input, ctx.OMInterventionAmt);
 
     			if (changed.xScaleTime || changed.InterventionTime) {
-    				set_style(div12, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
+    				set_style(div10, "left", "" + ctx.xScaleTime(ctx.InterventionTime) + "px");
     			}
 
     			if (changed.xScaleTime || changed.InterventionTime || changed.width) {
-    				set_style(div12, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
+    				set_style(div10, "visibility", ((ctx.xScaleTime(ctx.InterventionTime) < (ctx.width - ctx.padding.right)) ? 'visible':'hidden'));
     			}
 
     			if (changed.height) {
-    				set_style(div12, "height", "" + (ctx.height-59) + "px");
+    				set_style(div10, "height", "" + (ctx.height-59) + "px");
     			}
 
     			if (changed.width) {
-    				set_style(div13, "width", "" + (ctx.width+15) + "px");
+    				set_style(div11, "width", "" + (ctx.width+15) + "px");
     			}
 
     			if (changed.height) {
-    				set_style(div13, "height", "" + (ctx.height + 30) + "px");
+    				set_style(div11, "height", "" + (ctx.height + 30) + "px");
     			}
     		},
 
     		d: function destroy(detaching) {
     			if (detaching) {
-    				detach_dev(div0);
+    				detach_dev(div2);
     				detach_dev(t0);
-    				detach_dev(div1);
-    				detach_dev(t1);
-    				detach_dev(div4);
-    				detach_dev(t2);
-    				detach_dev(div13);
+    				detach_dev(div11);
     			}
 
     			run_all(dispose);
