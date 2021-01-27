@@ -3791,7 +3791,7 @@
     const file$1 = "src/Control.svelte";
 
     function create_fragment$1(ctx) {
-    	var div0, t1, div19, div6, div1, b0, t3, div5, div2, updating_value, t4, div4, div3, t5, t6, div12, div7, b1, t8, div11, div8, updating_value_1, t9, div10, div9, t10_value = (ctx.D_incbation).toFixed(2) + "", t10, t11, t12, div18, div13, b2, t14, div17, div14, updating_value_2, t15, div16, div15, t16, t17, t18, div20, t20, div67, div26, div21, b3, t22, div25, div22, updating_value_3, t23, div24, div23, t24_value = (ctx.CFR*100).toFixed(2) + "", t24, t25, t26, div32, div27, b4, t28, div31, div28, updating_value_4, t29, div30, div29, t30, t31, t32, div38, div33, b5, t34, div37, div34, updating_value_5, t35, div36, div35, t36, t37, t38, div44, div39, b6, t40, div43, div40, updating_value_6, t41, div42, div41, t42, t43, t44, div50, div45, b7, t46, div49, div46, updating_value_7, t47, div48, div47, t48, t49, t50, div66, div51, b8, t52, div55, div52, updating_value_8, t53, div54, div53, t54, t55, t56, div56, b9, t58, div60, div57, updating_value_9, t59, div59, div58, t60, t61, t62, div61, b10, t64, div65, div62, updating_value_10, t65, div64, div63, t66, t67, current;
+    	var div0, t1, div19, div6, div1, b0, t3, div5, div2, updating_value, t4, div4, div3, t5, t6, div12, div7, b1, t8, div11, div8, updating_value_1, t9, div10, div9, t10_value = (ctx.D_incbation).toFixed(2) + "", t10, t11, t12, div18, div13, b2, t14, div17, div14, updating_value_2, t15, div16, div15, t16, t17, t18, div20, t20, div67, div26, div21, b3, t22, div25, div22, updating_value_3, t23, div24, div23, t24_value = (ctx.CFR*100).toFixed(2) + "", t24, t25, t26, div32, div27, b4, t28, div31, div28, updating_value_4, t29, div30, div29, t30, t31, t32, div38, div33, b5, t34, div37, div34, updating_value_5, t35, div36, div35, t36, t37, t38, div44, div39, b6, t40, div43, div40, updating_value_6, t41, div42, div41, t42, t43, t44, div50, div45, b7, t46, div49, div46, updating_value_7, t47, div48, div47, t48, t49, t50, div66, div51, b8, t52, div55, div52, updating_value_8, t53, div54, div53, t54, t55, t56, div56, b9, t58, div60, div57, updating_value_9, t59, div59, div58, t60, t61, t62, div61, b10, t64, div65, div62, updating_value_10, t65, div64, div63, t66_value = ctx.OMInterventionAmt*100 + "", t66, t67, current;
 
     	function slider0_value_binding(value) {
     		ctx.slider0_value_binding.call(null, value);
@@ -4112,7 +4112,7 @@
     			div66 = element("div");
     			div51 = element("div");
     			b8 = element("b");
-    			b8.textContent = "Length of illness for mild cases";
+    			b8.textContent = "Length of illness for mild cases after infectious period";
     			t52 = space();
     			div55 = element("div");
     			div52 = element("div");
@@ -4133,8 +4133,8 @@
     			t59 = space();
     			div59 = element("div");
     			div58 = element("div");
-    			t60 = text(ctx.InterventionTime);
-    			t61 = text(" Day");
+    			t60 = text("Day ");
+    			t61 = text(ctx.InterventionTime);
     			t62 = space();
     			div61 = element("div");
     			b10 = element("b");
@@ -4146,7 +4146,7 @@
     			t65 = space();
     			div64 = element("div");
     			div63 = element("div");
-    			t66 = text(ctx.OMInterventionAmt);
+    			t66 = text(t66_value);
     			t67 = text(" %");
     			attr_dev(div0, "class", "bluetitle");
     			add_location(div0, file$1, 18, 0, 375);
@@ -4270,41 +4270,41 @@
     			attr_dev(div51, "class", "legendtext");
     			add_location(div51, file$1, 160, 4, 3952);
     			set_style(div52, "width", "58%");
-    			add_location(div52, file$1, 163, 6, 4103);
+    			add_location(div52, file$1, 163, 6, 4127);
     			attr_dev(div53, "class", "adjustableslidertext");
-    			add_location(div53, file$1, 167, 8, 4255);
+    			add_location(div53, file$1, 167, 8, 4279);
     			set_style(div54, "width", "42%");
-    			add_location(div54, file$1, 166, 6, 4222);
+    			add_location(div54, file$1, 166, 6, 4246);
     			attr_dev(div55, "class", "rangeval");
     			set_style(div55, "display", "flex");
     			set_style(div55, "justify-content", "center");
-    			add_location(div55, file$1, 162, 4, 4027);
-    			add_location(b9, file$1, 174, 28, 4392);
+    			add_location(div55, file$1, 162, 4, 4051);
+    			add_location(b9, file$1, 174, 28, 4416);
     			attr_dev(div56, "class", "legendtext");
-    			add_location(div56, file$1, 174, 4, 4368);
+    			add_location(div56, file$1, 174, 4, 4392);
     			set_style(div57, "width", "58%");
-    			add_location(div57, file$1, 177, 6, 4503);
+    			add_location(div57, file$1, 177, 6, 4527);
     			attr_dev(div58, "class", "adjustableslidertext");
-    			add_location(div58, file$1, 181, 8, 4651);
+    			add_location(div58, file$1, 181, 8, 4675);
     			set_style(div59, "width", "42%");
-    			add_location(div59, file$1, 180, 6, 4618);
+    			add_location(div59, file$1, 180, 6, 4642);
     			attr_dev(div60, "class", "rangeval");
     			set_style(div60, "display", "flex");
     			set_style(div60, "justify-content", "center");
-    			add_location(div60, file$1, 176, 4, 4427);
-    			add_location(b10, file$1, 187, 28, 4787);
+    			add_location(div60, file$1, 176, 4, 4451);
+    			add_location(b10, file$1, 187, 28, 4811);
     			attr_dev(div61, "class", "legendtext");
-    			add_location(div61, file$1, 187, 4, 4763);
+    			add_location(div61, file$1, 187, 4, 4787);
     			set_style(div62, "width", "58%");
-    			add_location(div62, file$1, 190, 6, 4908);
+    			add_location(div62, file$1, 190, 6, 4932);
     			attr_dev(div63, "class", "adjustableslidertext");
-    			add_location(div63, file$1, 194, 8, 5059);
+    			add_location(div63, file$1, 194, 8, 5083);
     			set_style(div64, "width", "42%");
-    			add_location(div64, file$1, 193, 6, 5026);
+    			add_location(div64, file$1, 193, 6, 5050);
     			attr_dev(div65, "class", "rangeval");
     			set_style(div65, "display", "flex");
     			set_style(div65, "justify-content", "center");
-    			add_location(div65, file$1, 189, 4, 4832);
+    			add_location(div65, file$1, 189, 4, 4856);
     			add_location(div66, file$1, 159, 2, 3942);
     			set_style(div67, "width", "100%");
     			add_location(div67, file$1, 74, 0, 1774);
@@ -4563,7 +4563,7 @@
     			slider9.$set(slider9_changes);
 
     			if (!current || changed.InterventionTime) {
-    				set_data_dev(t60, ctx.InterventionTime);
+    				set_data_dev(t61, ctx.InterventionTime);
     			}
 
     			var slider10_changes = {};
@@ -4572,8 +4572,8 @@
     			}
     			slider10.$set(slider10_changes);
 
-    			if (!current || changed.OMInterventionAmt) {
-    				set_data_dev(t66, ctx.OMInterventionAmt);
+    			if ((!current || changed.OMInterventionAmt) && t66_value !== (t66_value = ctx.OMInterventionAmt*100 + "")) {
+    				set_data_dev(t66, t66_value);
     			}
     		},
 
@@ -22807,14 +22807,14 @@
     			td6 = element("td");
     			t12 = text(t12_value);
     			t13 = space();
-    			add_location(td0, file$2, 208, 4, 6993);
-    			add_location(td1, file$2, 209, 4, 7033);
-    			add_location(td2, file$2, 210, 4, 7097);
-    			add_location(td3, file$2, 211, 4, 7165);
-    			add_location(td4, file$2, 212, 4, 7233);
-    			add_location(td5, file$2, 213, 4, 7293);
-    			add_location(td6, file$2, 214, 4, 7355);
-    			add_location(tr, file$2, 207, 2, 6984);
+    			add_location(td0, file$2, 208, 4, 6996);
+    			add_location(td1, file$2, 209, 4, 7036);
+    			add_location(td2, file$2, 210, 4, 7100);
+    			add_location(td3, file$2, 211, 4, 7168);
+    			add_location(td4, file$2, 212, 4, 7236);
+    			add_location(td5, file$2, 213, 4, 7296);
+    			add_location(td6, file$2, 214, 4, 7358);
+    			add_location(tr, file$2, 207, 2, 6987);
     		},
 
     		m: function mount(target, anchor) {
@@ -23045,18 +23045,18 @@
     			}
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=980");
-    			add_location(meta, file$2, 176, 0, 6191);
+    			add_location(meta, file$2, 176, 0, 6194);
     			set_style(div, "width", "500px");
-    			add_location(div, file$2, 177, 0, 6234);
-    			add_location(th0, file$2, 197, 4, 6779);
-    			add_location(th1, file$2, 198, 4, 6796);
-    			add_location(th2, file$2, 199, 4, 6821);
-    			add_location(th3, file$2, 200, 4, 6842);
-    			add_location(th4, file$2, 201, 4, 6864);
-    			add_location(th5, file$2, 202, 4, 6890);
-    			add_location(th6, file$2, 203, 4, 6921);
-    			add_location(tr, file$2, 196, 2, 6770);
-    			add_location(table, file$2, 195, 0, 6760);
+    			add_location(div, file$2, 177, 0, 6237);
+    			add_location(th0, file$2, 197, 4, 6782);
+    			add_location(th1, file$2, 198, 4, 6799);
+    			add_location(th2, file$2, 199, 4, 6824);
+    			add_location(th3, file$2, 200, 4, 6845);
+    			add_location(th4, file$2, 201, 4, 6867);
+    			add_location(th5, file$2, 202, 4, 6893);
+    			add_location(th6, file$2, 203, 4, 6924);
+    			add_location(tr, file$2, 196, 2, 6773);
+    			add_location(table, file$2, 195, 0, 6763);
     			dispose = listen_dev(window, "resize", ctx.onwindowresize);
     		},
 
@@ -23427,7 +23427,7 @@
     	$$invalidate('Time_to_death', Time_to_death     = presets[0].Time_to_death);
     	logN              = Math.log(7e6);
     	$$invalidate('N', N                 = 530*1e6);
-    	$$invalidate('I0', I0                = 1);
+    	$$invalidate('I0', I0                = 5305);
     	$$invalidate('R0', R0                = 8);
     	$$invalidate('D_incbation', D_incbation       = 2);
     	$$invalidate('D_infectious', D_infectious      = 7);
