@@ -25855,30 +25855,30 @@
     			div4 = element("div");
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=370");
-    			add_location(meta, file$8, 259, 2, 8226);
+    			add_location(meta, file$8, 259, 2, 8245);
     			set_style(div0, "position", "relative");
     			set_style(div0, "grid-area", "top");
     			set_style(div0, "left", "-25px");
-    			add_location(div0, file$8, 262, 4, 8340);
+    			add_location(div0, file$8, 262, 4, 8359);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
-    			add_location(div1, file$8, 275, 4, 8679);
+    			add_location(div1, file$8, 275, 4, 8698);
     			set_style(div2, "grid-area", "left-bottom");
     			set_style(div2, "padding", "2px 4px 0px 0px");
-    			add_location(div2, file$8, 277, 4, 8763);
+    			add_location(div2, file$8, 277, 4, 8782);
     			attr_dev(div3, "class", "legendtext svelte-zyymcl");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "grid-area", "right-bottom");
-    			add_location(div3, file$8, 289, 4, 9139);
+    			add_location(div3, file$8, 289, 4, 9158);
     			set_style(div4, "grid-area", "line2");
     			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
-    			add_location(div4, file$8, 293, 4, 9342);
+    			add_location(div4, file$8, 293, 4, 9361);
     			attr_dev(div5, "class", "chartmobile svelte-zyymcl");
     			set_style(div5, "width", "360px");
     			set_style(div5, "overflow", "hidden");
-    			add_location(div5, file$8, 260, 2, 8271);
+    			add_location(div5, file$8, 260, 2, 8290);
     		},
 
     		m: function mount(target, anchor) {
@@ -25969,7 +25969,7 @@
     	return block;
     }
 
-    // (217:0) {#if !mobile}
+    // (217:0) {#if screenWidth > 767}
     function create_if_block$4(ctx) {
     	var meta, t0, div5, div0, updating_checked, t1, div1, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, t2, div4, div2, updating_OMInterventionAmt, updating_InterventionTime, updating_checked_1, updating_active, t3, div3, current;
 
@@ -26122,28 +26122,28 @@
     			selector.$$.fragment.c();
     			attr_dev(meta, "name", "viewport");
     			attr_dev(meta, "content", "width=980");
-    			add_location(meta, file$8, 217, 2, 7051);
+    			add_location(meta, file$8, 217, 2, 7070);
     			set_style(div0, "margin-right", "5px");
     			set_style(div0, "grid-area", "left-top");
-    			add_location(div0, file$8, 220, 4, 7142);
+    			add_location(div0, file$8, 220, 4, 7161);
     			set_style(div1, "margin-right", "5px");
     			set_style(div1, "grid-area", "left-bottom");
-    			add_location(div1, file$8, 233, 4, 7480);
+    			add_location(div1, file$8, 233, 4, 7499);
     			set_style(div2, "position", "relative");
     			set_style(div2, "left", "-12px");
-    			add_location(div2, file$8, 245, 6, 7816);
+    			add_location(div2, file$8, 245, 6, 7835);
     			attr_dev(div3, "class", "legendtext svelte-zyymcl");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "21px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "padding", "10px");
-    			add_location(div3, file$8, 249, 6, 8026);
+    			add_location(div3, file$8, 249, 6, 8045);
     			set_style(div4, "position", "relative");
     			set_style(div4, "grid-area", "right");
-    			add_location(div4, file$8, 243, 4, 7759);
+    			add_location(div4, file$8, 243, 4, 7778);
     			attr_dev(div5, "class", "chart svelte-zyymcl");
     			set_style(div5, "width", "980px");
-    			add_location(div5, file$8, 218, 2, 7096);
+    			add_location(div5, file$8, 218, 2, 7115);
     		},
 
     		m: function mount(target, anchor) {
@@ -26250,12 +26250,12 @@
     			destroy_component(selector);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(217:0) {#if !mobile}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$4.name, type: "if", source: "(217:0) {#if screenWidth > 767}", ctx });
     	return block;
     }
 
     function create_fragment$8(ctx) {
-    	var div, input, t0, t1, t2, current_block_type_index, if_block, if_block_anchor, current, dispose;
+    	var current_block_type_index, if_block, if_block_anchor, current, dispose;
 
     	add_render_callback(ctx.onwindowresize);
 
@@ -26267,7 +26267,7 @@
     	var if_blocks = [];
 
     	function select_block_type(changed, ctx) {
-    		if (!ctx.mobile) return 0;
+    		if (ctx.screenWidth > 767) return 0;
     		return 1;
     	}
 
@@ -26276,23 +26276,9 @@
 
     	const block = {
     		c: function create() {
-    			div = element("div");
-    			input = element("input");
-    			t0 = text(" Mobile = ");
-    			t1 = text(ctx.mobile);
-    			t2 = space();
     			if_block.c();
     			if_block_anchor = empty();
-    			attr_dev(input, "type", "checkbox");
-    			input.checked = true;
-    			add_location(input, file$8, 213, 0, 6955);
-    			set_style(div, "padding", "5px");
-    			add_location(div, file$8, 212, 0, 6928);
-
-    			dispose = [
-    				listen_dev(window, "resize", ctx.onwindowresize),
-    				listen_dev(input, "change", ctx.input_change_handler)
-    			];
+    			dispose = listen_dev(window, "resize", ctx.onwindowresize);
     		},
 
     		l: function claim(nodes) {
@@ -26300,26 +26286,12 @@
     		},
 
     		m: function mount(target, anchor) {
-    			insert_dev(target, div, anchor);
-    			append_dev(div, input);
-
-    			input.checked = ctx.mobile;
-
-    			append_dev(div, t0);
-    			append_dev(div, t1);
-    			insert_dev(target, t2, anchor);
     			if_blocks[current_block_type_index].m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     			current = true;
     		},
 
     		p: function update(changed, ctx) {
-    			if (changed.mobile) input.checked = ctx.mobile;
-
-    			if (!current || changed.mobile) {
-    				set_data_dev(t1, ctx.mobile);
-    			}
-
     			var previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type(changed, ctx);
     			if (current_block_type_index === previous_block_index) {
@@ -26353,18 +26325,13 @@
     		},
 
     		d: function destroy(detaching) {
-    			if (detaching) {
-    				detach_dev(div);
-    				detach_dev(t2);
-    			}
-
     			if_blocks[current_block_type_index].d(detaching);
 
     			if (detaching) {
     				detach_dev(if_block_anchor);
     			}
 
-    			run_all(dispose);
+    			dispose();
     		}
     	};
     	dispatch_dev("SvelteRegisterBlock", { block, id: create_fragment$8.name, type: "component", source: "", ctx });
@@ -26502,11 +26469,6 @@
     	function onwindowresize() {
     		screenWidth = window.innerWidth; $$invalidate('screenWidth', screenWidth);
     		screenHeight = window.innerHeight; $$invalidate('screenHeight', screenHeight);
-    	}
-
-    	function input_change_handler() {
-    		mobile = this.checked;
-    		$$invalidate('mobile', mobile);
     	}
 
     	function seirpanel_checked_binding(value) {
@@ -26680,7 +26642,6 @@
     		indexToTime,
     		get_d,
     		onwindowresize,
-    		input_change_handler,
     		seirpanel_checked_binding,
     		control_R0_binding,
     		control_D_incbation_binding,

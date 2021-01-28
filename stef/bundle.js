@@ -22779,9 +22779,9 @@
     	return child_ctx;
     }
 
-    // (207:0) {#each range(100) as i}
+    // (208:0) {#each range(100) as i}
     function create_each_block(ctx) {
-    	var tr, td0, t0_value = ctx.Math.round(ctx.i*ctx.Sol["dt"]) + "", t0, t1, td1, t2_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][0])) + "", t2, t3, td2, t4_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][1])) + "", t4, t5, td3, t6_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][2])) + "", t6, t7, td4, t8_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][1])) + "", t8, t9, td5, t10_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][2])) + "", t10, t11, td6, t12_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][0])) + "", t12, t13;
+    	var tr, td0, t0_value = ctx.Math.round(ctx.i*ctx.Sol["dt"]) + "", t0, t1, td1, t2_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][0])) + "", t2, t3, td2, t4_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][1])) + "", t4, t5, td3, t6_value = format(",.3r")(ctx.Math.round(ctx.N*ctx.Sol["Iters"][ctx.i][2])) + "", t6, t7, td4, t8_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][1])) + "", t8, t9, td5, t10_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][2])) + "", t10, t11, td6, t12_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][0])) + "", t12, t13, td7, t14_value = format(",.3r")(ctx.Math.round(ctx.Sol["total_infected"][ctx.i])) + "", t14, t15;
 
     	const block = {
     		c: function create() {
@@ -22807,14 +22807,18 @@
     			td6 = element("td");
     			t12 = text(t12_value);
     			t13 = space();
-    			add_location(td0, file$2, 208, 4, 6996);
-    			add_location(td1, file$2, 209, 4, 7036);
-    			add_location(td2, file$2, 210, 4, 7100);
-    			add_location(td3, file$2, 211, 4, 7168);
-    			add_location(td4, file$2, 212, 4, 7236);
-    			add_location(td5, file$2, 213, 4, 7296);
-    			add_location(td6, file$2, 214, 4, 7358);
-    			add_location(tr, file$2, 207, 2, 6987);
+    			td7 = element("td");
+    			t14 = text(t14_value);
+    			t15 = space();
+    			add_location(td0, file$2, 209, 4, 7024);
+    			add_location(td1, file$2, 210, 4, 7064);
+    			add_location(td2, file$2, 211, 4, 7128);
+    			add_location(td3, file$2, 212, 4, 7196);
+    			add_location(td4, file$2, 213, 4, 7264);
+    			add_location(td5, file$2, 214, 4, 7324);
+    			add_location(td6, file$2, 215, 4, 7386);
+    			add_location(td7, file$2, 216, 4, 7448);
+    			add_location(tr, file$2, 208, 2, 7015);
     		},
 
     		m: function mount(target, anchor) {
@@ -22840,6 +22844,9 @@
     			append_dev(tr, td6);
     			append_dev(td6, t12);
     			append_dev(tr, t13);
+    			append_dev(tr, td7);
+    			append_dev(td7, t14);
+    			append_dev(tr, t15);
     		},
 
     		p: function update(changed, ctx) {
@@ -22870,6 +22877,10 @@
     			if ((changed.Sol) && t12_value !== (t12_value = format(",.3r")(ctx.Math.round(ctx.Sol["P"][ctx.i][0])) + "")) {
     				set_data_dev(t12, t12_value);
     			}
+
+    			if ((changed.Sol) && t14_value !== (t14_value = format(",.3r")(ctx.Math.round(ctx.Sol["total_infected"][ctx.i])) + "")) {
+    				set_data_dev(t14, t14_value);
+    			}
     		},
 
     		d: function destroy(detaching) {
@@ -22878,12 +22889,12 @@
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block.name, type: "each", source: "(207:0) {#each range(100) as i}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block.name, type: "each", source: "(208:0) {#each range(100) as i}", ctx });
     	return block;
     }
 
     function create_fragment$2(ctx) {
-    	var meta, t0, div, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, updating_P_SEVERE, updating_D_hospital_lag, updating_D_recovery_severe, updating_D_recovery_mild, updating_InterventionTime, updating_OMInterventionAmt, t1, table, tr, th0, t3, th1, t5, th2, t7, th3, t9, th4, t11, th5, t13, th6, t15, current, dispose;
+    	var meta, t0, div, updating_R0, updating_D_incbation, updating_D_infectious, updating_CFR, updating_Time_to_death, updating_P_SEVERE, updating_D_hospital_lag, updating_D_recovery_severe, updating_D_recovery_mild, updating_InterventionTime, updating_OMInterventionAmt, t1, table, tr, th0, t3, th1, t5, th2, t7, th3, t9, th4, t11, th5, t13, th6, t15, th7, t17, current, dispose;
 
     	add_render_callback(ctx.onwindowresize);
 
@@ -23039,6 +23050,9 @@
     			th6 = element("th");
     			th6.textContent = "Fatalities (total)";
     			t15 = space();
+    			th7 = element("th");
+    			th7.textContent = "Total infected";
+    			t17 = space();
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
@@ -23055,6 +23069,7 @@
     			add_location(th4, file$2, 201, 4, 6867);
     			add_location(th5, file$2, 202, 4, 6893);
     			add_location(th6, file$2, 203, 4, 6924);
+    			add_location(th7, file$2, 204, 4, 6956);
     			add_location(tr, file$2, 196, 2, 6773);
     			add_location(table, file$2, 195, 0, 6763);
     			dispose = listen_dev(window, "resize", ctx.onwindowresize);
@@ -23085,7 +23100,9 @@
     			append_dev(tr, th5);
     			append_dev(tr, t13);
     			append_dev(tr, th6);
-    			append_dev(table, t15);
+    			append_dev(tr, t15);
+    			append_dev(tr, th7);
+    			append_dev(table, t17);
 
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].m(table, null);
