@@ -25743,34 +25743,28 @@
 
     // (258:0) {:else}
     function create_else_block$4(ctx) {
-    	var meta, t0, div5, div0, updating_mobile, updating_OMInterventionAmt, updating_InterventionTime, updating_checked, updating_active, t1, div1, t2, div2, updating_checked_1, t3, div3, t4, div4, current;
+    	var meta, t0, div5, div0, updating_OMInterventionAmt, updating_InterventionTime, updating_checked, updating_active, t1, div1, t2, div2, updating_checked_1, t3, div3, t4, div4, current;
 
-    	function seir_mobile_binding(value) {
-    		ctx.seir_mobile_binding.call(null, value);
-    		updating_mobile = true;
-    		add_flush_callback(() => updating_mobile = false);
-    	}
-
-    	function seir_OMInterventionAmt_binding_1(value_1) {
-    		ctx.seir_OMInterventionAmt_binding_1.call(null, value_1);
+    	function seir_OMInterventionAmt_binding_1(value) {
+    		ctx.seir_OMInterventionAmt_binding_1.call(null, value);
     		updating_OMInterventionAmt = true;
     		add_flush_callback(() => updating_OMInterventionAmt = false);
     	}
 
-    	function seir_InterventionTime_binding_1(value_2) {
-    		ctx.seir_InterventionTime_binding_1.call(null, value_2);
+    	function seir_InterventionTime_binding_1(value_1) {
+    		ctx.seir_InterventionTime_binding_1.call(null, value_1);
     		updating_InterventionTime = true;
     		add_flush_callback(() => updating_InterventionTime = false);
     	}
 
-    	function seir_checked_binding_1(value_3) {
-    		ctx.seir_checked_binding_1.call(null, value_3);
+    	function seir_checked_binding_1(value_2) {
+    		ctx.seir_checked_binding_1.call(null, value_2);
     		updating_checked = true;
     		add_flush_callback(() => updating_checked = false);
     	}
 
-    	function seir_active_binding_1(value_4) {
-    		ctx.seir_active_binding_1.call(null, value_4);
+    	function seir_active_binding_1(value_3) {
+    		ctx.seir_active_binding_1.call(null, value_3);
     		updating_active = true;
     		add_flush_callback(() => updating_active = false);
     	}
@@ -25780,11 +25774,9 @@
     		Sol: ctx.Sol,
     		N: ctx.N,
     		height: 280,
-    		width: 345
+    		width: 345,
+    		mobile: true
     	};
-    	if (ctx.mobile !== void 0) {
-    		seir_props.mobile = ctx.mobile;
-    	}
     	if (ctx.OMInterventionAmt !== void 0) {
     		seir_props.OMInterventionAmt = ctx.OMInterventionAmt;
     	}
@@ -25799,14 +25791,13 @@
     	}
     	var seir = new SEIR({ props: seir_props, $$inline: true });
 
-    	binding_callbacks.push(() => bind(seir, 'mobile', seir_mobile_binding));
     	binding_callbacks.push(() => bind(seir, 'OMInterventionAmt', seir_OMInterventionAmt_binding_1));
     	binding_callbacks.push(() => bind(seir, 'InterventionTime', seir_InterventionTime_binding_1));
     	binding_callbacks.push(() => bind(seir, 'checked', seir_checked_binding_1));
     	binding_callbacks.push(() => bind(seir, 'active', seir_active_binding_1));
 
-    	function seirpanel_checked_binding_1(value_5) {
-    		ctx.seirpanel_checked_binding_1.call(null, value_5);
+    	function seirpanel_checked_binding_1(value_4) {
+    		ctx.seirpanel_checked_binding_1.call(null, value_4);
     		updating_checked_1 = true;
     		add_flush_callback(() => updating_checked_1 = false);
     	}
@@ -25862,19 +25853,19 @@
     			add_location(div0, file$8, 262, 4, 8359);
     			set_style(div1, "grid-area", "line");
     			set_style(div1, "border-bottom", "1px solid rgb(200,200,200)");
-    			add_location(div1, file$8, 275, 4, 8698);
+    			add_location(div1, file$8, 275, 4, 8700);
     			set_style(div2, "grid-area", "left-bottom");
     			set_style(div2, "padding", "2px 4px 0px 0px");
-    			add_location(div2, file$8, 277, 4, 8782);
+    			add_location(div2, file$8, 277, 4, 8784);
     			attr_dev(div3, "class", "legendtext svelte-zyymcl");
     			set_style(div3, "width", "100%");
     			set_style(div3, "margin-top", "5px");
     			set_style(div3, "position", "relative");
     			set_style(div3, "grid-area", "right-bottom");
-    			add_location(div3, file$8, 289, 4, 9158);
+    			add_location(div3, file$8, 289, 4, 9160);
     			set_style(div4, "grid-area", "line2");
     			set_style(div4, "border-bottom", "1.5px solid rgb(200,200,200)");
-    			add_location(div4, file$8, 293, 4, 9361);
+    			add_location(div4, file$8, 293, 4, 9363);
     			attr_dev(div5, "class", "chartmobile svelte-zyymcl");
     			set_style(div5, "width", "360px");
     			set_style(div5, "overflow", "hidden");
@@ -25904,9 +25895,6 @@
     			var seir_changes = {};
     			if (changed.Sol) seir_changes.Sol = ctx.Sol;
     			if (changed.N) seir_changes.N = ctx.N;
-    			if (!updating_mobile && changed.mobile) {
-    				seir_changes.mobile = ctx.mobile;
-    			}
     			if (!updating_OMInterventionAmt && changed.OMInterventionAmt) {
     				seir_changes.OMInterventionAmt = ctx.OMInterventionAmt;
     			}
@@ -26338,6 +26326,8 @@
     	return block;
     }
 
+    let mobile = false;
+
     function instance$8($$self, $$props, $$invalidate) {
     	
 
@@ -26360,7 +26350,6 @@
       }
 
       var active = 0;
-      let mobile = false;
 
       var Integrators = {
         Euler    : [[1]],
@@ -26521,33 +26510,28 @@
     		$$invalidate('active', active);
     	}
 
-    	function seir_mobile_binding(value) {
-    		mobile = value;
-    		$$invalidate('mobile', mobile);
-    	}
-
-    	function seir_OMInterventionAmt_binding_1(value_1) {
-    		OMInterventionAmt = value_1;
+    	function seir_OMInterventionAmt_binding_1(value) {
+    		OMInterventionAmt = value;
     		$$invalidate('OMInterventionAmt', OMInterventionAmt);
     	}
 
-    	function seir_InterventionTime_binding_1(value_2) {
-    		InterventionTime = value_2;
+    	function seir_InterventionTime_binding_1(value_1) {
+    		InterventionTime = value_1;
     		$$invalidate('InterventionTime', InterventionTime);
     	}
 
-    	function seir_checked_binding_1(value_3) {
-    		checked = value_3;
+    	function seir_checked_binding_1(value_2) {
+    		checked = value_2;
     		$$invalidate('checked', checked);
     	}
 
-    	function seir_active_binding_1(value_4) {
-    		active = value_4;
+    	function seir_active_binding_1(value_3) {
+    		active = value_3;
     		$$invalidate('active', active);
     	}
 
-    	function seirpanel_checked_binding_1(value_5) {
-    		checked = value_5;
+    	function seirpanel_checked_binding_1(value_4) {
+    		checked = value_4;
     		$$invalidate('checked', checked);
     	}
 
@@ -26558,7 +26542,7 @@
     	$$self.$inject_state = $$props => {
     		if ('colors' in $$props) $$invalidate('colors', colors = $$props.colors);
     		if ('active' in $$props) $$invalidate('active', active = $$props.active);
-    		if ('mobile' in $$props) $$invalidate('mobile', mobile = $$props.mobile);
+    		if ('mobile' in $$props) mobile = $$props.mobile;
     		if ('Integrators' in $$props) Integrators = $$props.Integrators;
     		if ('integrate' in $$props) integrate = $$props.integrate;
     		if ('InterventionTime' in $$props) $$invalidate('InterventionTime', InterventionTime = $$props.InterventionTime);
@@ -26626,7 +26610,6 @@
     		colors,
     		presetParameters,
     		active,
-    		mobile,
     		InterventionTime,
     		R0,
     		D_incbation,
@@ -26652,7 +26635,6 @@
     		seir_InterventionTime_binding,
     		seir_checked_binding,
     		seir_active_binding,
-    		seir_mobile_binding,
     		seir_OMInterventionAmt_binding_1,
     		seir_InterventionTime_binding_1,
     		seir_checked_binding_1,
